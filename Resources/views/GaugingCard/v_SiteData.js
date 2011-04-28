@@ -8,8 +8,7 @@ var data = [
 	{title:'SiteID:', hasChild:false},
 	{title:'River:', hasChild:true, url:'v_SiteDataRiver.js'},
 	{title:'Date:' + d, hasChild:false},
-	{title:'Map Ref:', hasChild:false},
-	{title:'Entered by:', hasChild:true,url:'v_SiteDataUser.js'}
+	{title:'Map Ref:', hasChild:false}
 ];
 
 // create table view
