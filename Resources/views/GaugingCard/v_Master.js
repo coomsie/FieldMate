@@ -4,8 +4,8 @@
 var data = [
 	{title:'Site Data', hasChild:true, url:'/views/GaugingCard/v_SiteData.js'},
 	{title:'Field Data', hasChild:true, url:'/views/GaugingCard/v_FieldData.js'},
-	{title:'Computed Data', hasChild:true, url:'/views/GaugingCard/v_ComputedData.js'},
 	{title:'Stage Readings', hasChild:true, url:'/views/GaugingCard/v_StageReadings.js'},
+	{title:'Computed Data', hasChild:true, url:'/views/GaugingCard/v_ComputedData.js'},
 	{title:'Remarks', hasChild:true, url:'/views/GaugingCard/v_Remarks.js'}
 ];
 

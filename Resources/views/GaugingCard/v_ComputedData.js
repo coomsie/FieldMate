@@ -8,7 +8,7 @@ var data = [];
 var row = Ti.UI.createTableViewRow({height:50});
 
 var lb_discharge = Ti.UI.createLabel({
-	text:'Discharge:',
+	text:'Discharge(m3/s):',
 	color:'#999',
 	textAlign:'left'
 });
@@ -26,7 +26,7 @@ data[0] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_area = Ti.UI.createLabel({
-	text:'Area:',
+	text:'Area(m2):',
 	color:'#999',
 	textAlign:'left'
 
@@ -45,7 +45,7 @@ data[2] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_meanvel = Ti.UI.createLabel({
-	text:'Mean vel:',
+	text:'Mean vel(m/s):',
 	color:'#999',
 	textAlign:'left'
 });
@@ -62,38 +62,8 @@ row.add(tb_meanvel);
 data[3] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
-
-
 var tableView = Ti.UI.createTableView({
 	data:data
 });
 
 win.add(tableView);
-
-//add history of button
-var btn_history = Titanium.UI.createButton({
-   title: 'History',
-   width: 70,
-   height: 30,
-});
-
-btn_history.addEventListener('click',function(e)
-{
-   Titanium.API.info("You clicked the history button");
-	var alertDialog = Titanium.UI.createAlertDialog({
-   	 				title: 'History',
-				    message: 'history of guage would show (toggle) & read only',
-				    buttonNames: ['OK']
-					});
-	alertDialog.show();
-	if(btn_history.title === 'History')
-	{
-	btn_history.title = 'New';
-	tableview.allowsSelection = false;
-	}
-	else{
-		btn_history.title = 'History';
-		tableview.allowsSelection = true;
-	}
-});
-Titanium.UI.currentWindow.rightNavButton = btn_history;

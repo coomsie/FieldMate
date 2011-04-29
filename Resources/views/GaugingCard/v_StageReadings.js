@@ -7,28 +7,16 @@ var header = Ti.UI.createLabel({
 		top:2,
 		height:25,
 		width:320,
-		text:'Time:   Record:   Well:  Gauge:'
+		text:'Type:		Time:	Recorder:		Well:		Gauge:		+/-:'
 	});
 	
 var data = [];
 // create the rest of the rows
-for (var c=0;c<50;c++)
+for (var c=0;c<5;c++)
 {
 	var row = Ti.UI.createTableViewRow();
 	row.height  =35;
 	row.myid = c;
-	// row.header='Time: Record: Well: Gauge:';
-		// var user = Ti.UI.createLabel({
-		// color:'#576996',
-		// font:{fontSize:16,fontWeight:'bold', fontFamily:'Arial'},
-		// left:20,
-		// top:2,
-		// height:25,
-		// width:320,
-		// text:'Time: Record: Well: Gauge:'
-	// });
-	// user.rowNum = c;
-	// row.add(user);
 
 	var comment = Ti.UI.createLabel({
 		color:'#222',
@@ -37,7 +25,7 @@ for (var c=0;c<50;c++)
 		//top:21,
 		height:35,
 		width:320,
-		text:'1300 |     .733 |     .75 |      5+'
+		text:'M |	1300 |     .733 |     .75 |   .75	|   5'
 	});
 	comment.rowNum = c;
 	row.add(comment);

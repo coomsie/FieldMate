@@ -116,15 +116,12 @@ view_init_sync(win3);
 
 //3Day tab ///
 //create settings UI Tab
-var win4 = Titanium.UI.createWindow({id:'win4'});
+var win4 = Titanium.UI.createWindow({id:'win4',url:'views/v_settings.js'});
 var tab4 = Titanium.UI.createTab({
 	icon:'images/settings.png',
 	title:'Settings',
 	window:win4
 });
-// Load UI elements 
-Titanium.include('views/v_settings.js');
-view_init_settings(win4);
 //load controllers
 //Titanium.include('controllers/ctr_settingsTab.js');
 
