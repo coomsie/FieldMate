@@ -15,8 +15,8 @@ var lb_discharge = Ti.UI.createLabel({
 var tb_discharge = Titanium.UI.createTextField({
     color:'#999',
     height:35,
-    left:100,
-    width:220,
+    right:0,
+    width:150,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_discharge);
@@ -34,8 +34,8 @@ var lb_area = Ti.UI.createLabel({
 var tb_area = Titanium.UI.createTextField({
     color:'#999',
     height:35,
-    left:100,
-    width:220,
+    right:0,
+    width:150,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_area);
@@ -52,8 +52,8 @@ var lb_meanvel = Ti.UI.createLabel({
 var tb_meanvel = Titanium.UI.createTextField({
     color:'#999',
     height:35,
-    left:100,
-    width:220,
+    right:0,
+    width:150,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_meanvel);

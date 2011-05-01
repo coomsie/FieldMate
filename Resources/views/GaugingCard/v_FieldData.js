@@ -104,7 +104,7 @@ row.add(tb_wind);
 data[7] = row;
 
 
-data[8] = {title:'Type: [not entered]', hasChild:true, url:'/views/GaugingCard/v_FieldDataAngle.js',header:'Angle'};
+data[8] = {title:'Type: [not entered]', hasChild:true,header:'Angle',dialogid:'AngleType',origtitle: 'Type: ',dialogoptions : ['variable','nil','constant']};
 
 row = Ti.UI.createTableViewRow({height:50});
 
@@ -127,7 +127,7 @@ data[9] = row;
 
 
 
-data[10] = {title:'Colour: [not entered]',hasChild:false,url:'/views/GaugingCard/v_FieldDataWater.js', header:'Water'};
+data[10] = {title:'Colour: [not entered]',hasChild:false,header:'Water',dialogid:'WaterColour',origtitle: 'Colour: ',dialogoptions : ['discoloured','clear','?other?'] };
 
 row = Ti.UI.createTableViewRow({height:50});
 
@@ -156,6 +156,18 @@ var tableView = Ti.UI.createTableView({
 
 tableView.addEventListener('click', function(e)
 {
+	// dialogs	
+	if (e.rowData.dialogid) //exists
+	{
+		Ti.API.info(e.rowData.title);
+		dialog.rowid = e.index;
+		dialog.options = e.rowData.dialogoptions;
+		dialog.origtitle  = e.rowData.origtitle;
+		dialog.dialogid = e.rowData.dialogid;
+		dialog.show();
+		
+	}	
+		
 	if (e.rowData.url)
 	{
 		var win = null;
@@ -218,8 +230,27 @@ btn_history.addEventListener('click',function(e)
 	}
 });
 
-
-
-
-
 Titanium.UI.currentWindow.rightNavButton = btn_history;
+
+//dialogs
+//
+
+var dialog = Titanium.UI.createOptionDialog({
+	options:['other'],
+	//destructive:2,
+	//cancel:1,
+	title:'Choose ..',
+	rowid: null,
+	origtitle: null,
+	dialogid: null
+});
+
+// add event listener
+dialog.addEventListener('click',function(e)
+{
+	Titanium.API.info(e.source.options[e.index]);
+	Titanium.API.info(dialog.rowid);
+	Titanium.API.info(e);
+	tableView.updateRow(dialog.rowid,{title: dialog.origtitle + e.source.options[e.index], hasChild:true, dialogid: dialog.dialogid , origtitle: dialog.origtitle , dialogoptions: e.source.options });
+});
+	
