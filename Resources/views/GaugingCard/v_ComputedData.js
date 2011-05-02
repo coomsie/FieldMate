@@ -17,6 +17,7 @@ var tb_discharge = Titanium.UI.createTextField({
     height:35,
     right:0,
     width:150,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_discharge);
@@ -36,6 +37,7 @@ var tb_area = Titanium.UI.createTextField({
     height:35,
     right:0,
     width:150,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_area);
@@ -54,6 +56,7 @@ var tb_meanvel = Titanium.UI.createTextField({
     height:35,
     right:0,
     width:150,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_meanvel);

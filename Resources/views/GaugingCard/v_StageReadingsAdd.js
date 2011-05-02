@@ -10,7 +10,7 @@ data[0] = {title:'Type:',hasChild:true};
 var row = Ti.UI.createTableViewRow({height:50});
 
 var lb_time = Ti.UI.createLabel({
-	text:'Time:',
+	text:'Time:*',
 	color:'#999',
 	textAlign:'left'
 });
@@ -19,6 +19,7 @@ var tb_time = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_time);
@@ -38,6 +39,7 @@ var tb_record = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_record);
@@ -56,6 +58,7 @@ var tb_well = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_well);
@@ -74,6 +77,7 @@ var tb_gauge = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_gauge);
@@ -92,6 +96,7 @@ var tb_dif = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_dif);

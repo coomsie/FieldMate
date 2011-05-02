@@ -5,7 +5,7 @@ d.toLocaleDateString();
 
 // create table view data object
 var data = [
-	{title:'SiteID:', hasChild:false},
+	{title:'SiteID:*', hasChild:false},
 	{title:'River:', hasChild:true, url:'v_SiteDataRiver.js'},
 	{title:'Date:' + d, hasChild:false}
 ];
