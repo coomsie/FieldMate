@@ -1,6 +1,8 @@
 Ti.API.info(Ti.App.guid);
 //load models
 //Titanium.include('models/m_surfacewater.js');
+Titanium.include('helpers/validation.js');
+Titanium.include('helpers/redux.js');
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#6666');
