@@ -1,0 +1,534 @@
+{
+	"data": {
+		"item": [
+			{
+				"SiteNumber": "68801",
+				"River": "Ashburton River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2409622",
+				"NZMGY": "5697609"
+			}, {
+				"SiteNumber": "66204",
+				"River": "Ashley River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2446400",
+				"NZMGY": "5774900",
+				"MeanFlow": "11.995",
+				"MedianFlow": "7.685"
+			}, {
+				"SiteNumber": "66214",
+				"River": "Ashley River",
+				"SiteName": "Rangiora Traffic Bridge (Recorder)",
+				"NZMGX": "2476266",
+				"NZMGY": "5769339"
+			}, {
+				"SiteNumber": "66201",
+				"River": "Ashley River",
+				"SiteName": "SH1 Bridge",
+				"NZMGX": "2484700",
+				"NZMGY": "5769800"
+			}, {
+				"SiteNumber": "66602",
+				"River": "Avon River",
+				"SiteName": "Gloucester Street Bridge (Recorder)",
+				"NZMGX": "2480450",
+				"NZMGY": "5741895",
+				"MeanFlow": "1.84417",
+				"MedianFlow": "1.665"
+			}, {
+				"SiteNumber": "67402",
+				"River": "Aylmers Stream",
+				"SiteName": "Upstream Council Intake (Recorder)",
+				"NZMGX": "2507560",
+				"NZMGY": "5709439"
+			}, {
+				"SiteNumber": "69201",
+				"River": "Boundary Drain",
+				"SiteName": "Trigpole Road (Recorder)",
+				"NZMGX": "2399794",
+				"NZMGY": "5678327"
+			}, {
+				"SiteNumber": "68822",
+				"River": "Bowyers Stream",
+				"SiteName": "State Highway 72 (Recorder)",
+				"NZMGX": "2384700",
+				"NZMGY": "5723600"
+			}, {
+				"SiteNumber": "70908",
+				"River": "Buchanans Creek",
+				"SiteName": "Fletchers Farm (Recorder)",
+				"NZMGX": "2363043",
+				"NZMGY": "5601949",
+				"MeanFlow": "0.350571",
+				"MedianFlow": "0.343"
+			}, {
+				"SiteNumber": "68544",
+				"River": "Cameron River",
+				"SiteName": "Big Gully (Recorder)",
+				"NZMGX": "2357900",
+				"NZMGY": "5749600"
+			}, {
+				"SiteNumber": "69515",
+				"River": "Coopers Creek",
+				"SiteName": "SH72",
+				"NZMGX": "2372060",
+				"NZMGY": "5686510"
+			}, {
+				"SiteNumber": "66432",
+				"River": "Courtenay Stream",
+				"SiteName": "Ashley Meat Factory",
+				"NZMGX": "2481300",
+				"NZMGY": "5756000"
+			}, {
+				"SiteNumber": "66417",
+				"River": "Cust Main Drain",
+				"SiteName": "Threlkelds Road (Recorder)",
+				"NZMGX": "2478559",
+				"NZMGY": "5760401",
+				"MeanFlow": "1.41122",
+				"MedianFlow": "0.925"
+			}, {
+				"SiteNumber": "67408",
+				"River": "French Farm Stream",
+				"SiteName": "French Farm Valley Road (Recorder)",
+				"NZMGX": "2502404",
+				"NZMGY": "5714431",
+				"MeanFlow": "0.112261",
+				"MedianFlow": "0.055449"
+			}, {
+				"SiteNumber": "71155",
+				"River": "Hakataramea River",
+				"SiteName": "Above Mt Florence (Recorder)",
+				"NZMGX": "2324791",
+				"NZMGY": "5625399"
+			}, {
+				"SiteNumber": "67805",
+				"River": "Halswell River",
+				"SiteName": "Ryans Bridge (Recorder)",
+				"NZMGX": "2473084",
+				"NZMGY": "5727178",
+				"MeanFlow": "0.745"
+			}, {
+				"SiteNumber": "66612",
+				"River": "Heathcote River",
+				"SiteName": "Buxton Terrace (Recorder)",
+				"NZMGX": "2481562",
+				"NZMGY": "5738474",
+				"MeanFlow": "0.977961",
+				"MedianFlow": "0.732"
+			}, {
+				"SiteNumber": "69101",
+				"River": "Hinds River Sth Branch",
+				"SiteName": "Syphon (Recorder)",
+				"NZMGX": "2377200",
+				"NZMGY": "5711500"
+			}, {
+				"SiteNumber": "66604",
+				"River": "Hoon Hay Stream",
+				"SiteName": "Weir (Recorder)",
+				"NZMGX": "2478482",
+				"NZMGY": "5733676",
+				"MeanFlow": "0.0118685",
+				"MedianFlow": "0.001"
+			}, {
+				"SiteNumber": "64608",
+				"River": "Hope River",
+				"SiteName": "Glynn Wye (Recorder)",
+				"NZMGX": "2469812",
+				"NZMGY": "5846316",
+				"MeanFlow": "45.5653",
+				"MedianFlow": "32.55"
+			}, {
+				"SiteNumber": "65108",
+				"River": "Hurunui River",
+				"SiteName": "No.2 Hut (Recorder)",
+				"NZMGX": "2437233",
+				"NZMGY": "5833121",
+				"MeanFlow": "17.8232",
+				"MedianFlow": "11.483"
+			}, {
+				"SiteNumber": "67702",
+				"River": "Kaituna River",
+				"SiteName": "Kaituna Valley Road (Recorder)",
+				"NZMGX": "2484400",
+				"NZMGY": "5716600",
+				"MeanFlow": "0.56798",
+				"MedianFlow": "0.175"
+			}, {
+				"SiteNumber": "69633",
+				"River": "Kakahu River",
+				"SiteName": "Mitchells Weir No.9 (Recorder)",
+				"NZMGX": "2351913",
+				"NZMGY": "5679449"
+			}, {
+				"SiteNumber": "69645",
+				"River": "Kakahu River",
+				"SiteName": "Mulvihills (Recorder)",
+				"NZMGX": "2353783",
+				"NZMGY": "5673926",
+				"MeanFlow": "0.47204",
+				"MedianFlow": "0.121"
+			}, {
+				"SiteNumber": "69634",
+				"River": "Kakahu River",
+				"SiteName": "Turnbulls Weir No.10 (Recorder)",
+				"NZMGX": "2353594",
+				"NZMGY": "5677892",
+				"MeanFlow": "0.0587962",
+				"MedianFlow": "0.022645"
+			}, {
+				"SiteNumber": "66433",
+				"River": "Kaputone Creek",
+				"SiteName": "Belfast Road",
+				"NZMGX": "2482100",
+				"NZMGY": "5749800"
+			}, {
+				"SiteNumber": "71156",
+				"River": "Kirkliston Stream",
+				"SiteName": "Upstream Water Supply (Recorder)",
+				"NZMGX": "2312928",
+				"NZMGY": "5619808"
+			}, {
+				"SiteNumber": "66101",
+				"River": "Kowai River North Branch (Amberley)",
+				"SiteName": "Grays Road (Recorder)",
+				"NZMGX": "2487460",
+				"NZMGY": "5782500"
+			}, {
+				"SiteNumber": "63001",
+				"River": "Lyell Creek",
+				"SiteName": "D/S Warren Creek Confl (Recorder)",
+				"NZMGX": "2565798",
+				"NZMGY": "5868080",
+				"MeanFlow": "0.588398",
+				"MedianFlow": "0.529"
+			}, {
+				"SiteNumber": "65102",
+				"River": "Mandamus River",
+				"SiteName": "Tekoa Road Bridge (Recorder)",
+				"NZMGX": "2473800",
+				"NZMGY": "5824250"
+			}, {
+				"SiteNumber": "71130",
+				"River": "Mary Burn",
+				"SiteName": "SH8 Bridge (Recorder)",
+				"NZMGX": "2296000",
+				"NZMGY": "5666700"
+			}, {
+				"SiteNumber": "63101",
+				"River": "Middle Creek",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2565999",
+				"NZMGY": "5870706",
+				"MeanFlow": "0.497287",
+				"MedianFlow": "0.381"
+			}, {
+				"SiteNumber": "68810",
+				"River": "North Ashburton River",
+				"SiteName": "Old Weir (Recorder)",
+				"NZMGX": "2388000",
+				"NZMGY": "5735700",
+				"MeanFlow": "8.50692",
+				"MedianFlow": "6.431"
+			}, {
+				"SiteNumber": "69508",
+				"River": "Ohapi Creek",
+				"SiteName": "Brown Road",
+				"NZMGX": "2381100",
+				"NZMGY": "5661800",
+				"MeanFlow": "2.203",
+				"MedianFlow": "1.943"
+			}, {
+				"SiteNumber": "69509",
+				"River": "Ohapi Creek",
+				"SiteName": "Milford Clandeboye Road",
+				"NZMGX": "2378100",
+				"NZMGY": "5662500"
+			}, {
+				"SiteNumber": "66435",
+				"River": "Ohoka Spring",
+				"SiteName": "Dalleys Weir (Recorder)",
+				"NZMGX": "2476002",
+				"NZMGY": "5758387"
+			}, {
+				"SiteNumber": "166651",
+				"River": "Okeover Stream",
+				"SiteName": "Downstream Dewatering Pipe",
+				"NZMGX": "2476100",
+				"NZMGY": "5742700"
+			}, {
+				"SiteNumber": "66213",
+				"River": "Okuku River",
+				"SiteName": "Fox Creek (Recorder)",
+				"NZMGX": "2460275",
+				"NZMGY": "5784854",
+				"MeanFlow": "4.43395",
+				"MedianFlow": "2.299"
+			}, {
+				"SiteNumber": "71189",
+				"River": "Omarama Stream",
+				"SiteName": "Above Tara Hills (Recorder)",
+				"NZMGX": "2262425",
+				"NZMGY": "5625961",
+				"MeanFlow": "1.501",
+				"MedianFlow": "1.137"
+			}, {
+				"SiteNumber": "71136",
+				"River": "Omarama Stream",
+				"SiteName": "Wardells Bridge (Recorder)",
+				"NZMGX": "2267700",
+				"NZMGY": "5630500"
+			}, {
+				"SiteNumber": "67001",
+				"River": "Opara Stream (Okains Bay)",
+				"SiteName": "Friesian Stud Farm (Recorder)",
+				"NZMGX": "2512895",
+				"NZMGY": "5721591",
+				"MeanFlow": "0.249637",
+				"MedianFlow": "0.105"
+			}, {
+				"SiteNumber": "69618",
+				"River": "Opihi River",
+				"SiteName": "Rockwood (Recorder)",
+				"NZMGX": "2345515",
+				"NZMGY": "5669046",
+				"MeanFlow": "5.35301",
+				"MedianFlow": "3.396"
+			}, {
+				"SiteNumber": "69607",
+				"River": "Opihi River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2371800",
+				"NZMGY": "5659158"
+			}, {
+				"SiteNumber": "69505",
+				"River": "Orari River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2365356",
+				"NZMGY": "5695179",
+				"MeanFlow": "9.49245",
+				"MedianFlow": "6.596"
+			}, {
+				"SiteNumber": "69514",
+				"River": "Orari River",
+				"SiteName": "U/S Confluence of Ohapi Creek",
+				"NZMGX": "2381600",
+				"NZMGY": "5662000"
+			}, {
+				"SiteNumber": "70303",
+				"River": "Otaio River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2345651",
+				"NZMGY": "5629964"
+			}, {
+				"SiteNumber": "65110",
+				"River": "Pahau River",
+				"SiteName": "The Grampians",
+				"NZMGX": "2484000",
+				"NZMGY": "5828800"
+			}, {
+				"SiteNumber": "69001",
+				"River": "Parakanoi Drain",
+				"SiteName": "Lower Beach Road (Recorder)",
+				"NZMGX": "2405727",
+				"NZMGY": "5679402"
+			}, {
+				"SiteNumber": "70105",
+				"River": "Pareora River",
+				"SiteName": "Huts (Recorder)",
+				"NZMGX": "2355257",
+				"NZMGY": "5642176",
+				"MeanFlow": "3.59656",
+				"MedianFlow": "1.42"
+			}, {
+				"SiteNumber": "69302",
+				"River": "Rangitata River",
+				"SiteName": "Klondyke (Recorder)",
+				"NZMGX": "2366716",
+				"NZMGY": "5714796",
+				"MeanFlow": "98.7664",
+				"MedianFlow": "77.03"
+			}, {
+				"SiteNumber": "69621",
+				"River": "Rocky Gully",
+				"SiteName": "Rockburn (Recorder)",
+				"NZMGX": "2332500",
+				"NZMGY": "5651300",
+				"MeanFlow": "0.31319",
+				"MedianFlow": "0.183"
+			}, {
+				"SiteNumber": "68002",
+				"River": "Selwyn River",
+				"SiteName": "Coes Ford (Recorder)",
+				"NZMGX": "2462636",
+				"NZMGY": "5723301",
+				"MeanFlow": "3.33677",
+				"MedianFlow": "1.221"
+			}, {
+				"SiteNumber": "68827",
+				"River": "South Ashburton River",
+				"SiteName": "Buicks Bridge (Recorder)",
+				"NZMGX": "2361440",
+				"NZMGY": "5734480",
+				"MeanFlow": "5.747",
+				"MedianFlow": "4.932"
+			}, {
+				"SiteNumber": "68806",
+				"River": "South Ashburton River",
+				"SiteName": "Mt Somers (Recorder)",
+				"NZMGX": "2372600",
+				"NZMGY": "5726100",
+				"MeanFlow": "11.0128",
+				"MedianFlow": "9.001"
+			}, {
+				"SiteNumber": "66407",
+				"River": "South Brook Spring",
+				"SiteName": "Schluters Weir (Recorder)",
+				"NZMGX": "2476008",
+				"NZMGY": "5765445",
+				"MeanFlow": "0.004936",
+				"MedianFlow": "0.003531"
+			}, {
+				"SiteNumber": "69619",
+				"River": "South Opuha River",
+				"SiteName": "Stoneleigh Road (Recorder)",
+				"NZMGX": "2330069",
+				"NZMGY": "5690416"
+			}, {
+				"SiteNumber": "69202",
+				"River": "Stormy Drain",
+				"SiteName": "Lower Beach/Ocean View Rd (Recorder)",
+				"NZMGX": "2397606",
+				"NZMGY": "5673389"
+			}, {
+				"SiteNumber": "68828",
+				"River": "Stour River",
+				"SiteName": "Barossa (Recorder)",
+				"NZMGX": "2370610",
+				"NZMGY": "5729260",
+				"MeanFlow": "1.514",
+				"MedianFlow": "1.148"
+			}, {
+				"SiteNumber": "66425",
+				"River": "Styx River",
+				"SiteName": "Radcliffe Road (Recorder)",
+				"NZMGX": "2481726",
+				"NZMGY": "5749037",
+				"MeanFlow": "1.45505",
+				"MedianFlow": "1.382"
+			}, {
+				"SiteNumber": "66215",
+				"River": "Taranaki Creek",
+				"SiteName": "Preeces Road",
+				"NZMGX": "2485800",
+				"NZMGY": "5767800"
+			}, {
+				"SiteNumber": "68819",
+				"River": "Taylors Stream",
+				"SiteName": "State Highway 72 (Recorder)",
+				"NZMGX": "2387289",
+				"NZMGY": "5730743",
+				"MeanFlow": "2.394",
+				"MedianFlow": "1.796"
+			}, {
+				"SiteNumber": "69644",
+				"River": "Te Moana River",
+				"SiteName": "Glentohi (Recorder)",
+				"NZMGX": "2358330",
+				"NZMGY": "5683491",
+				"MeanFlow": "1.1042",
+				"MedianFlow": "0.481"
+			}, {
+				"SiteNumber": "71131",
+				"River": "Tekapo River",
+				"SiteName": "Spillway (Recorder)",
+				"NZMGX": "2307880",
+				"NZMGY": "5685796"
+			}, {
+				"SiteNumber": "69602",
+				"River": "Temuka River",
+				"SiteName": "Manse Bridge (Recorder)",
+				"NZMGX": "2371779",
+				"NZMGY": "5661070",
+				"MeanFlow": "6.14383",
+				"MedianFlow": "3.592"
+			}, {
+				"SiteNumber": "69635",
+				"River": "Tengawai River",
+				"SiteName": "Picnic Grounds (Recorder)",
+				"NZMGX": "2348454",
+				"NZMGY": "5654542",
+				"MeanFlow": "3.92745",
+				"MedianFlow": "1.793"
+			}, {
+				"SiteNumber": "71117",
+				"River": "Twizel River",
+				"SiteName": "Lake Poaka (recorder)",
+				"NZMGX": "2278400",
+				"NZMGY": "5662800",
+				"MeanFlow": "2.57321",
+				"MedianFlow": "1.647"
+			}, {
+				"SiteNumber": "64606",
+				"River": "Waiau River",
+				"SiteName": "Malings Pass (Recorder)",
+				"NZMGX": "2481059",
+				"NZMGY": "5887470",
+				"MeanFlow": "6.51333",
+				"MedianFlow": "4.537"
+			}, {
+				"SiteNumber": "64602",
+				"River": "Waiau River",
+				"SiteName": "Marble Point (Recorder)",
+				"NZMGX": "2491468",
+				"NZMGY": "5840191",
+				"MeanFlow": "97.9141",
+				"MedianFlow": "73.085"
+			}, {
+				"SiteNumber": "70902",
+				"River": "Waihao River",
+				"SiteName": "McCulloughs Bridge (Recorder)",
+				"NZMGX": "2349655",
+				"NZMGY": "5598774",
+				"MeanFlow": "3.55788",
+				"MedianFlow": "1.3"
+			}, {
+				"SiteNumber": "69649",
+				"River": "Waihi River",
+				"SiteName": "DOC Reserve (Recorder)",
+				"NZMGX": "2362202",
+				"NZMGY": "5687795",
+				"MeanFlow": "0.894",
+				"MedianFlow": "0.436"
+			}, {
+				"SiteNumber": "66401",
+				"River": "Waimakariri River",
+				"SiteName": "Old Highway Bridge (Recorder)",
+				"NZMGX": "2481829",
+				"NZMGY": "5754718",
+				"MeanFlow": "120.689",
+				"MedianFlow": "87.291"
+			}, {
+				"SiteNumber": "65904",
+				"River": "Waipara River",
+				"SiteName": "Teviotdale (Recorder)",
+				"NZMGX": "2491784",
+				"NZMGY": "5788581"
+			}, {
+				"SiteNumber": "65901",
+				"River": "Waipara River",
+				"SiteName": "White Gorge (Recorder)",
+				"NZMGX": "2478638",
+				"NZMGY": "5793713",
+				"MeanFlow": "2.8228",
+				"MedianFlow": "0.921"
+			}, {
+				"SiteNumber": "71104",
+				"River": "Waitaki River",
+				"SiteName": "Kurow (Recorder)",
+				"NZMGX": "2308000",
+				"NZMGY": "5608800"
+			}
+		]
+	}
+}

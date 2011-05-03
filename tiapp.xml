@@ -5,12 +5,12 @@
         <target device="ipad">false</target>
         <target device="android">true</target>
     </deployment-targets>
-    <id>nz.govt.ecan.surfacewater</id>
-    <name>SurfaceWater</name>
+    <id>P37HZ28573.nz.govt.ecan.fieldmate</id>
+    <name>FieldMate</name>
     <version>1.0</version>
     <publisher>coomsie</publisher>
     <url>http://ecan.govt.nz</url>
-    <description>not specified</description>
+    <description>FieldMate</description>
     <copyright>2011 by coomsie</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
@@ -19,7 +19,7 @@
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
     <guid>57f3d98f-eb7f-4dcb-9082-d00d72fff464</guid>
 	<iphone>
 		<orientations device="iphone">

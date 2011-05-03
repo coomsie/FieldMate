@@ -1,8 +1,11 @@
 Ti.API.info(Ti.App.guid);
 //load models
-//Titanium.include('models/m_surfacewater.js');
+Titanium.include('models/m_app.js');
 Titanium.include('helpers/validation.js');
 Titanium.include('helpers/redux.js');
+
+//Titanium.include('controllers/ctr_GaugingCard.js');
+
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#6666');
@@ -102,16 +105,13 @@ var tab2 = Titanium.UI.createTab({
 
  
 //create Sync UI Tab
-var win3 = Titanium.UI.createWindow({id:'win3'});
+var win3 = Titanium.UI.createWindow({id:'win3',url:'views/v_sync.js'});
 var tab3 = Titanium.UI.createTab({
 	icon:'images/sync.png',
 	title:'Sync',
 	badge:3,
 	window:win3
 });
-// Load UI elements 
-Titanium.include('views/v_sync.js');
-view_init_sync(win3);
 //load controllers
 //Titanium.include('controllers/ctr_syncTab.js');
 
@@ -153,3 +153,5 @@ tabGroup.open({
    // if(e.index===0 && e.previousIndex!=0  && m.refresh===true)
    // //some code
 // });
+
+

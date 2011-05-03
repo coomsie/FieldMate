@@ -1,4 +1,6 @@
-	function view_init_sync(win) {
+Titanium.include('../controllers/ctr_GaugingCard.js');
+
+var win = Titanium.UI.currentWindow;
 		win.backgroundColor='#fff';
 		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
 		win.title='Sync';
@@ -51,21 +53,31 @@ var btn_submit = Titanium.UI.createButton({
    title: 'Update',
    width: 70,
    height: 30,
+   cancel:1
 });
 
-btn_submit.addEventListener('click',function(e)
-{
-   Titanium.API.info("You clicked the submit button");
-	var alertDialog = Titanium.UI.createAlertDialog({
+var alertDialog = Titanium.UI.createAlertDialog({
    	 				title: 'Update',
 				    message: 'You are about to update?',
 				    buttonNames: ['OK','Cancel']
 					});
+
+alertDialog.addEventListener('click',function(e)
+{
+	if(e.index !== 1)
+	getLookupData(m.url,m.sites,'sites.json');
+});
+				
+btn_submit.addEventListener('click',function(e)
+{
+   Titanium.API.info("You clicked the update button");
 	alertDialog.show();
 });
+
+
+
 win.rightNavButton = btn_submit;
 		
 		
 		
 		
-	}
