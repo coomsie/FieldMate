@@ -34,7 +34,7 @@ var tb_meter_before = Titanium.UI.createTextField({
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
-	validation:{ integer:true, range:{min:10,max:100},min:2,max:3 },
+	validation:{ integer:true, range:{min:10,max:100},min:3,max:3 },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
