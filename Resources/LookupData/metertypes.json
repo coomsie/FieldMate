@@ -1,0 +1,85 @@
+{
+	"data": {
+		"item": [
+			{
+				"id": "01",
+				"name": "Pygmy current meter - rod mounted"
+			}, {
+				"id": "02",
+				"name": "Gurley current meter - rod mounted"
+			}, {
+				"id": "03",
+				"name": "Watts Price current meter - rod mounted"
+			}, {
+				"id": "04",
+				"name": "Amsler current meter - rod mounted"
+			}, {
+				"id": "05",
+				"name": "Large Ott current meter - rod mounted"
+			}, {
+				"id": "06",
+				"name": "Small Ott current meter - rod mounted"
+			}, {
+				"id": "07",
+				"name": "Pygmy current meter - cable suspended"
+			}, {
+				"id": "08",
+				"name": "Gurley current meter - cable suspended"
+			}, {
+				"id": "09",
+				"name": "Watts Price current meter - cable suspended"
+			}, {
+				"id": "10",
+				"name": "Amsler current meter - cable suspended"
+			}, {
+				"id": "11",
+				"name": "Large Ott current meter - cable suspended"
+			}, {
+				"id": "12",
+				"name": "Small Ott current meter - cable suspended"
+			}, {
+				"id": "13",
+				"name": "Braystoke current meter - cable suspended"
+			}, {
+				"id": "14",
+				"name": "Volumetric"
+			}, {
+				"id": "20",
+				"name": "Slope Area"
+			}, {
+				"id": "23",
+				"name": "Estimation"
+			}, {
+				"id": "33",
+				"name": "Miscellaneous"
+			}, {
+				"id": "35",
+				"name": "Pygmy current meter - combination rod and cable"
+			}, {
+				"id": "36",
+				"name": "Gurley current meter - combination rod and cable"
+			}, {
+				"id": "37",
+				"name": "Watts Price current meter - combination rod and cable"
+			}, {
+				"id": "38",
+				"name": "Large Ott current meter - combination rod and cable"
+			}, {
+				"id": "39",
+				"name": "Small Ott current meter - combination rod and cable"
+			}, {
+				"id": "40",
+				"name": "Two different current meters"
+			}, {
+				"id": "44",
+				"name": "ADCP"
+			}, {
+				"id": "50",
+				"name": "FlowTracker"
+			}, {
+				"id": "99",
+				"name": "Dry or Ponding"
+			}
+		]
+	}
+}

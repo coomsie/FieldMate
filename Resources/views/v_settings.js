@@ -1,3 +1,5 @@
+// Ti.include('../redux.js');
+
 var win = Titanium.UI.currentWindow;
 
 		win.backgroundColor='#fff';
@@ -29,7 +31,7 @@ row.add(lb_svr);
 row.add(tb_svr);
 
 data[0] = row;
-data[1] = {title:"User: ",hasChild:true,url:'/views/Settings/v_settings_user.js'};
+data[1] = {title:"User: ",hasChild:true,url:'/views/v_settings_user.js'};
 
 data[2] = {title:"Region: ",hasChild:true};
 
@@ -87,6 +89,6 @@ dialog_region.addEventListener('click',function(e)
 	
 Ti.App.addEventListener('change_user',function(e)
 {
-	tableView.updateRow(1 ,{title:'User: ' + e.title,hasChild:true,url:'/views/Settings/v_settings_user.js'});
+	tableView.updateRow(1 ,{title:'User: ' + e.title,hasChild:true,url:'/views/v_settings_user.js'});
 });	
 	

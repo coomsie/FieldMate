@@ -2,11 +2,11 @@
 
 // create table view data object
 var data = [
-	{title:'Site Data', hasChild:true, url:'/views/GaugingCard/v_SiteData.js'},
-	{title:'Field Data', hasChild:true, url:'/views/GaugingCard/v_FieldData.js'},
-	{title:'Stage Readings', hasChild:true, url:'/views/GaugingCard/v_StageReadings.js'},
-	{title:'Computed Data', hasChild:true, url:'/views/GaugingCard/v_ComputedData.js'},
-	{title:'Remarks', hasChild:true, url:'/views/GaugingCard/v_Remarks.js'}
+	{title:'Site Data', hasChild:true, url:'/views/v_GaugingCard_SiteData.js'},
+	{title:'Field Data', hasChild:true, url:'/views/v_GaugingCard_FieldData.js'},
+	{title:'Stage Readings', hasChild:true, url:'/views/v_GaugingCard_StageReadings.js'},
+	{title:'Computed Data', hasChild:true, url:'/views/v_GaugingCard_ComputedData.js'},
+	{title:'Remarks', hasChild:true, url:'/views/v_GaugingCard_Remarks.js'}
 ];
 
 // create table view

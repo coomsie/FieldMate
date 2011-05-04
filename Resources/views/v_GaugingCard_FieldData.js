@@ -10,7 +10,7 @@ var data = [];
 data[0] = {
 	title:'Type:*',
 	hasChild:true,
-	url:'/views/GaugingCard/v_FieldDataMeters.js',
+	url:'/views/v_GaugingCard_FieldDataMeters.js',
 	header:'Meter'
 };
 
@@ -78,7 +78,7 @@ data[3] = row;
 data[4] = {
 	title:'From:*',
 	hasChild:true,
-	url:'/views/GaugingCard/v_FieldDataMeasured.js',
+	url:'/views/v_GaugingCard_FieldDataMeasured.js',
 	header:'Measured (m)'
 };
 
@@ -184,7 +184,7 @@ data[10] = {
 	header:'Water',
 	dialogid:'WaterColour',
 	origtitle: 'Colour: ',
-	dialogoptions : ['discoloured','clear','?other?']
+	dialogoptions : ['discoloured','clear','turbid']
 };
 
 row = Ti.UI.createTableViewRow({

@@ -69,12 +69,12 @@ add.addEventListener('click', function()
 	var win = null;
 		if (Ti.Platform.name == "android") {
 			win = Titanium.UI.createWindow({
-				url:'/views/GaugingCard/v_StageReadingsAdd.js',
+				url:'/views/v_GaugingCard_StageReadingsAdd.js',
 				title:'Add Reading'
 			});
 		} else {
 			win = Titanium.UI.createWindow({
-				url:'/views/GaugingCard/v_StageReadingsAdd.js',
+				url:'/views/v_GaugingCard_StageReadingsAdd.js',
 				title:'Add Reading',
 				backgroundColor:'#fff',
 				barColor:'#1A75A2'

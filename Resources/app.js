@@ -1,8 +1,12 @@
 Ti.API.info(Ti.App.guid);
+
+//Ti.include('redux.js');
+//includeGlobal('models/m_app.js', 'helpers/validation.js');
+
 //load models
 Titanium.include('models/m_app.js');
 Titanium.include('helpers/validation.js');
-Titanium.include('helpers/redux.js');
+//Titanium.include('helpers/redux.js');
 
 //Titanium.include('controllers/ctr_GaugingCard.js');
 

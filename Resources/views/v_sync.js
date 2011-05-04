@@ -1,4 +1,5 @@
-Titanium.include('../controllers/ctr_GaugingCard.js');
+// Ti.include('../redux.js');
+Titanium.include('../controllers/ctr_utils.js');
 
 var win = Titanium.UI.currentWindow;
 		win.backgroundColor='#fff';
@@ -10,9 +11,9 @@ var win = Titanium.UI.currentWindow;
 		
 // create table view data object
 var data = [
-	{title:'GC,Waimak Gorge,25 Jan', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Opihi River,25 Feb', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Heathcote River,12 Feb', hasChild:true, url:'/views/GaugingCard/v_Master.js'}
+	{title:'GC,Waimak Gorge,25 Jan', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Opihi River,25 Feb', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Heathcote River,12 Feb', hasChild:true, url:'/views/v_GaugingCard_Master.js'}
 ];
 
 // create table view
@@ -65,12 +66,18 @@ var alertDialog = Titanium.UI.createAlertDialog({
 alertDialog.addEventListener('click',function(e)
 {
 	if(e.index !== 1)
-	getLookupData(m.url,m.sites,'sites.json');
+	{
+	Titanium.API.info("grabbing all lookup files");
+	 /// grab all lookup files
+	for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--){
+	getLookupData(m.appConfig.LookupURLS[i].URL,m.sites,m.appConfig.LookupURLS[i].FileName);
+	};
+	};
 });
 				
 btn_submit.addEventListener('click',function(e)
 {
-   Titanium.API.info("You clicked the update button");
+   	Titanium.API.info("You clicked the update button");
 	alertDialog.show();
 });
 

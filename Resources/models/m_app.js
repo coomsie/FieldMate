@@ -1,7 +1,25 @@
+//Ti.include('redux.js');
+
 m = {};
 
 m.sites = '';
-m.url = 'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON';
+
+m.mymetertypes = new Object;
+
+
+
+m.appConfig = {
+	ApplicationName: 'FieldMate',
+	ApplicationServerURL: 'http://tools.ecan.govt.nz/FieldMate/',
+	DeveloperEmail:'iain.campion@ecan.govt.nz',
+	FormModels: [],
+	LookupURLS: [
+	{FileName:'stagedreadings.json', URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON'},
+	{FileName:'sites.json', URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON'},
+	{FileName:'metertypes.json', URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Meter%20Types/JSON'}
+	]
+}
+
 
 m.errorDialog = Titanium.UI.createAlertDialog({
 	title: ':( Error - send to creator',
@@ -16,8 +34,8 @@ m.errorDialog = Titanium.UI.createAlertDialog({
 
 m.errorDialog.addEventListener('click', function() {
 	var emailDialog = Titanium.UI.createEmailDialog();
-	emailDialog.setSubject('FieldMate error');
-	emailDialog.setToRecipients(['iain.campion@ecan.govt.nz']);
+	emailDialog.setSubject(m.appConfig.ApplicationName + ' error');
+	emailDialog.setToRecipients([m.appConfig.DeveloperEmail]);
 
 	if (Ti.Platform.name == 'iPhone OS') {
 		emailDialog.setMessageBody(m.errorDialog.message);

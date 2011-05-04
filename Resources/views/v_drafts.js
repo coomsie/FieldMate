@@ -1,14 +1,16 @@
+//Ti.include('../redux.js');
+
 //create  FORMS  UI
 
 // create table view data object
 var data = [
-	{title:'GC,Waimak Gorge,25April', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Opihi River,25April', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Waimak Gorge,5April', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Waimak Basin,23Jan', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Heathcote River,12April', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Taylors Gorge,5April', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
-	{title:'GC,Avon Gorge,15April', hasChild:true, url:'/views/GaugingCard/v_Master.js'}
+	{title:'GC,Waimak Gorge,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Opihi River,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Waimak Gorge,5April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Waimak Basin,23Jan', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Heathcote River,12April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Taylors Gorge,5April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'GC,Avon Gorge,15April', hasChild:true, url:'/views/v_GaugingCard_Master.js'}
 ];
 
 // create table view

@@ -1,8 +1,10 @@
+///Ti.include('redux.js');
+
 //create  FORMS  UI
 
 // create table view data object
 var data = [
-	{title:'Gauging card', hasChild:true, url:'/views/GaugingCard/v_Master.js'},
+	{title:'Gauging card', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
 	{title:'Other form type1', hasChild:false},
 	{title:'Other form type2', hasChild:false},
 	{title:'Other form type3', hasChild:false},
