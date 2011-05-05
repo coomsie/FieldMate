@@ -58,6 +58,10 @@ tableView.addEventListener('delete',function(e)
 	Titanium.API.info("deleted - row="+e.row+", index="+e.index+", section="+e.section + ' foo ' + e.rowData.foo);
 });
 
+//button
+
+
+//iphone version
 
 var add = Titanium.UI.createButton({
 	title:'Add'
@@ -83,7 +87,34 @@ add.addEventListener('click', function()
 		Titanium.UI.currentTab.open(win,{animated:true});
 });
 
+//add refresh button iOS
+		if (Ti.Platform.name === 'iPhone OS') {
+		win.setRightNavButton(add);
+};
 
-win.setRightNavButton(add);
+//add if android
 
+// add android specific tests
+		if (Titanium.Platform.osname === 'android'){
+			Ti.API.info("creating menu option");
+			var win = Ti.UI.currentWindow;
+			var activity = Ti.Android.currentActivity;
+			// Here is an example of creating the menu handlers in the window creation options.
+			activity.onCreateOptionsMenu = function(e) {
+					Ti.API.debug("In onCreateOptionsMenu");
+					var menu = e.menu;
+				
+					var m1 = menu.add({ title : 'Add Reading' });
+					m1.addEventListener('click', function(e) {
+					Ti.API.info("Add Reading button fired");
+					//open window
+					var win = null;
+					win = Titanium.UI.createWindow({
+					url:'/views/v_GaugingCard_StageReadingsAdd.js',
+					title:'Add Reading'
+					});
+					Titanium.UI.currentTab.open(win,{animated:true});
+					});
+					} 
+		};	
 

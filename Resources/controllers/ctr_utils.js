@@ -1,7 +1,13 @@
 ///Ti.include('redux.js');
 
 //Ti.includeAbsolute('/helpers/redux.js');
+//if android
+
+if (Ti.Platform.name === 'iPhone OS') {
 Titanium.include('../models/m_app.js');
+}else{
+Titanium.include('/models/m_app.js');
+}
 
 ///
 //		Get Lookup data from server

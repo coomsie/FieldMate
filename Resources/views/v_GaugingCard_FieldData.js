@@ -52,7 +52,7 @@ row.add(lb_meter_before);
 
 row.add(tb_meter_before);
 
-data[1] = row;
+data[data.length+1] = row;
 row = Ti.UI.createTableViewRow({
 	height:50
 });
@@ -73,25 +73,34 @@ var tb_meter_after = Titanium.UI.createTextField({
 });
 row.add(lb_meter_after);
 row.add(tb_meter_after);
-data[3] = row;
+data[data.length+1] = row;
 
-data[4] = {
+data[data.length+1] = {
 	title:'From:*',
 	hasChild:true,
 	url:'/views/v_GaugingCard_FieldDataMeasured.js',
 	header:'Measured (m)'
 };
 
+data[data.length+1] = {
+	title:'Type:*',
+	hasChild:true,
+	dialogid:'MeasuredType',
+	origtitle: 'Type: ',
+	dialogoptions : ['above','below','at']
+};
+
 row = Ti.UI.createTableViewRow({
 	height:50
 });
 
-var lb_measured_below = Ti.UI.createLabel({
-	text:'Below:*',
+var lb_measured = Ti.UI.createLabel({
+	text:'Value:*',
 	color:'#999',
 	textAlign:'left'
+
 });
-var tb_measured_below = Titanium.UI.createTextField({
+var tb_measured = Titanium.UI.createTextField({
 	color:'#999',
 	height:35,
 	left:100,
@@ -99,38 +108,25 @@ var tb_measured_below = Titanium.UI.createTextField({
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
-row.add(lb_measured_below);
-row.add(tb_measured_below);
+row.add(lb_measured);
+row.add(tb_measured);
+data[data.length+1] = row;
 
-data[5] = row;
-row = Ti.UI.createTableViewRow({
-	height:50
-});
-
-var lb_measured_above = Ti.UI.createLabel({
-	text:'Above:*',
-	color:'#999',
-	textAlign:'left'
-
-});
-var tb_measured_above = Titanium.UI.createTextField({
-	color:'#999',
-	height:35,
-	left:100,
-	width:220,
-	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
-});
-row.add(lb_measured_above);
-row.add(tb_measured_above);
-data[6] = row;
+data[data.length+1] = {
+	title:'Direction:*',
+	hasChild:true,
+	header:'Wind',
+	dialogid:'WindDirection',
+	origtitle: 'Direction: ',
+	dialogoptions : ['Up','Down','Across']
+};
 
 row = Ti.UI.createTableViewRow({
 	height:50
 });
 
 var lb_wind = Ti.UI.createLabel({
-	text:'Wind (km/h):*',
+	text:'Speed (km/h):*',
 	color:'#999',
 	textAlign:'left'
 
@@ -145,9 +141,9 @@ var tb_wind = Titanium.UI.createTextField({
 });
 row.add(lb_wind);
 row.add(tb_wind);
-data[7] = row;
+data[data.length+1] = row;
 
-data[8] = {
+data[data.length+1] = {
 	title:'Type:*',
 	hasChild:true,
 	header:'Angle',
@@ -176,9 +172,9 @@ var tb_current = Titanium.UI.createTextField({
 });
 row.add(lb_current);
 row.add(tb_current);
-data[9] = row;
+data[data.length+1] = row;
 
-data[10] = {
+data[data.length+1] = {
 	title:'Colour:*',
 	hasChild:false,
 	header:'Water',
@@ -207,7 +203,7 @@ var tb_temp = Titanium.UI.createTextField({
 });
 row.add(lb_temp);
 row.add(tb_temp);
-data[11] = row;
+data[data.length+1] = row;
 
 var tableView = Ti.UI.createTableView({
 	data:data

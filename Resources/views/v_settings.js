@@ -1,9 +1,7 @@
 // Ti.include('../redux.js');
 
 var win = Titanium.UI.currentWindow;
-
-		win.backgroundColor='#fff';
-		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
+//		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
 		win.title='Settings';
 		win.barColor='#1A75A2';
 		win.translucent=true;

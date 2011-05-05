@@ -24,7 +24,7 @@ tableview.addEventListener('click', function(e)
 	{
 		Ti.API.info('load child UI' + e.rowData.url); 
 		var win = null;
-		if (Ti.Platform.name == "android") {
+		if (Ti.Platform.name === "android") {
 			win = Titanium.UI.createWindow({
 				url:e.rowData.url,
 				title:e.rowData.title

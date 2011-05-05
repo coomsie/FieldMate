@@ -14,7 +14,7 @@ if (m.mymetertypes.data.length !==0)
 	{
 	Ti.API.info(m.mymetertypes.data.item[i]);
 	var lb1 = Titanium.UI.createLabel({
-  	color:'#000',
+  	color:'#666',
   	text:m.mymetertypes.data.item[i].name,
   	id: m.mymetertypes.data.item[i].id,
   	'font-size' : '0.5em',

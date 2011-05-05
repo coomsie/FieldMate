@@ -1,9 +1,12 @@
 // Ti.include('../redux.js');
+if (Ti.Platform.name === 'iPhone OS') {
 Titanium.include('../controllers/ctr_utils.js');
+}else{
+Titanium.include('/controllers/ctr_utils.js');	
+}
 
 var win = Titanium.UI.currentWindow;
-		win.backgroundColor='#fff';
-		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
+///		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
 		win.title='Sync';
 		win.barColor='#1A75A2';
 		win.translucent=true;
@@ -49,14 +52,6 @@ tableview.addEventListener('click', function(e)
 // add table view to the window
 win.add(tableview);
 
-//add couple of buttons
-var btn_submit = Titanium.UI.createButton({
-   title: 'Update',
-   width: 70,
-   height: 30,
-   cancel:1
-});
-
 var alertDialog = Titanium.UI.createAlertDialog({
    	 				title: 'Update',
 				    message: 'You are about to update?',
@@ -74,17 +69,41 @@ alertDialog.addEventListener('click',function(e)
 	};
 	};
 });
-				
+
+//add couple of buttons
+var btn_submit = Titanium.UI.createButton({
+   title: 'Update',
+   width: 70,
+   height: 30,
+   cancel:1
+});				
 btn_submit.addEventListener('click',function(e)
 {
    	Titanium.API.info("You clicked the update button");
 	alertDialog.show();
 });
 
+		//add refresh button iOS
+		if (Ti.Platform.name === 'iPhone OS') {
+		win.rightNavButton = btn_submit;
+		}
 
-
-win.rightNavButton = btn_submit;
-		
-		
-		
+		// add android specific tests
+		if (Titanium.Platform.osname === 'android'){
+			Ti.API.info("creating menu option");
+			var win = Ti.UI.currentWindow;
+			var activity = Ti.Android.currentActivity;
+			// Here is an example of creating the menu handlers in the window creation options.
+			activity.onCreateOptionsMenu = function(e) {
+					Ti.API.debug("In onCreateOptionsMenu");
+					var menu = e.menu;
+				
+					var m1 = menu.add({ title : 'Update' });
+					m1.addEventListener('click', function(e) {
+					Ti.API.info("submit button fired");
+					alertDialog.show();
+					});
+					} 
+		};	
+	
 		
