@@ -1,22 +1,152 @@
-///var Validator = new Class ({
 
 //test is Valid Number => returns bool
-function isValidNumber(inpString) {
+function isValidNumber(val) {
 	var re=/^[-+]?\d+(\.\d+)?$/;
-	return re.test(inpString);
+	Titanium.API.debug('isValidNumber:' + re.test(val));
+	return re.test(val);
 };
 
 //test for integer
 function isInteger(val) {
 	var re= /^[-+]?\d+$/;
+	Titanium.API.debug('isInteger:' + re.test(val));
+	return re.test(val);
+}
+
+//test for real val
+function isReal(val) {
+	var re =/^[-+]?\d*\.?\d+$/;
+	Titanium.API.debug('isReal:' + re.test(val));
 	return re.test(val);
 }
 
 
 function removeLastEntry(val) {
+	Titanium.API.debug('removeLastEntry:');
 	return  val.slice(0,val.toString().length-1);
 };
 
+//test for empty
+// check to see if input is whitespace only or empty
+function isEmpty( val ) {
+	if ( null === val || "" === val ) {
+		return true;
+	}
+	return false;
+}
+
+//test if reqd
+function isPresent(val) {
+	var re = /[^.*]/;
+	Titanium.API.debug('isPresent:' + re.test(val));
+	return re.test(val);
+}
+
+//check for value in range
+// check to see if value is within min and max
+function isWithinRange(val, min, max) {
+	if (val >= min && val <= max) {
+		Titanium.API.debug('isWithinRange:true');
+		return true;
+	} else {
+		Titanium.API.debug('isWithinRange:false');
+		return false;
+	}
+}
+
+// check to see if value is within min chars
+function isMinChars(val, min) {
+	if (val.toString().length >= min) {
+		Titanium.API.debug('isMinChars:true');
+		return true;
+	} else {
+		Titanium.API.debug('isMinChars:false');
+		return false;
+	}
+}
+
+// check to see if value is within max chars
+function isWithinMaxChars(val, max) {
+	if (val.toString().length <= max) {
+		Titanium.API.debug('isWithinMaxChars:true');
+		return true;
+	} else {
+		Titanium.API.debug('isWithinMaxChars:false');
+		return false;
+	}
+}
+
+
+var isValid=null; 
+
+function checkValidation(obj) {
+	Titanium.API.info('checking validation');
+	//clear validation
+	obj.color = obj.validation.color;
+	
+	//keep record of validation colors
+	if(!obj.validation.color)
+		obj.validation.color = obj.color;
+		
+	
+	//set valuation highlight effect
+	function setEffect(obj,isOff)
+	{
+		if (isValid===false)
+		{
+			return false;
+		}else
+		{
+		if(!isOff)
+		obj.color = 'Red';
+		isValid = false;
+		if(isOff)
+		obj.color = obj.validation.color;
+		isValid = true;
+		}
+		return isOff;
+	};
+
+	//check if reqd
+	if(obj.validation.reqd)
+	{
+		setEffect(obj,isPresent(obj.value));
+	};
+	
+	///validation checks only if Value Present
+	if(isPresent(obj.value))
+	{
+	//check for double value
+	if(obj.validation.isdouble) { 
+		if (!setEffect(obj,isReal(obj.value)))
+			setEffect(obj,isReal(obj.value));
+	}
+	//check if need integer
+	if(obj.validation.isinteger) {
+		if (!setEffect(obj,isInteger(obj.value)))
+			obj.value = removeLastEntry(obj.value);
+	};
+	//check if need min 
+	if(obj.validation.minchars) {
+		setEffect(obj,isMinChars(obj.value,obj.validation.minchars));
+	};
+	//check if max
+	if(obj.validation.maxchars) {
+		if(!setEffect(obj,isWithinMaxChars(obj.value,obj.validation.maxchars)))
+		obj.value = removeLastEntry(obj.value);
+	};
+	//check within range
+	if(obj.validation.range)
+	{
+		setEffect(obj,isWithinRange(obj.value,obj.validation.range.min,obj.validation.range.max));
+	};
+	};
+	
+	Ti.API.info('isValid:' + isValid);	
+		
+};
+
+	
 // //test valid date => returns bool
 // function isValidDate (dateStr, format) {
 	// if (format == null) {
@@ -92,11 +222,7 @@ function removeLastEntry(val) {
 	// return re.test(emailAddress);
 // }
 // 
-// //test if reqd
-// function isRequired(val) {
-	// var re = /[^.*]/
-	// return re.test(val);
-// }
+
 // 
 // //test is alpha
 // function isAlpha(val) {
@@ -110,25 +236,19 @@ function removeLastEntry(val) {
 	// return re.test(val);
 // }
 
-
-// //test for real
-// function isReal(val) {
-	// var re =/^[-+]?\d*\.?\d+$/
-	// return re.test(val);
-// }
-// 
 // //test for phone
 // function isPhone(val) {
 	// var re = /^[\d\s ().-]+$/
 	// return re.test(val);
 // }
-// 
+//
+ 
 // //test for url
 // function isUrl(val) {
 	// var re  = /^(http|https|ftp)\:\/\/[a-z0-9\-\.]+\.[a-z]{2,3}(:[a-z0-9]*)?\/?([a-z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*$/i
 	// return re.test(val);
 // }
-// 
+
 // //test valid time => return bool
 // // valid entries 12:25 & 12:25PM
 // function isValidTime(value) {
@@ -163,84 +283,3 @@ function removeLastEntry(val) {
 	// return true;
 // }
 // 
-// //test for empty
-// // check to see if input is whitespace only or empty
-// function isEmpty( inputStr ) {
-	// if ( null == inputStr || "" == inputStr ) {
-		// return true;
-	// }
-	// return false;
-// }
-
-//check for value in range
-// check to see if value is within min and max
-function isWithinRange(val, min, max) {
-	if (val >= min && val <= max) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-// check to see if value is within min chars
-function isMinChars(val, min) {
-	if (val.toString().length >= min) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-// check to see if value is within max chars
-function isWithinMaxChars(val, max) {
-	if (val.toString().length <= max) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-
-function checkValidation(obj) {
-	
-	//keep record of validation colors
-	if(!obj.validation.color)
-		obj.validation.color = obj.color;
-	
-	//check if need integer
-	if(obj.validation.integer) {
-		if(!isInteger(obj.value))
-			obj.value = removeLastEntry(obj.value);
-	}
-	
-	//check if need min 
-	if(obj.validation.min) {
-		if(!isMinChars(obj.value,obj.validation.min))
-		{
-		obj.color = 'Red';
-		}else
-		{
-		obj.color = obj.validation.color;
-		}
-	}
-	
-	//check if max
-	if(obj.validation.max) {
-		if(!isWithinMaxChars(obj.value,obj.validation.max))
-		{
-		obj.value = removeLastEntry(obj.value);
-		}
-	}
-	
-	//check within range
-	if(obj.validation.range)
-	{
-		if(!isWithinRange(obj.value,obj.validation.range.min,obj.validation.range.max))
-		{
-		obj.color = 'Red';
-		}else
-		{
-		obj.color = obj.validation.color;
-		}
-	}
-}

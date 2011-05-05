@@ -11,7 +11,8 @@ data[0] = {
 	title:'Type:*',
 	hasChild:true,
 	url:'/views/v_GaugingCard_FieldDataMeters.js',
-	header:'Meter'
+	header:'Meter',
+	validation:{ reqd:true }
 };
 
 var row = Ti.UI.createTableViewRow({
@@ -34,18 +35,12 @@ var tb_meter_before = Titanium.UI.createTextField({
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
-	validation:{ integer:true, range:{min:10,max:100},min:3,max:3 },
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
 tb_meter_before.addEventListener('change', function(e) {
-	Titanium.API.info(isValidNumber(e.source.value));
-	Titanium.API.info('here');
-	Titanium.API.info(e.source.value.toString().length);
-	Titanium.API.info(e.source.value);
 	checkValidation(tb_meter_before);
-	//if(!isInteger(e.source.value))
-	//e.source.value = removeLastEntry(e.source.value);
 });
 
 row.add(lb_meter_before);
@@ -68,25 +63,31 @@ var tb_meter_after = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+
+tb_meter_after.addEventListener('change', function(e) {
+	checkValidation(tb_meter_after);
+});
+
 row.add(lb_meter_after);
 row.add(tb_meter_after);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'From:*',
+	title:'Device:*',
 	hasChild:true,
 	url:'/views/v_GaugingCard_FieldDataMeasured.js',
 	header:'Measured (m)'
 };
 
 data[data.length+1] = {
-	title:'Type:*',
+	title:'From:*',
 	hasChild:true,
-	dialogid:'MeasuredType',
-	origtitle: 'Type: ',
+	dialogid:'MeasuredFrom',
+	origtitle: 'From: ',
 	dialogoptions : ['above','below','at']
 };
 
@@ -106,6 +107,7 @@ var tb_measured = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_measured);
@@ -137,6 +139,7 @@ var tb_wind = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_wind);
@@ -168,6 +171,7 @@ var tb_current = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_current);
@@ -199,8 +203,14 @@ var tb_temp = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+	validation:{ isdouble:true, isinteger:false, range:{min:0,max:30},minchars:1,maxchars:5,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+
+tb_temp.addEventListener('change', function(e) {
+	checkValidation(tb_temp);
+});
+
 row.add(lb_temp);
 row.add(tb_temp);
 data[data.length+1] = row;
@@ -213,13 +223,12 @@ tableView.addEventListener('click', function(e) {
 	// dialogs
 	if (e.rowData.dialogid) //exists
 	{
-		//Ti.API.info(e.rowData.title);
+		Ti.API.debug('dialog exists => open it');
 		dialog.rowid = e.index;
 		dialog.options = e.rowData.dialogoptions;
 		dialog.origtitle  = e.rowData.origtitle;
 		dialog.dialogid = e.rowData.dialogid;
 		dialog.show();
-
 	}
 
 	if (e.rowData.url) {

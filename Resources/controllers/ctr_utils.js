@@ -4,9 +4,9 @@
 //if android
 
 if (Ti.Platform.name === 'iPhone OS') {
-Titanium.include('../models/m_app.js');
-}else{
-Titanium.include('/models/m_app.js');
+	Titanium.include('../models/m_app.js');
+} else {
+	Titanium.include('/models/m_app.js');
 }
 
 ///
@@ -16,27 +16,31 @@ Titanium.include('/models/m_app.js');
 //		myobj =>object to load data in
 //		myfilename => file name to store for persistences
 function getLookupData(myurl,myobj,myfilename) {
-	var myresult;
-	var xhr2 = Titanium.Network.createHTTPClient();
-	xhr2.onload = function() {
-		Titanium.API.info('getting json for ' + myfilename + '@ ' + myurl );
-		try {
-			myobj = JSON.parse(this.responseText);
-		} catch(e) {
-			m.errorDialog.message = e.error;
+	//check network if not do nothing
+	if (checkNetwork()) {
+		var myresult;
+		var xhr2 = Titanium.Network.createHTTPClient();
+		xhr2.setTimeout(30000);
+		xhr2.onload = function() {
+			Titanium.API.info('getting json for ' + myfilename + '@ ' + myurl );
+			try {
+				myobj = JSON.parse(this.responseText);
+			} catch(e) {
+				m.errorMessage.concat(e.error);
+				m.errorDialog.show();
+			}
+			//Titanium.API.info(myobj);
+			///do something with data.
+			saveLookupFiles(myfilename,myobj);
+		};
+		xhr2.onerror = function(e) {
+			Ti.API.error('error getting data' + e.error);
+			m.errorMessage.concat(e.error);
 			m.errorDialog.show();
-		}
-		//Titanium.API.info(myobj);
-		///do something with data.
-		saveLookupFiles(myfilename,myobj);
-	};
-	xhr2.onerror = function(e) {
-		Ti.API.error('error getting data' + e.error);
-		m.errorDialog.message = e.error;
-		m.errorDialog.show();
-	};
-	xhr2.open("GET",myurl);
-	xhr2.send();
+		};
+		xhr2.open("GET",myurl);
+		xhr2.send();
+	}
 };
 
 ///
@@ -55,7 +59,7 @@ function saveLookupFiles(myfilename,myobj) {
 		return true;
 	} catch(e) {
 		Titanium.API.info('writing file lookups error' + e.error);
-		m.errorDialog.message = e.error;
+		m.errorMessage.concat(e.error);
 		m.errorDialog.show();
 		return false;
 	}
@@ -81,8 +85,25 @@ function readLookupFiles(myfilename,myobj,fn_callback) {
 		fn_callback(myobj);
 	} catch(e) {
 		Titanium.API.info('reading file lookups error' + e.error);
-		m.errorDialog.message = e.error;
+		m.errorMessage.concat(e.error);
 		m.errorDialog.show();
 		fn_callback(myobj);
 	}
 };
+
+///
+//		Check for network and alert if not on
+///
+function checkNetwork() {
+	if(Titanium.Network.networkType == Titanium.Network.NETWORK_NONE) {
+		Titanium.API.info('no network present');
+		var alertDialog = Titanium.UI.createAlertDialog({
+			title: 'WARNING!',
+			message: 'Your device is not online.',
+			buttonNames: ['OK']
+		});
+		alertDialog.show();
+		return false;
+	}
+	return true;
+}

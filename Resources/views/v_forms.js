@@ -4,12 +4,7 @@
 
 // create table view data object
 var data = [
-	{title:'Gauging card', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'Other form type1', hasChild:false},
-	{title:'Other form type2', hasChild:false},
-	{title:'Other form type3', hasChild:false},
-	{title:'Other form type4', hasChild:false},
-	{title:'Other form type5', hasChild:false}
+	{title:'Gauging Recorder', hasChild:true, url:'/views/v_GaugingCard_Master.js'}
 ];
 
 // create table view

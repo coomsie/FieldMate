@@ -18,7 +18,7 @@ var tableview = Titanium.UI.createTableView({
 tableview.addEventListener('click', function(e)
 {
 	//Titanium.UI.createAlertDialog({title:'Table View',message:'row ' + row + ' index ' + index + ' section ' + section  + ' row data ' + rowdata}).show();
-	Ti.App.fireEvent('change_fielddata', {rowid: 3, title: 'From: ' + e.row.title, hasChild:true, url: '/views/v_GaugingCard_FieldDataMeasured.js'});
+	Ti.App.fireEvent('change_fielddata', {rowid: 3, title: 'Device: ' + e.row.title, hasChild:true, url: '/views/v_GaugingCard_FieldDataMeasured.js'});
 	win.close('/views/v_GaugingCard_FieldData.js',{animated:true});
 });
 // add table view to the window
