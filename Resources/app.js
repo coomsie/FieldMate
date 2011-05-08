@@ -6,6 +6,7 @@ Ti.API.info(Ti.App.guid);
 //load models
 Titanium.include('models/m_app.js');
 Titanium.include('helpers/validation.js');
+//Titanium.include('controllers/ctr_db.js');
 
 //Titanium.include('helpers/redux.js');
 

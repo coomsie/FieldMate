@@ -79,6 +79,7 @@ function readLookupFiles(myfilename,myobj,fn_callback) {
 		Titanium.API.info(appDir.nativePath);
 		var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
 		Titanium.API.info(f.nativePath);
+		myobj = JSON.parse(f.read().text);
 		m.mymetertypes = JSON.parse(f.read().text);
 		Titanium.API.info('file read');
 		Titanium.API.info('calling callback with ' + myobj);
@@ -107,3 +108,4 @@ function checkNetwork() {
 	}
 	return true;
 }
+
