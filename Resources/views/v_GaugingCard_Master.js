@@ -1,3 +1,12 @@
+
+//check global scope exists
+if (!v_GaugingCard)
+var v_GaugingCard = {};
+
+(function (){
+	
+v_GaugingCard.version = 1.0;
+	
 //create  FORMS MASTER  UI
 
 // create table view data object
@@ -58,4 +67,6 @@ btn_submit.addEventListener('click',function(e)
 	alertDialog.show();
 });
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
+// end of init.
+})();
 

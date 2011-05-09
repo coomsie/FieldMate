@@ -1,4 +1,7 @@
-//create  UI
+	
+	//create  UI
+
+///Ti.API.info(v_GaugingCard.version);
 
 var d=new Date();
 d.toLocaleDateString();

@@ -30,7 +30,7 @@ data[1] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_record = Ti.UI.createLabel({
-	text:'Recorder:',
+	text:'Recorder:(m)',
 	color:'#999',
 	textAlign:'left'
 
@@ -51,7 +51,7 @@ data[2] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_well = Ti.UI.createLabel({
-	text:'Well:',
+	text:'Well:(m)',
 	color:'#999',
 	textAlign:'left'
 });
@@ -71,7 +71,7 @@ data[3] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_gauge = Ti.UI.createLabel({
-	text:'Gauge:',
+	text:'Gauge:(m)',
 	color:'#999',
 	textAlign:'left'
 });
@@ -91,7 +91,7 @@ data[4] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_dif = Ti.UI.createLabel({
-	text:'+/-:',
+	text:'+/-:(mm)',
 	color:'#999',
 	textAlign:'left'
 });

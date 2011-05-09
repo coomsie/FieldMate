@@ -6,11 +6,11 @@ Ti.API.info(Ti.App.guid);
 //load models
 Titanium.include('models/m_app.js');
 Titanium.include('helpers/validation.js');
-//Titanium.include('controllers/ctr_db.js');
+Titanium.include('controllers/ctr_utils.js');
 
-//Titanium.include('helpers/redux.js');
-
-//Titanium.include('controllers/ctr_GaugingCard.js');
+Ti.App.utils = new utils();
+Ti.App.model = new model();
+var m = Ti.App.model;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#6666');
@@ -97,7 +97,7 @@ var win2 = Titanium.UI.createWindow({
 var tab2 = Titanium.UI.createTab({
 	icon:'images/forms.png',
 	title:'Draft',
-	badge:7,
+	badge:2,
 	window:win2
 });
 
@@ -167,7 +167,7 @@ Titanium.API.info("check to see all lookup files present");
 /// check all lookup files
 var lookupfilesPresent;
 for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--) {
-	if(lookupFilesExists(m.appConfig.LookupURLS[i].FileName)===false)
+	if(Ti.App.utils.lookupFilesExists(m.appConfig.LookupURLS[i].FileName)===false)
 		lookupfilesPresent = false;
 };
 if(lookupfilesPresent===false) {
@@ -195,25 +195,3 @@ if(lookupfilesPresent===false) {
 
 
 ///some functions
-///
-//		Check for Lookup data from device 
-///
-//		myfilename => file name to store for persistences
-//		return result =>bool
-function lookupFilesExists(myfilename) {
-	try {
-		Titanium.API.info('starting checking for files');
-		var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'LookupData');
-		//appDir.createDirectory();
-		Titanium.API.info(appDir.nativePath);
-		var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
-		Titanium.API.info(f.nativePath);
-		Titanium.API.info('File Exists:' + f.exists());
-		return f.exists();
-	} catch(e) {
-		Titanium.API.info('checking file lookups error' + e.error);
-		m.errorMessage.concat(e.error);
-		m.errorDialog.show();
-		return false;
-	}
-};

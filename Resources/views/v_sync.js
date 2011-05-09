@@ -1,9 +1,13 @@
 // Ti.include('../redux.js');
 if (Ti.Platform.name === 'iPhone OS') {
-Titanium.include('../controllers/ctr_utils.js');
+//Titanium.include('../controllers/ctr_utils.js');
+//Titanium.include('../models/m_app.js');
 }else{
-Titanium.include('/controllers/ctr_utils.js');	
+//Titanium.include('/controllers/ctr_utils.js');
+//Titanium.include('/models/m_app.js');	
 }
+
+var m = Ti.App.model;
 
 var win = Titanium.UI.currentWindow;
 ///		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
@@ -65,7 +69,7 @@ alertDialog.addEventListener('click',function(e)
 	Titanium.API.info("grabbing all lookup files");
 	 /// grab all lookup files
 	for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--){
-	getLookupData(m.appConfig.LookupURLS[i].URL,m.sites,m.appConfig.LookupURLS[i].FileName);
+	Ti.App.utils.getLookupData(m.appConfig.LookupURLS[i].URL,m.sites,m.appConfig.LookupURLS[i].FileName);
 	};
 	};
 });

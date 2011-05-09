@@ -4,13 +4,8 @@
 
 // create table view data object
 var data = [
-	{title:'GC,Waimak Gorge,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Opihi River,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Waimak Gorge,5April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Waimak Basin,23Jan', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Heathcote River,12April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Taylors Gorge,5April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'GC,Avon Gorge,15April', hasChild:true, url:'/views/v_GaugingCard_Master.js'}
+	{title:'Waimak Gorge,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
+	{title:'Opihi River,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
 ];
 
 // create table view
@@ -44,4 +39,5 @@ tableview.addEventListener('click', function(e)
 
 // add table view to the window
 Titanium.UI.currentWindow.add(tableview);
+
 

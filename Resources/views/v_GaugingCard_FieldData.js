@@ -262,7 +262,7 @@ Ti.App.addEventListener('change_fielddata', function(e) {
 	}, {
 		animated:true
 	});
-	if (e.title ==='Type: Flowtracker' || e.title ==='Type: ADCP') {
+	if (e.title ==='Type: FlowTracker' || e.title ==='Type: ADCP') {
 		tableView.updateRow(1, {
 			title:'n/a'
 		}, {
