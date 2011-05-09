@@ -35,7 +35,7 @@ var tb_meter_before = Titanium.UI.createTextField({
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
-	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
@@ -63,7 +63,8 @@ var tb_meter_after = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
-	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
+	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
@@ -139,7 +140,7 @@ var tb_wind = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
+	validation:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_wind);
@@ -203,7 +204,7 @@ var tb_temp = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	validation:{ isdouble:true, isinteger:false, range:{min:0,max:30},minchars:1,maxchars:5,reqd:true },
+	validation:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 

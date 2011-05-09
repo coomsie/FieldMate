@@ -113,7 +113,7 @@ tableview.addEventListener('click', function(e)
 	var row = e.row;
 	var rowdata = e.rowData;
 	//Titanium.UI.createAlertDialog({title:'Table View',message:'row ' + row + ' index ' + index + ' section ' + section  + ' row data ' + rowdata}).show();
-	Ti.App.fireEvent('change_river', {title:e.row.title, siteid:e.row.siteid,mapref:e.row.mapref});
+	Ti.App.fireEvent('change_river', {title:e.row.title, siteid:e.row.siteid,river:e.row.mapref});
 	win.close('/views/v_GaugingCard_SiteData.js',{animated:true});
 });
 // set filters

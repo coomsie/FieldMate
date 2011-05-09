@@ -20,6 +20,7 @@ var tb_discharge = Titanium.UI.createTextField({
 	right:0,
 	width:150,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_discharge);

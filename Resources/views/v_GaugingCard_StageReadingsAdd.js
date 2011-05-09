@@ -19,6 +19,7 @@ var tb_time = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    validation:{ isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true },
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
@@ -40,6 +41,7 @@ var tb_record = Titanium.UI.createTextField({
     left:100,
     width:220,
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_record);
@@ -59,6 +61,7 @@ var tb_well = Titanium.UI.createTextField({
     left:100,
     width:220,
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_well);
@@ -78,6 +81,7 @@ var tb_gauge = Titanium.UI.createTextField({
     left:100,
     width:220,
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_gauge);
@@ -97,6 +101,7 @@ var tb_dif = Titanium.UI.createTextField({
     left:100,
     width:220,
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
+    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 row.add(lb_dif);
