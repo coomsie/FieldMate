@@ -1,13 +1,17 @@
-//Ti.include('../redux.js');
-
+function Drafts_View() {
+	
 //create  FORMS  UI
-
+Drafts_View.prototype.createDrafts = function init_drafts_view(win)
+{
 // create table view data object
+Ti.API.info('create table view data object');
+
 var data = [
 	{title:'Waimak Gorge,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
 	{title:'Opihi River,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
 ];
 
+data = Ti.App.db.readForms();
 // create table view
 var tableview = Titanium.UI.createTableView({
 	data:data,
@@ -38,6 +42,17 @@ tableview.addEventListener('click', function(e)
 });
 
 // add table view to the window
-Titanium.UI.currentWindow.add(tableview);
+// if(!win){
+	// Titanium.UI.currentWindow.add(tableview);
+// }else
+// {
+	win.add(tableview);
+// }
 
 
+//try to update the tab badge by return row count
+return data.length;
+
+}
+
+}

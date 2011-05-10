@@ -79,7 +79,7 @@ var joli = {
       this.options = {};
     }
 
-    mergedOptions = joli.merge(defaults, options);
+    var mergedOptions = joli.merge(defaults, options);
 
     for (var opt in defaults) {
       this.options[opt] = mergedOptions[opt];
@@ -151,7 +151,7 @@ joli.Connection = function(database) {
 
 joli.Connection.prototype = {
   execute: function(query) {
-    // Titanium.API.log(query);
+//    Titanium.API.log('debug', query);
     return this.database.execute(query);
   },
 
@@ -160,6 +160,38 @@ joli.Connection.prototype = {
   }
 };
 
+
+/**
+ * Migration description
+ */
+joli.migration = function(options) {
+  var defaults = {
+    tableName: 'migration'
+  };
+
+  joli.setOptions.call(this, options, defaults);
+  this.table = this.options.tableName;
+};
+
+joli.migration.prototype = {
+  getVersion: function() {
+    var q = new joli.query().select().from(this.table).order('version desc');
+    var version = q.execute();
+
+    if (version.length > 0) {
+      return version[0].version;
+    } else {
+      q = new joli.query().insertInto(this.table).values({ version: 0 });
+      q.execute();
+      return 0;
+    }
+  },
+
+  setVersion: function(version) {
+    var q = new joli.query().update(this.table).set({ version:  version });
+    q.execute();
+  }
+};
 
 /**
  * Model description
@@ -202,6 +234,10 @@ joli.model.prototype = {
       q.order(constraints.order);
     }
 
+    if (constraints.limit) {
+      q.limit(constraints.limit);
+    }
+
     return q.execute();
   },
 
@@ -218,7 +254,7 @@ joli.model.prototype = {
       });
     }
 
-    return q.execute();
+    return parseInt(q.execute(), 10);
   },
 
   // no callbacks, more efficient
@@ -250,7 +286,7 @@ joli.model.prototype = {
   findOneBy: function(field, value) {
     var result = new joli.query().select().from(this.table).where(field + ' = ?', value).limit(1).execute();
 
-    if (result.length == 0) {
+    if (result.length === 0) {
       return false;
     } else {
       return result[0];
@@ -273,7 +309,7 @@ joli.model.prototype = {
     var data = {};
 
     joli.each(this.options.columns, function(colType, colName) {
-      data[colName] = values[colName] || null;
+      data[colName] = (values[colName] === undefined) ? null : values[colName];
     });
 
     var record = new joli.record(this).fromArray(data);
@@ -286,7 +322,7 @@ joli.model.prototype = {
   },
 
   save: function(data) {
-    if (data.data.length == 0) {
+    if (data.data.length === 0) {
       return;
     }
 
@@ -306,6 +342,7 @@ joli.model.prototype = {
 
 joli.Models = function() {
   this.models = {};
+  this.migration = new joli.migration({ tableName: 'migration' });
 };
 
 joli.Models.prototype = {
@@ -331,6 +368,22 @@ joli.Models.prototype = {
       var query = 'CREATE TABLE IF NOT EXISTS ' + modelName + ' (' + columns.join(', ') + ')';
       joli.connection.execute(query);
     });
+  },
+
+  migrate: function(version) {
+    // create migration table
+    var query = 'CREATE TABLE IF NOT EXISTS ' + this.migration.table + ' (version)';
+    joli.connection.execute(query);
+
+    if (this.migration.getVersion() < version) {
+      joli.each(this.models, function(model, modelName) {
+        var query = 'DROP TABLE IF EXISTS ' + modelName;
+        joli.connection.execute(query);
+      });
+
+      // insert migration
+      this.migration.setVersion(version);
+    }
   },
 
   set: function(table, model) {
@@ -381,8 +434,7 @@ joli.query.prototype = {
         return joli.connection.lastInsertRowId();
       case 'select':
         rows = joli.connection.execute(query);
-        //return this.hydrate(rows);
-        return rows;        
+        return this.hydrate(rows);
       default:
         return joli.connection.execute(query);
     }
@@ -395,23 +447,18 @@ joli.query.prototype = {
 
   getCount: function(rows) {
     var result;
-    if (rows != null) {
-      if (rows.isValidRow()) {
-        result = rows.rowCount;
-      } else {
-        result = 0;
-      }
-      rows.close();
-    } else {
-      result = 0;
+
+    if (null === rows) {
+      return 0;
     }
-    /*if (0 == rows.rowCount) {
+
+    if (0 === rows.rowCount) {
       result = 0;
     } else {
       result = rows.fieldByName('total');
     }
+
     rows.close();
-    */
     return result;
   },
 
@@ -434,7 +481,7 @@ joli.query.prototype = {
 
         return 'select ' + this.data.select_columns + ' from ' + this.data.from + join;
       case 'update':
-        return 'update ' + this.data.from + ' set ' + this.data.values.join(', ');
+        return 'update ' + this.data.from + ' set ' + this.data.set.join(', ');
       default:
         throw("Operation type Error. joli.query operation type must be an insert, a delete, a select or an update.");
     }
@@ -445,6 +492,10 @@ joli.query.prototype = {
 
     if (this.data.where) {
       query += ' where ' + this.data.where;
+    }
+
+    if (this.data.groupBy) {
+      query += ' group by ' + this.data.groupBy.join(', ');
     }
 
     if (this.data.order.length > 0) {
@@ -458,6 +509,15 @@ joli.query.prototype = {
     return query;
   },
 
+  groupBy: function(group) {
+    if ('string' == joli.getType(group)) {
+      group = [group];
+    }
+
+    this.data.groupBy = group;
+    return this;
+  },
+
   hydrate: function(rows) {
     var result = [];
 
@@ -465,14 +525,15 @@ joli.query.prototype = {
       return result;
     }
 
-    //Titanium.API.log('hydrating ' + rows.rowCount + ' rows.');
+    //Titanium.API.log('debug', 'hydrating ' + rows.rowCount + ' rows.');
     var i;
     var rowData;
+    var fieldCount;
 
     if (Titanium.Platform.name != 'android') {
-      var fieldCount = rows.fieldCount();
+      fieldCount = rows.fieldCount();
     } else {
-      var fieldCount = rows.fieldCount;
+      fieldCount = rows.fieldCount;
     }
 
     while (rows.isValidRow()) {
@@ -484,8 +545,8 @@ joli.query.prototype = {
         i++;
       }
 
-    	result.push(rowData);
-    	rows.next();
+      result.push(rowData);
+      rows.next();
     }
 
     rows.close();
@@ -529,7 +590,12 @@ joli.query.prototype = {
 
   set: function(values) {
     joli.each(values, function(expression, value) {
-      this.data.set.push(value + ' = ' + joli.typeValue(expression));
+      if (-1 === value.indexOf('=')) {
+        this.data.set.push(value + ' = ' + joli.typeValue(expression));
+      } else {
+        // some particular expression containing "="
+        this.data.set.push(value);
+      }
     }, this);
     return this;
   },
@@ -549,7 +615,7 @@ joli.query.prototype = {
   },
 
   where: function(expression, value) {
-    if (null != this.data.where) {
+    if (null !== this.data.where) {
       this.data.where += ' and ';
     } else {
       this.data.where = '';
@@ -560,7 +626,7 @@ joli.query.prototype = {
   },
 
   whereIn: function(expression, value) {
-    if (null != this.data.where) {
+    if (null !== this.data.where) {
       this.data.where += ' and ';
     } else {
       this.data.where = '';

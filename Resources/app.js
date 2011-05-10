@@ -3,14 +3,18 @@ Ti.API.info(Ti.App.guid);
 //Ti.include('redux.js');
 //includeGlobal('models/m_app.js', 'helpers/validation.js');
 
-//load models
+//load 
 Titanium.include('models/m_app.js');
 Titanium.include('helpers/validation.js');
 Titanium.include('controllers/ctr_utils.js');
+Titanium.include('controllers/ctr_db.js');
+Titanium.include('views/v_drafts.js');
 
 Ti.App.utils = new utils();
+Ti.App.db = new db();
 Ti.App.model = new model();
 var m = Ti.App.model;
+Ti.App.views = new Drafts_View();
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#6666');
@@ -91,13 +95,15 @@ var tab1 = Titanium.UI.createTab({
 // forms Tab ///
 var win2 = Titanium.UI.createWindow({
 	id:'win2',
-	title:'Draft',
-	url:'views/v_drafts.js'
+	title:'Draft'
 });
+
+var badgenum = Ti.App.views.createDrafts(win2);
+
 var tab2 = Titanium.UI.createTab({
 	icon:'images/forms.png',
 	title:'Draft',
-	badge:2,
+	badge: badgenum,
 	window:win2
 });
 
@@ -162,6 +168,18 @@ tabGroup.open({
 	transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
 });
 
+//set listener for tab changes
+// focus event listener for tracking tab changes
+tabGroup.addEventListener('focus', function(e)
+{
+	Ti.API.info("prev index" + e.previousIndex);
+	//CHECK IF DRAFT TAB
+   if(e.index===1)
+   Ti.App.views.createDrafts(Titanium.UI.currentWindow);
+   //win2.tableview.data = Ti.App.db.readForms();
+});
+
+
 //check for all lookup files
 Titanium.API.info("check to see all lookup files present");
 /// check all lookup files
@@ -191,7 +209,9 @@ if(lookupfilesPresent===false) {
 // //some code
 // });
 
+var myJSONObject = new Object;
 
+Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
 
 
 ///some functions

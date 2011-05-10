@@ -23,12 +23,12 @@ row = Ti.UI.createTableViewRow({
 	header:'Spin test (secs)'
 });
 
-var lb_meter_before = Ti.UI.createLabel({
+var lb_spintestbefore = Ti.UI.createLabel({
 	text:'Before:*',
 	color:'#999',
 	textAlign:'left'
 });
-var tb_meter_before = Titanium.UI.createTextField({
+var tb_spintestbefore = Titanium.UI.createTextField({
 	color:'#999',
 	height:35,
 	left:100,
@@ -39,26 +39,30 @@ var tb_meter_before = Titanium.UI.createTextField({
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
-tb_meter_before.addEventListener('change', function(e) {
-	checkValidation(tb_meter_before);
+tb_spintestbefore.addEventListener('change', function(e) {
+	checkValidation(tb_spintestbefore);
 });
 
-row.add(lb_meter_before);
+tb_spintestbefore.addEventListener('blur', function(e) {
+	Ti.App.utils.saveForm('GaugingCard',tb_spintestbefore,'spintestbefore');
+});
 
-row.add(tb_meter_before);
+row.add(lb_spintestbefore);
+
+row.add(tb_spintestbefore);
 
 data[data.length+1] = row;
 row = Ti.UI.createTableViewRow({
 	height:50
 });
 
-var lb_meter_after = Ti.UI.createLabel({
+var lb_spintestafter = Ti.UI.createLabel({
 	text:'After:*',
 	color:'#999',
 	textAlign:'left'
 
 });
-var tb_meter_after = Titanium.UI.createTextField({
+var tb_spintestafter = Titanium.UI.createTextField({
 	color:'#999',
 	height:35,
 	left:100,
@@ -69,27 +73,19 @@ var tb_meter_after = Titanium.UI.createTextField({
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
-tb_meter_after.addEventListener('change', function(e) {
-	checkValidation(tb_meter_after);
+tb_spintestafter.addEventListener('change', function(e) {
+	checkValidation(tb_spintestafter);
 });
 
-row.add(lb_meter_after);
-row.add(tb_meter_after);
+row.add(lb_spintestafter);
+row.add(tb_spintestafter);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'Device:*',
+	title:'Method:*',
 	hasChild:true,
 	url:'/views/v_GaugingCard_FieldDataMeasured.js',
-	header:'Measured (m)'
-};
-
-data[data.length+1] = {
-	title:'From:*',
-	hasChild:true,
-	dialogid:'MeasuredFrom',
-	origtitle: 'From: ',
-	dialogoptions : ['above','below','at']
+	header:'Measured'
 };
 
 row = Ti.UI.createTableViewRow({
@@ -97,7 +93,7 @@ row = Ti.UI.createTableViewRow({
 });
 
 var lb_measured = Ti.UI.createLabel({
-	text:'Value:*',
+	text:'Distance(m):*',
 	color:'#999',
 	textAlign:'left'
 
@@ -105,8 +101,8 @@ var lb_measured = Ti.UI.createLabel({
 var tb_measured = Titanium.UI.createTextField({
 	color:'#999',
 	height:35,
-	left:100,
-	width:220,
+	left:120,
+	width:200,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -114,6 +110,22 @@ var tb_measured = Titanium.UI.createTextField({
 row.add(lb_measured);
 row.add(tb_measured);
 data[data.length+1] = row;
+
+data[data.length+1] = {
+	title:'Position:*',
+	hasChild:true,
+	dialogid:'MeasuredPosition',
+	origtitle: 'Position: ',
+	dialogoptions : ['above','below','at']
+};
+
+data[data.length+1] = {
+	title:'Landmark:*',
+	hasChild:true,
+	dialogid:'MeasuredLandmark',
+	origtitle: 'Landmark: ',
+	dialogoptions : ['culvert','culverts','bridge']
+};
 
 data[data.length+1] = {
 	title:'Direction:*',
@@ -137,8 +149,8 @@ var lb_wind = Ti.UI.createLabel({
 var tb_wind = Titanium.UI.createTextField({
 	color:'#999',
 	height:35,
-	left:100,
-	width:220,
+	left:120,
+	width:200,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED

@@ -10,16 +10,18 @@ function model() {
 		ApplicationName: 'FieldMate',
 		ApplicationServerURL: 'http://tools.ecan.govt.nz/FieldMate/',
 		DeveloperEmail:'iain.campion@ecan.govt.nz',
-		FormModels: [],
+		FormModels: [{formname:'GaugingCard'}],
 		LookupURLS: [{
-			FileName:'stagedreadings.json',
-			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON'
-		},{
 			FileName:'sites.json',
 			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON'
-		},{
+		}
+		,{
 			FileName:'metertypes.json',
 			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Meter%20Types/JSON'
+		}
+		,{
+			FileName:'stagedreadings.json',
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON'
 		}
 		]
 	};
@@ -31,25 +33,25 @@ function model() {
 		buttonNames: ['OK','Cancel']
 	});
 
-	this.errorMessage = 'ERROR DETAILS<br /><br /><br />APP CONFIG/MODEL<br />' + JSON.stringify(m) + '<br /><br /><br /> LOG FILE';
+	this.errorMessage = 'ERROR DETAILS<br /><br /><br />APP CONFIG/MODEL<br />' + JSON.stringify(me) + '<br /><br /><br /> LOG FILE';
 
 	//error handling
 	this.errorDialog.addEventListener('click', function() {
 		var emailDialog = Titanium.UI.createEmailDialog();
-		emailDialog.setSubject(m.appConfig.ApplicationName + ' error');
-		emailDialog.setToRecipients([m.appConfig.DeveloperEmail]);
+		emailDialog.setSubject(me.appConfig.ApplicationName + ' error');
+		emailDialog.setToRecipients([me.appConfig.DeveloperEmail]);
 
 		var f = Ti.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,Ti.App.guid + '.log');
 
 		if (Ti.Platform.name == 'iPhone OS') {
 			//emailDialog.setMessageBody(m.errorDialog.message);
 
-			emailDialog.setMessageBody(m.errorMessage.concat(f.read().text,'<br /><br /><br />'));
+			emailDialog.setMessageBody(me.errorMessage.concat(f.read().text,'<br /><br /><br />'));
 			emailDialog.setHtml(true);
 			emailDialog.setBarColor('#336699');
 		} else {
 			//emailDialog.setMessageBody(m.errorDialog.message);
-			emailDialog.setMessageBody(m.errorMessage.concat(f.read().text,'<br /><br /><br />'));
+			emailDialog.setMessageBody(me.errorMessage.concat(f.read().text,'<br /><br /><br />'));
 		}
 
 		// attach a file
