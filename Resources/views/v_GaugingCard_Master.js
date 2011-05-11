@@ -1,3 +1,11 @@
+//load current forms model to var
+
+Ti.App.utils.readFormModels('m_GaugingCard.json',Ti.App.model.currentform,createFormMasterUI);
+
+function createFormMasterUI(frmModel){
+
+//set up form model
+Ti.App.model.currentform = this.frmModel;
 
 //create  FORMS MASTER  UI
 
@@ -60,3 +68,4 @@ btn_submit.addEventListener('click',function(e)
 });
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
 
+}

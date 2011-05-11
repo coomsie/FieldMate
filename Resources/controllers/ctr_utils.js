@@ -27,7 +27,7 @@ function utils() {
 			if(progressBar) progressBar.setProgressMessage('Downloading ' + myfilename +' ');
 			var myresult;
 			var xhr2 = Titanium.Network.createHTTPClient();
-			xhr2.setTimeout(30000);
+			xhr2.setTimeout(40000);
 			xhr2.onload = function() {
 				//set download
 				Titanium.API.info('getting json for ' + myfilename + '@ ' + myurl );
@@ -84,6 +84,14 @@ function utils() {
 	utils.prototype.readLookupFiles = function readLookupFiles(myfilename,myobj,fn_callback) {
 	this.readFiles(myfilename,myobj,fn_callback,'LookupData','app');
 	}
+	//		Read Model data from device and place in object
+	///
+	//		myobj =>object to load data in
+	//		myfilename => file name to store for persistences
+	//		fn_callback => function to call back
+	utils.prototype.readFormModels = function readFormModels(myfilename,myobj,fn_callback) {
+	this.readFiles(myfilename,myobj,fn_callback,'models','res');
+	}
 	///
 	/// basic worker for above function
 	//		myobj =>object to load data in
@@ -138,7 +146,7 @@ function utils() {
 	//		myfilename => file name to store for persistences
 	//		return result =>bool
 	utils.prototype.lookupFilesExists = function lookupFilesExists(myfilename) {
-		this.FilesExists(myfilename,'LookupData','app');
+		return this.FilesExists(myfilename,'LookupData','app');
 	}
 	
 	/// basic worker for above function
@@ -161,6 +169,40 @@ function utils() {
 			return f.exists();
 		} catch(e) {
 			Titanium.API.info('checking file lookups error' + e.error);
+			m.errorMessage.concat(e.error);
+			m.errorDialog.show();
+			return false;
+		}
+	};
+	
+	///
+	//		Check for Lookup data from device
+	///
+	//		myfilename => file name to store for persistences
+	//		return result =>bool
+	utils.prototype.lookupFileTimeStamp = function lookupFileTimeStamp(myfilename) {
+		return this.FileTimeStamp(myfilename,'LookupData','app');
+	}
+	/// basic worker for above function
+	//		myfilename => file name to store for persistences
+	//		return result =>long
+	//		dir => directory it is looking up
+	// 		dirtype => application or resources directory [app | res]
+	this.FileTimeStamp = function FileTimeStamp(myfilename,dir,dirtype) {
+		try {
+			Titanium.API.info('starting checking for file Timestamp');
+			if(dirtype==='app')
+			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
+			if(dirtype==='res')
+			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
+			//appDir.createDirectory();
+			Titanium.API.info(appDir.nativePath);
+			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
+			Titanium.API.info(f.nativePath);
+			Titanium.API.info('File Timestamp:' + f.modificationTimestamp());
+			return f.modificationTimestamp();
+		} catch(e) {
+			Titanium.API.info('checking file Timestamp error' + e.error);
 			m.errorMessage.concat(e.error);
 			m.errorDialog.show();
 			return false;

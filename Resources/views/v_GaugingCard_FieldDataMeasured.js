@@ -1,3 +1,14 @@
+// 
+//  v_GaugingCard_FieldDataMeasured.js
+//
+//++++++++++ NOTE THIS IS NOT USED +++++++++++++++
+//		kept just as an example
+//  
+//  Created by Iain Campion on 2011-05-11.
+//  Copyright 2011 Iain Campion. All rights reserved.
+// 
+
+
 var win = Titanium.UI.currentWindow;
 
 var data = [

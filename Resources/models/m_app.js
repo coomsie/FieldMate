@@ -4,13 +4,15 @@ function model() {
 	var me = this;
 
 	// //*** Public properties:
-	this.sites = '';
+	this.currentform={}; ///load the current form in use here.
+	this.mysites = new Object;
 	this.mymetertypes;//= new Object;
 	this.appConfig = {
 		ApplicationName: 'FieldMate',
 		ApplicationServerURL: 'http://tools.ecan.govt.nz/FieldMate/',
 		DeveloperEmail:'iain.campion@ecan.govt.nz',
 		FormModels: [{formname:'GaugingCard'}],
+		LookupFilesUpdated: '',
 		LookupURLS: [{
 			FileName:'sites.json',
 			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON'
@@ -22,6 +24,10 @@ function model() {
 		,{
 			FileName:'stagedreadings.json',
 			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON'
+		},
+		{
+			FileName:'gaugingstdcomments.json',
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Std%20Comments/JSON'
 		}
 		]
 	};

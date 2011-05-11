@@ -3,15 +3,12 @@
 
 ///Ti.API.info(v_GaugingCard.version);
 
-var d=new Date();
-d.toLocaleDateString();
-
 // create table view data object
 var data = [
 	{title:'SiteID:*', hasChild:false},
 	{title:'SiteName:', hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
 	{title:'River:', hasChild:false},
-	{title:'Date:' + d, hasChild:false}
+	{title:'Date:' , hasChild:false}
 ];
 
 // create table view
@@ -44,8 +41,9 @@ tableview.addEventListener('click', function(e)
 Ti.App.addEventListener('change_river',function(e)
 {
 	tableview.updateRow(0 ,{title:'SiteID: ' + e.siteid, hasChild:false});
-	tableview.updateRow(1 ,{title:'SiteName: ' + e.title, hasChild:true, url:'v_SiteDataRiver.js'});
+	tableview.updateRow(1 ,{title:'SiteName: ' + e.title, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'});
 	tableview.updateRow(2 ,{title:'River: ' + e.river, hasChild:false});
+	tableview.updateRow(3 ,{title:'Date: ' + e.datetaken, hasChild:false});
 });
 
 // add table view to the window

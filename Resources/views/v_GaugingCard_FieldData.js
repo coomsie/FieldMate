@@ -4,6 +4,8 @@ Titanium.include('../../helpers/validation.js');
 
 var win = Ti.UI.currentWindow;
 
+
+
 // create table view data object
 var data = [];
 
@@ -74,7 +76,20 @@ var tb_spintestafter = Titanium.UI.createTextField({
 });
 
 tb_spintestafter.addEventListener('change', function(e) {
-	checkValidation(tb_spintestafter);
+	var isValid  = checkValidation(tb_spintestafter);
+	//if(isValid == false)
+	if(true)
+	{
+	win.add(valView);
+	valView.animate(anim_out);
+	setTimeout(function()
+			{
+				//for fading out error tip and closing
+				valView.hide();
+				//messageWin.close({opacity:0,duration:500});
+			},4000);
+	}
+	
 });
 
 row.add(lb_spintestafter);
@@ -83,8 +98,10 @@ data[data.length+1] = row;
 
 data[data.length+1] = {
 	title:'Method:*',
+	dialogid:'MeasuredMethod',
 	hasChild:true,
-	url:'/views/v_GaugingCard_FieldDataMeasured.js',
+	origtitle: 'Method: ',
+	dialogoptions :['slackline','cableway','boat','upstream bridge','downstream bridge','wading', 'volumetric'],
 	header:'Measured'
 };
 
@@ -124,7 +141,7 @@ data[data.length+1] = {
 	hasChild:true,
 	dialogid:'MeasuredLandmark',
 	origtitle: 'Landmark: ',
-	dialogoptions : ['culvert','culverts','bridge']
+	dialogoptions : ['Bridge','Recorder','Ford','Weir','Culvert D/S','Culvert U/S','Staff Gauge','Confluence','Slackline','Intake','Cable Way','Underneath Bridge']
 };
 
 data[data.length+1] = {
@@ -193,7 +210,7 @@ data[data.length+1] = row;
 
 data[data.length+1] = {
 	title:'Colour:*',
-	hasChild:false,
+	hasChild:true,
 	header:'Water',
 	dialogid:'WaterColour',
 	origtitle: 'Colour: ',

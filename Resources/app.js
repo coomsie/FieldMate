@@ -183,10 +183,20 @@ tabGroup.addEventListener('focus', function(e)
 //check for all lookup files
 Titanium.API.info("check to see all lookup files present");
 /// check all lookup files
-var lookupfilesPresent;
+var lookupfilesPresent,ff=0;
 for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--) {
 	if(Ti.App.utils.lookupFilesExists(m.appConfig.LookupURLS[i].FileName)===false)
+	{
 		lookupfilesPresent = false;
+	}else{
+		if(ff===0) //first file present
+		{ 
+			ff=1;
+			//get date updated
+			m.appConfig.LookupFilesUpdated = Ti.App.utils.lookupFileTimeStamp(m.appConfig.LookupURLS[i].FileName);
+			Ti.API.info('fileudatedlast ' + m.appConfig.LookupFilesUpdated);
+		}
+		}
 };
 if(lookupfilesPresent===false) {
 	Ti.API.debug('lookupfilePresent:'+lookupfilesPresent);

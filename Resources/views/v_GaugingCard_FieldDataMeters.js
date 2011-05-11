@@ -1,8 +1,11 @@
-Ti.App.utils.readLookupFiles('metertypes.json',Ti.App.model.mymetertypes,fn_buildmeterTbl);
+//Ti.App.utils.readLookupFiles('metertypes.json',Ti.App.model.mymetertypes,fn_buildmeterTbl);
+
+Ti.App.utils.readLookupFiles('metertypes.json',null,fn_buildmeterTbl);
 
 var win = Titanium.UI.currentWindow;
 
 function fn_buildmeterTbl(mymetertypes) {
+	
 	Ti.API.info('build list data');
 	///to hold list data
 	var data = [];
@@ -10,7 +13,7 @@ function fn_buildmeterTbl(mymetertypes) {
 	if (mymetertypes.data.length !==0) {
 		for (var i = mymetertypes.data.item.length - 1; i >= 0; i--) {
 			{
-			Ti.API.info(mymetertypes.data.item[i]);
+			//Ti.API.debug(mymetertypes.data.item[i]);
 			var lb1 = Titanium.UI.createLabel({
 				color:'#666',
 				text:mymetertypes.data.item[i].name,
@@ -27,7 +30,7 @@ function fn_buildmeterTbl(mymetertypes) {
 		};
 	}
 
-	Ti.API.info(data);
+	/// Ti.API.debug(data);
 
 	// create table view
 	var tableview = Titanium.UI.createTableView({

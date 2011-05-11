@@ -1,6 +1,8 @@
 [{
 	"siteid":null,
-	"datataken":null,
+	"sitename":null,
+	"river":null,
+	"datetaken":null,
 	"metertype":null,
 	"spintestbefore":null,
 	"spintestafter":null,

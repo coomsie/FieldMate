@@ -1,4 +1,43 @@
 
+//UI for valiation
+var imgPath=Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,"images/bubble.png");
+
+var valView =  Titanium.UI.createView({
+width:205,
+height:30,
+backgroundColor: '#1A75A2',
+borderRadius:10,
+	opacity:0.7,
+	touchEnabled:false,
+		//backgroundImage: "images/bubble.png",
+top:2,
+left:50
+});
+
+Ti.API.info(valView.backgroundImage);
+
+var valLabel =  Titanium.UI.createLabel({
+text:'Error in field (see red)',
+color:'#fff',
+width:205,
+height:'auto',
+font:{
+fontFamily:'Helvetica Neue',
+fontSize:13,
+fontWeight:'bold'
+},
+textAlign:'center'
+});
+ 
+valView.add(valLabel);
+
+var anim_out = Titanium.UI.createAnimation();
+anim_out.opacity=0;
+anim_out.duration = 4000;
+
+
+
+
 //test is Valid Number => returns bool
 function isValidNumber(val) {
 	var re=/^[-+]?\d+(\.\d+)?$/;
@@ -143,8 +182,8 @@ function checkValidation(obj) {
 	};
 	
 	Ti.API.info('isValid:' + isValid);	
-		
-};
+	return isValid;
+44};
 
 	
 // //test valid date => returns bool
