@@ -136,12 +136,14 @@ function checkValidation(obj) {
 			return false;
 		}else
 		{
-		if(!isOff)
+		if(!isOff){
 		obj.color = 'Red';
 		isValid = false;
-		if(isOff)
+		}
+		if(isOff){
 		obj.color = obj.validation.color;
 		isValid = true;
+		}
 		}
 		return isOff;
 	};
@@ -157,8 +159,7 @@ function checkValidation(obj) {
 	{
 	//check for double value
 	if(obj.validation.isdouble) { 
-		if (!setEffect(obj,isReal(obj.value)))
-			setEffect(obj,isReal(obj.value));
+		setEffect(obj,isReal(obj.value));
 	}
 	//check if need integer
 	if(obj.validation.isinteger) {
@@ -183,7 +184,7 @@ function checkValidation(obj) {
 	
 	Ti.API.info('isValid:' + isValid);	
 	return isValid;
-44};
+};
 
 	
 // //test valid date => returns bool

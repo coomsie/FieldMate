@@ -2,6 +2,7 @@ Ti.API.info(Ti.App.guid);
 
 //Ti.include('redux.js');
 //includeGlobal('models/m_app.js', 'helpers/validation.js');
+Titanium.include('joli.js');
 
 //load 
 Titanium.include('models/m_app.js');
