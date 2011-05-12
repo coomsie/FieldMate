@@ -65,6 +65,10 @@ btn_submit.addEventListener('click',function(e)
 				    buttonNames: ['OK','Cancel']
 					});
 	alertDialog.show();
+	alertDialog.addEventListener('click',function(e){
+		if(e.index !== 1) 
+		Ti.App.utils.saveForm('GaugingCard',null,'spintestbefore'); //simple save db test
+	})
 });
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
 

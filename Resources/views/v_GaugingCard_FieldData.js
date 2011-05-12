@@ -4,8 +4,6 @@ Titanium.include('../../helpers/validation.js');
 
 var win = Ti.UI.currentWindow;
 
-
-
 // create table view data object
 var data = [];
 
@@ -38,19 +36,20 @@ var tb_spintestbefore = Titanium.UI.createTextField({
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
 
 tb_spintestbefore.addEventListener('change', function(e) {
-	checkValidation(tb_spintestbefore);
+	tb_spintestbefore.isValid = checkValidation(tb_spintestbefore);
 });
 
 tb_spintestbefore.addEventListener('blur', function(e) {
-	Ti.App.utils.saveForm('GaugingCard',tb_spintestbefore,'spintestbefore');
+	if(e.source.isValid === false)
+	displayValErr();
 });
 
 row.add(lb_spintestbefore);
-
 row.add(tb_spintestbefore);
 
 data[data.length+1] = row;
@@ -72,24 +71,18 @@ var tb_spintestafter = Titanium.UI.createTextField({
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
 
+
 tb_spintestafter.addEventListener('change', function(e) {
-	var isValid  = checkValidation(tb_spintestafter);
-	//if(isValid == false)
-	if(true)
-	{
-	win.add(valView);
-	valView.animate(anim_out);
-	setTimeout(function()
-			{
-				//for fading out error tip and closing
-				valView.hide();
-				//messageWin.close({opacity:0,duration:500});
-			},4000);
-	}
-	
+	tb_spintestafter.isValid = checkValidation(tb_spintestafter);
+});
+
+tb_spintestafter.addEventListener('blur', function(e) {
+	if(e.source.isValid === false)
+	displayValErr();
 });
 
 row.add(lb_spintestafter);
@@ -122,10 +115,22 @@ var tb_measured = Titanium.UI.createTextField({
 	width:200,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
+
+tb_measured.addEventListener('change', function(e) {
+	tb_measured.isValid = checkValidation(tb_measured);
+});
+
+tb_measured.addEventListener('blur', function(e) {
+	if(e.source.isValid === false)
+	displayValErr();
+});
+
 row.add(lb_measured);
 row.add(tb_measured);
+
 data[data.length+1] = row;
 
 data[data.length+1] = {
@@ -170,10 +175,22 @@ var tb_wind = Titanium.UI.createTextField({
 	width:200,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
+
+tb_wind.addEventListener('change', function(e) {
+	tb_wind.isValid = checkValidation(tb_wind);
+});
+
+tb_wind.addEventListener('blur', function(e) {
+	if(e.source.isValid === false)
+	displayValErr();
+});
+
 row.add(lb_wind);
 row.add(tb_wind);
+
 data[data.length+1] = row;
 
 data[data.length+1] = {
@@ -202,10 +219,22 @@ var tb_current = Titanium.UI.createTextField({
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
+
+tb_current.addEventListener('change', function(e) {
+	tb_current.isValid = checkValidation(tb_current);
+});
+
+tb_current.addEventListener('blur', function(e) {
+	if(e.source.isValid === false)
+	displayValErr();
+});
+
 row.add(lb_current);
 row.add(tb_current);
+
 data[data.length+1] = row;
 
 data[data.length+1] = {
@@ -234,15 +263,22 @@ var tb_temp = Titanium.UI.createTextField({
 	width:220,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 	validation:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid:false
 });
 
 tb_temp.addEventListener('change', function(e) {
-	checkValidation(tb_temp);
+	tb_temp.isValid = checkValidation(tb_temp);
+});
+
+tb_temp.addEventListener('blur', function(e) {
+	if(e.source.isValid === false)
+	displayValErr();
 });
 
 row.add(lb_temp);
 row.add(tb_temp);
+
 data[data.length+1] = row;
 
 var tableView = Ti.UI.createTableView({
@@ -332,3 +368,5 @@ dialog.addEventListener('click', function(e) {
 	});
 });
 
+//add validation
+win.add(valView);

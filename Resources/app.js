@@ -6,7 +6,7 @@ Titanium.include('joli.js');
 
 //load 
 Titanium.include('models/m_app.js');
-Titanium.include('helpers/validation.js');
+//Titanium.include('helpers/validation.js');
 Titanium.include('controllers/ctr_utils.js');
 Titanium.include('controllers/ctr_db.js');
 Titanium.include('views/v_drafts.js');
@@ -220,9 +220,11 @@ if(lookupfilesPresent===false) {
 // //some code
 // });
 
-var myJSONObject = new Object;
-
-Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
-
 
 ///some functions
+
+var myJSONObject = new Object;
+
+//test function to load up database.
+//Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
+
