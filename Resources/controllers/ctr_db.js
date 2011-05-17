@@ -30,7 +30,7 @@ appversion: 'TEXT',
 user:'TEXT',
 data:'TEXT',
 inserteddate: 'TEXT',
-updateddate: 'TEXT',
+submitteddate: 'TEXT',
 syncdate:'TEXT'
 }
 });
@@ -100,21 +100,38 @@ db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion
 				user:'Iainc',
 				data:data,
 				inserteddate: d.toString(),
-				updateddate: null,
+				submitteddate: null,
 				syncdate:null
             });
             // persist it
             newFORM.save();
+            
+            //increase badges
+            tab2.badge =tab2.badge+1;
 };                          
  	///
-               
-db.prototype.readForms = function readForms()
+
+// state => 'draft' or 'submitted'               
+db.prototype.readForms = function readForms(state)
 {
+	Ti.API.info('state ' + state);
 	// var q = new joli.query()
   			// .select('*')
   			// .from('formdata');
   	// var forms = q.execute();
-  	var forms = models.formdata.all()
+  	var forms;
+  	if (state === 'draft')
+  	{
+  		forms = models.formdata.all({
+  		where: 'submitteddate IS NULL'
+		});
+		}
+  	if (state === 'submitted')
+  	{
+  		forms = models.formdata.all({
+  		where: 'submitteddate IS NOT NULL'
+		});
+		}
   	Ti.API.info('reading form data');
   	Ti.API.info(forms);
   	var data = [];
@@ -129,7 +146,38 @@ db.prototype.readForms = function readForms()
 			}
 	forms.close();
 	return data;
-}                
+}
+
+
+//read stage records
+db.prototype.readStageReadings = function readStageReadings(siteid)
+{
+	//grab readings for site
+	var readings = models.stagedreadings.all({
+		where: {
+		  'sitenumber = ?': siteid
+		},
+		order: 'datetaken desc, type desc'
+	});
+	var data = [];
+  	while (readings.isValidRow()) {
+				data.push({
+					type: readings.fieldByName('type'),
+					datetaken: readings.fieldByName('datetaken'),
+					timetaken: readings.fieldByName('timetaken'),
+					recorderstage:readings.fieldByName('recorderstage'),
+					wellstage:readings.fieldByName('wellstage')
+				});	
+				readings.next();
+			}
+	readings.close();
+	return data;
+}
+
+
+
+
+                
 ///testing ground
 
 

@@ -1,4 +1,21 @@
 function Drafts_View() {
+
+	//*** 'me' acts as an alias that can be used within the methods
+	var me = this;
+	
+	var data = [];
+	var tableview;
+
+// load /update forms
+Drafts_View.prototype.reloadDrafts = function load_drafts_view(win)
+{
+me.data = [];
+
+me.data = Ti.App.db.readForms('draft');
+// create table view
+me.tableview.setData(me.data);
+
+}
 	
 //create  FORMS  UI
 Drafts_View.prototype.createDrafts = function init_drafts_view(win)
@@ -6,19 +23,16 @@ Drafts_View.prototype.createDrafts = function init_drafts_view(win)
 // create table view data object
 Ti.API.info('create table view data object');
 
-var data = [
-	{title:'Waimak Gorge,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-	{title:'Opihi River,25April', hasChild:true, url:'/views/v_GaugingCard_Master.js'},
-];
 
-data = Ti.App.db.readForms();
+
+me.data = Ti.App.db.readForms('draft');
 // create table view
-var tableview = Titanium.UI.createTableView({
-	data:data,
+me.tableview = Titanium.UI.createTableView({
+	data:me.data,
 });
 		
 
-tableview.addEventListener('click', function(e)
+me.tableview.addEventListener('click', function(e)
 {
 	if (e.rowData.url)
 	{
@@ -46,12 +60,12 @@ tableview.addEventListener('click', function(e)
 	// Titanium.UI.currentWindow.add(tableview);
 // }else
 // {
-	win.add(tableview);
+	win.add(me.tableview);
 // }
 
 
 //try to update the tab badge by return row count
-return data.length;
+return me.data.length;
 
 }
 

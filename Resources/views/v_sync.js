@@ -5,35 +5,20 @@
 //  Copyright 2011 Iain Campion. All rights reserved.
 //
 
-// Ti.include('../redux.js');
+function Sync_View() {
+	
 var m = Ti.App.model;
 
-var win = Titanium.UI.currentWindow;
-///		win.backgroundGradient={type:'linear', colors:['#000001','#6666'], startPoint:{x:0,y:0}, endPoint:{x:320,y:480}, backFillStart:false};
-win.title='Sync';
-win.barColor='#1A75A2';
-win.translucent=true;
-
+//create  FORMS  UI
+Sync_View.prototype.createSync = function init_sync_view(win)
+{
 // create table view data object
-var data = [{
-	title:'GC,Waimak Gorge,25 Jan',
-	hasChild:true,
-	url:'/views/v_GaugingCard_Master.js'
-},{
-	title:'GC,Opihi River,25 Feb',
-	hasChild:true,
-	url:'/views/v_GaugingCard_Master.js'
-},{
-	title:'GC,Heathcote River,12 Feb',
-	hasChild:true,
-	url:'/views/v_GaugingCard_Master.js'
-}
-];
+Ti.API.info('create table view data object');
 
+var data = Ti.App.db.readForms('submitted');
 // create table view
 var tableview = Titanium.UI.createTableView({
-	data:data,
-	top:43
+	data:data
 });
 
 tableview.addEventListener('click', function(e) {
@@ -130,4 +115,10 @@ if (Titanium.Platform.osname === 'android') {
 			alertDialog.show();
 		});
 	}
+};
+
+//try to update the tab badge by return row count
+return data.length;
+};
+
 };

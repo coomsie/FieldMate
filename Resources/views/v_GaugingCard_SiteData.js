@@ -6,8 +6,8 @@
 // create table view data object
 var data = [
 	{title:'SiteID:*', hasChild:false},
-	{title:'SiteName:', hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
 	{title:'River:', hasChild:false},
+	{title:'SiteName:', hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
 	{title:'Date:' , hasChild:false}
 ];
 
@@ -41,8 +41,8 @@ tableview.addEventListener('click', function(e)
 Ti.App.addEventListener('change_river',function(e)
 {
 	tableview.updateRow(0 ,{title:'SiteID: ' + e.siteid, hasChild:false});
-	tableview.updateRow(1 ,{title:'SiteName: ' + e.title, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'});
-	tableview.updateRow(2 ,{title:'River: ' + e.river, hasChild:false});
+	tableview.updateRow(1 ,{title:'River: ' + e.river, hasChild:false});
+	tableview.updateRow(2 ,{title:'SiteName: ' + e.title, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'});
 	tableview.updateRow(3 ,{title:'Date: ' + e.datetaken, hasChild:false});
 });
 

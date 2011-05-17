@@ -30,7 +30,7 @@ data[1] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_record = Ti.UI.createLabel({
-	text:'Recorder:(m)',
+	text:'Recorder(m):',
 	color:'#999',
 	textAlign:'left'
 
@@ -51,7 +51,7 @@ data[2] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_well = Ti.UI.createLabel({
-	text:'Well:(m)',
+	text:'EPB(m):',
 	color:'#999',
 	textAlign:'left'
 });
@@ -71,7 +71,7 @@ data[3] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_gauge = Ti.UI.createLabel({
-	text:'Gauge:(m)',
+	text:'ESG(m):',
 	color:'#999',
 	textAlign:'left'
 });
@@ -91,7 +91,7 @@ data[4] = row;
 row = Ti.UI.createTableViewRow({height:50});
 
 var lb_dif = Ti.UI.createLabel({
-	text:'+/-:(mm)',
+	text:'+/-(mm):',
 	color:'#999',
 	textAlign:'left'
 });
@@ -138,3 +138,37 @@ dialog.addEventListener('click',function(e)
 	Titanium.API.info(e.source.options[e.index]);
 	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] },{animated:true});
 });
+
+
+
+//UI FOR  EVENT 
+// 
+// // create the rest of the rows
+// for (var c=0;c<8;c++)
+// {
+	// var row = Ti.UI.createTableViewRow();
+	// row.height  =38;
+	// row.myid = c;
+// 	
+	// var ty =  mylb('M',20,5);
+	// var t =  mylb('1300',53,30);
+	// var r =  mylb('0.7330',53,100);
+	// var epb =  mylb('0.7500',53,160);
+	// var esg =  mylb('0.7500',53,225);
+	// var d =  mylb('15',20,295);
+// 	
+	// ty.rowNum = c;
+	// t.rowNum = c;
+	// r.rowNum = c;
+	// epb.rowNum = c;
+	// esg.rowNum = c;
+	// d.rowNum = c;
+	// row.add(ty);
+	// row.add(t);
+	// row.add(r);
+	// row.add(epb);
+	// row.add(esg);
+	// row.add(d);
+	// data.push(row);
+// }
+

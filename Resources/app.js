@@ -10,12 +10,14 @@ Titanium.include('models/m_app.js');
 Titanium.include('controllers/ctr_utils.js');
 Titanium.include('controllers/ctr_db.js');
 Titanium.include('views/v_drafts.js');
+Titanium.include('views/v_sync.js');
 
 Ti.App.utils = new utils();
 Ti.App.db = new db();
 Ti.App.model = new model();
 var m = Ti.App.model;
-Ti.App.views = new Drafts_View();
+Ti.App.Drafts_View = new Drafts_View();
+Ti.App.Sync_View = new Sync_View();
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#6666');
@@ -99,48 +101,32 @@ var win2 = Titanium.UI.createWindow({
 	title:'Draft'
 });
 
-var badgenum = Ti.App.views.createDrafts(win2);
+var badgenumDrafts = Ti.App.Drafts_View.createDrafts(win2);
 
 var tab2 = Titanium.UI.createTab({
 	icon:'images/forms.png',
 	title:'Draft',
-	badge: badgenum,
+	badge: badgenumDrafts,
 	window:win2
 });
-
-//load controllers
-//Titanium.include('controllers/ctr_formsTab.js');
-
-// forms Tab ///
-// var win3 = Titanium.UI.createWindow({
-// id:'win3',
-// title:'History',
-// url:'views/v_forms.js'
-// });
-// var tab3 = Titanium.UI.createTab({
-// icon:'images/forms.png',
-// title:'History',
-// window:win3
-// });
-
-//load controllers
-//Titanium.include('controllers/ctr_formsTab.js');
 
 //create Sync UI Tab
 var win3 = Titanium.UI.createWindow({
 	id:'win3',
-	url:'views/v_sync.js'
+	title:'Sync'
 });
+
+var badgenumSync = Ti.App.Sync_View.createSync(win3);
+
 var tab3 = Titanium.UI.createTab({
 	icon:'images/sync.png',
 	title:'Sync',
-	badge:3,
+	badge:badgenumSync,
 	window:win3
 });
 //load controllers
 //Titanium.include('controllers/ctr_syncTab.js');
 
-//3Day tab ///
 //create settings UI Tab
 var win4 = Titanium.UI.createWindow({
 	id:'win4',
@@ -176,7 +162,7 @@ tabGroup.addEventListener('focus', function(e)
 	Ti.API.info("prev index" + e.previousIndex);
 	//CHECK IF DRAFT TAB
    if(e.index===1)
-   Ti.App.views.createDrafts(Titanium.UI.currentWindow);
+   Ti.App.Drafts_View.reloadDrafts(e.source);
    //win2.tableview.data = Ti.App.db.readForms();
 });
 
@@ -226,5 +212,5 @@ if(lookupfilesPresent===false) {
 var myJSONObject = new Object;
 
 //test function to load up database.
-//Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
+Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
 

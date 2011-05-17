@@ -64,6 +64,9 @@ function utils() {
 			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'LookupData');
 			appDir.createDirectory();
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
+			//check already exists? =>delete it
+			if(f.exists)
+			f.deleteFile;
 			f.write(JSON.stringify(myobj));
 			Titanium.API.info('file written');
 			if(progressBar) progressBar.setProgressMessage('Written file ' + myfilename +' ');
