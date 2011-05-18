@@ -163,6 +163,8 @@ tabGroup.addEventListener('focus', function(e)
 	//CHECK IF DRAFT TAB
    if(e.index===1)
    Ti.App.Drafts_View.reloadDrafts(e.source);
+   if(e.index===2)
+   Ti.App.Sync_View.reloadSync(e.source);
    //win2.tableview.data = Ti.App.db.readForms();
 });
 
@@ -211,6 +213,7 @@ if(lookupfilesPresent===false) {
 
 var myJSONObject = new Object;
 
-//test function to load up database.
+//test function to load up database if present
+if(Ti.App.utils.lookupFilesExists('stagedreadings.json'))
 Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
 

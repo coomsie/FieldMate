@@ -115,7 +115,6 @@ function utils() {
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
 			Titanium.API.info(f.nativePath);
 			this.myobj = JSON.parse(f.read().text);
-			//m.mymetertypes = JSON.parse(f.read().text);
 			Titanium.API.info('file read');
 			Titanium.API.info('calling callback with ' + this.myobj);
 			fn_callback(this.myobj);
@@ -223,12 +222,14 @@ function utils() {
 		this.totalfiles;
 		this.ui;
 		this.flexSpace;
+		this.action;
 
 		var me = this;
 
-		this.create = function(totalfiles) {
+		this.create = function(totalfiles,action) {
 
 			me.totalfiles = totalfiles;
+			me.action = action;
 			
 			try {
 				if (Titanium.Platform.name == 'iPhone OS')
@@ -246,7 +247,7 @@ function utils() {
 					max:totalfiles,
 					value:0,
 					color:'#fff',
-					message:'Downloading 0 of '+ totalfiles,
+					message: action + ' 0 of '+ totalfiles,
 					font: {
 						fontSize:14,
 						fontWeight:'bold'
@@ -262,7 +263,7 @@ function utils() {
 				this.ui = Titanium.UI.createActivityIndicator({
 					location:Titanium.UI.ActivityIndicator.DIALOG,
 					type:Titanium.UI.ActivityIndicator.DETERMINANT,
-					message:'Downloading 0 of '+ totalfiles,
+					message: action + ' 0 of '+ totalfiles,
 					min:0,
 					max:totalfiles,
 					value:0
@@ -280,7 +281,14 @@ function utils() {
 			};
 		};
 		
-		this.setProgressMessage  = function(action) {
+		this.setProgressMessage  = function(action, load , totalfiles) {
+			
+			if(load)
+			me.load = load;
+			
+			if (totalfiles)
+			me.totalfiles = totalfiles;
+			
 			if (Titanium.Platform.name == 'iPhone OS')
 				{	
 					me.ui.message = action + me.load + ' of '+ me.totalfiles;
@@ -297,7 +305,10 @@ function utils() {
 				//hide if true
 				setTimeout( function() {
 					me.hide();
-					alert('Sync finished :)')
+					//raise that the action has finished
+					var evt = 'sync_' + me.action +'Finished';
+					Ti.App.fireEvent(evt);
+					alert(me.action + ' of data finished :)')
 				},2000);
 			} else {
 				if (Titanium.Platform.name == 'iPhone OS')
@@ -322,9 +333,7 @@ function utils() {
 	// 
 	// function to save form data to model  
 	// 
-	utils.prototype.saveForm = function saveForm(formtype,ctrl,ctrlname) {
-	
-	
+	utils.prototype.saveForm = function saveForm(formtype,ctrl,ctrlname,formname) {
 	// //*** Public properties:
 	/// this.var
 	// //*** Protected variables:
@@ -334,8 +343,6 @@ function utils() {
 	// //*** Protected method used only internally. Call with 'me.my_own()'
 	// this.my_own = function (arg1) {
 	// };
-	
-
 	//** PUBLIC METHODS ** //
 	
 	//get the active model
@@ -353,7 +360,43 @@ function utils() {
 		formObj.spinbefore = '222' //ctrl.value.toString();
 		Ti.API.debug(formObj.spinbefore);
 		Ti.API.debug(formObj);
-		db.prototype.insertNewForm(JSON.stringify(formObj), formtype,'1.01','Upstream Council Intake');
+		db.prototype.insertNewForm(JSON.stringify(formObj), formtype,'1.01',formname);
+	
+	}
+	
+	};
+	
+	// 
+	// function to save form data to model  
+	// 
+	utils.prototype.submitForm = function submitForm(formtype,ctrl,ctrlname,formname) {
+	// //*** Public properties:
+	/// this.var
+	// //*** Protected variables:
+	// var somevar = "";
+	var formObj;
+	
+	// //*** Protected method used only internally. Call with 'me.my_own()'
+	// this.my_own = function (arg1) {
+	// };
+	//** PUBLIC METHODS ** //
+	
+	//get the active model
+	//update the field if valid
+	
+	this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
+	
+	function setValues(obj){
+		// for (var i = obj.length - 1; i >= 0; i--){
+		// if(obj[i] === ctrlname)
+		// obj[i]
+		// };
+		formObj = obj;
+		Ti.API.debug(formObj);
+		formObj.spinbefore = '222' //ctrl.value.toString();
+		Ti.API.debug(formObj.spinbefore);
+		Ti.API.debug(formObj);
+		db.prototype.updateForm(JSON.stringify(formObj), formtype,'1.01',formname);
 	
 	}
 	

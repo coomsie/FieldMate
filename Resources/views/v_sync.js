@@ -6,22 +6,46 @@
 //
 
 function Sync_View() {
+
+
+	//*** 'me' acts as an alias that can be used within the methods
+	var me = this;
+	var m = Ti.App.model;
+	var win;
+	var data = [];
+	var tableview;
 	
-var m = Ti.App.model;
+// load /update forms
+Sync_View.prototype.reloadSync = function load_sync_view(win)
+{
+me.data = [];
+
+me.data = Ti.App.db.readForms('submitted');
+// create table view
+me.tableview.setData(me.data);
+
+//set badge
+tab3.badge = me.data.length;
+
+}	
 
 //create  FORMS  UI
 Sync_View.prototype.createSync = function init_sync_view(win)
 {
+//assign for future use.
+me.win = win;	
+	
 // create table view data object
 Ti.API.info('create table view data object');
+me.data = [];
 
-var data = Ti.App.db.readForms('submitted');
+me.data = Ti.App.db.readForms('submitted');
 // create table view
-var tableview = Titanium.UI.createTableView({
+me.tableview = Titanium.UI.createTableView({
 	data:data
 });
 
-tableview.addEventListener('click', function(e) {
+me.tableview.addEventListener('click', function(e) {
 	if (e.rowData.url) {
 		Ti.API.info('load child UI' + e.rowData.url);
 		var win = null;
@@ -38,13 +62,13 @@ tableview.addEventListener('click', function(e) {
 				barColor:'#1A75A2'
 			});
 		}
-		Titanium.UI.currentTab.open(win, {
+		tab3.open(win, {
 			animated:true
 		});
 	}
 });
 // add table view to the window
-win.add(tableview);
+win.add(me.tableview);
 
 var alertDialog = Titanium.UI.createAlertDialog({
 	title: 'Update',
@@ -55,15 +79,23 @@ var alertDialog = Titanium.UI.createAlertDialog({
 alertDialog.addEventListener('click', function(e) {
 	if(e.index !== 1) {
 		if(Ti.App.utils.checkNetwork) {
-			Titanium.API.info("grabbing all lookup files");
+			dataDownload(); ///when finished raise event to start upload
+			//for testing purposes Ti.App.fireEvent('sync_DownloadingFinished');
+		};
+	};
+});
+
+//function to download data
+function dataDownload()
+{
+	Titanium.API.info("grabbing all lookup files");
 			var filetotal = m.appConfig.LookupURLS.length;
 			//create progress bar
 			var pb = new Ti.App.utils.ProgressBar();
-			pb.create(filetotal);
+			pb.create(filetotal,'Downloading');
 			Titanium.API.info("add pb to win");
-			var win = Titanium.UI.currentWindow;
 			if (Titanium.Platform.name === 'iPhone OS') {
-				win.setToolbar([pb.flexSpace,pb.ui,pb.flexSpace]);
+				me.win.setToolbar([pb.flexSpace,pb.ui,pb.flexSpace]);
 			};
 			/// grab all lookup files
 			var it = 1;
@@ -77,10 +109,47 @@ alertDialog.addEventListener('click', function(e) {
 					it++;
 				};
 			};
+};
 
-		};
-	};
+Ti.App.addEventListener('sync_DownloadingFinished',function(e)
+			{
+			//
+			//			UPLOAD PORTION
+			//
+			if(me.data.length!==0) ///if there is data present
+			{
+			var filetotal = me.data.length;
+			//create progress bar
+			var pb = new Ti.App.utils.ProgressBar();
+			pb.create(filetotal,'Uploading');
+			Titanium.API.info("add pb to win");
+			if (Titanium.Platform.name === 'iPhone OS') {
+				me.win.setToolbar([pb.flexSpace,pb.ui,pb.flexSpace]);
+			};
+			
+			//do data upload
+			
+			for (var i = me.data.length - 1; i >= 0; i--){
+			pb.setProgressMessage('Uploading Forms ', me.data.length-i, me.data.length);
+			//Ti.App.db.uploadForm (data,formtype,formversion,formdisplayname,rowid)
+			Ti.App.db.uploadForm(null,null,null,null, me.data[i].dbrowid);
+			me.tableview.deleteRow(i);
+			pb.setProgress();
+			};
+			
+			//set badge
+			tab3.badge = 0;
+			}else
+			{
+				alert('No form data to upload :)');
+			}
 });
+			
+Ti.App.addEventListener('sync_UploadingFinished',function(e)
+{
+	//do something?
+});
+
 //add couple of buttons
 var btn_submit = Titanium.UI.createButton({
 	title: 'Update',
@@ -100,7 +169,6 @@ if (Ti.Platform.name === 'iPhone OS') {
 // add android specific tests
 if (Titanium.Platform.osname === 'android') {
 	Ti.API.info("creating menu option");
-	var win = Ti.UI.currentWindow;
 	var activity = Ti.Android.currentActivity;
 	// Here is an example of creating the menu handlers in the window creation options.
 	activity.onCreateOptionsMenu = function(e) {
@@ -118,7 +186,7 @@ if (Titanium.Platform.osname === 'android') {
 };
 
 //try to update the tab badge by return row count
-return data.length;
+return me.data.length;
 };
 
 };

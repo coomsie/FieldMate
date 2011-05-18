@@ -15,6 +15,9 @@ me.data = Ti.App.db.readForms('draft');
 // create table view
 me.tableview.setData(me.data);
 
+//set badge
+tab2.badge = me.data.length;
+
 }
 	
 //create  FORMS  UI
@@ -51,7 +54,7 @@ me.tableview.addEventListener('click', function(e)
 				barColor:'#1A75A2'
 			});
 		}
-		Titanium.UI.currentTab.open(win,{animated:true});
+		tab2.open(win,{animated:true});
 	}
 });
 

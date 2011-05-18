@@ -109,35 +109,76 @@ db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion
             //increase badges
             tab2.badge =tab2.badge+1;
 };                          
- 	///
 
+ 
+//		update  row into form data  table
+//		data => data from json of form model with actuals  
+//		formtype => form name
+//		 
+db.prototype.updateForm  = function update_FormData(data,formtype,formversion,formdisplayname) {
+			Ti.API.info('updating ' + formdisplayname);
+			//grab date
+			var d=new Date();
+			d.toLocaleDateString();
+           	//update
+           	var mydb = Titanium.Database.open('fieldmate');
+           	var updateDate = d.toString();
+           	mydb.execute('UPDATE formdata SET submitteddate = ? WHERE submitteddate IS NULL',updateDate );
+           	Titanium.API.info('JUST updated, rowsAffected = ' + mydb.rowsAffected);
+			mydb.close(); // close db when you're done to save resources
+			
+            //increase badges
+            tab3.badge =tab3.badge+1;
+};
+
+//		update  row into form data  table
+//		data => data from json of form model with actuals  
+//		formtype => form name
+//		 
+db.prototype.uploadForm  = function upload_FormData(data,formtype,formversion,formdisplayname,myrowid) {
+			Ti.API.info('about to update row id =>' + myrowid);
+			//grab date
+			var d=new Date();
+			d.toLocaleDateString();
+           	//update
+           	var mydb = Titanium.Database.open('fieldmate');
+           	var updateDate = d.toString();
+           	mydb.execute('UPDATE formdata SET syncdate = ? WHERE syncdate IS NULL and rowid =  ? ', updateDate ,myrowid );
+           	Titanium.API.info('JUST updated, rowsAffected = ' + mydb.rowsAffected);
+			mydb.close(); // close db when you're done to save resources
+			
+            //increase badges
+            tab3.badge =0;
+};              
+                          
+
+//	read formsfrom db
 // state => 'draft' or 'submitted'               
 db.prototype.readForms = function readForms(state)
 {
 	Ti.API.info('state ' + state);
-	// var q = new joli.query()
-  			// .select('*')
-  			// .from('formdata');
-  	// var forms = q.execute();
-  	var forms;
+  	var forms,q;
   	if (state === 'draft')
   	{
-  		forms = models.formdata.all({
-  		where: 'submitteddate IS NULL'
-		});
-		}
+  		q = new joli.query()
+  			.select('*')
+  			.from('formdata')
+  			.where('submitteddate IS NULL');
+  	}
   	if (state === 'submitted')
   	{
-  		forms = models.formdata.all({
-  		where: 'submitteddate IS NOT NULL'
-		});
-		}
+		q = new joli.query()
+  			.select('*')
+  			.from('formdata')
+  			.where('submitteddate IS NOT NULL AND syncdate IS NULL');
+  	}
   	Ti.API.info('reading form data');
+  	forms = q.execute();
   	Ti.API.info(forms);
   	var data = [];
   	while (forms.isValidRow()) {
 				data.push({
-					test: forms.fieldByName('displayname'),
+					dbrowid: forms.fieldByName('id'),
 				  	title: forms.fieldByName('displayname') + forms.fieldByName('inserteddate'),
 				  	hasChild: true,
 				  	url:'/views/v_GaugingCard_Master.js'

@@ -2,7 +2,7 @@
 
 Ti.App.utils.readFormModels('m_GaugingCard.json',Ti.App.model.currentform,createFormMasterUI);
 
-function createFormMasterUI(frmModel){
+function createFormMasterUI(frmModel, readonlymode){
 
 //set up form model
 Ti.App.model.currentform = this.frmModel;
@@ -67,9 +67,12 @@ btn_submit.addEventListener('click',function(e)
 	alertDialog.show();
 	alertDialog.addEventListener('click',function(e){
 		if(e.index !== 1) 
-		Ti.App.utils.saveForm('GaugingCard',null,'spintestbefore'); //simple save db test
+		Ti.App.utils.submitForm('GaugingCard',null,'spintestbefore','test1'); //simple save db test
 	})
 });
+
+//only add the button if draft or new tab is open. FROM OPEN FORM DATA
+///if (!readonlymode)
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
 
 }

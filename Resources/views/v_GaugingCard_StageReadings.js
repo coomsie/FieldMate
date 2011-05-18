@@ -5,6 +5,7 @@ var header = Ti.UI.createLabel({
 		backgroundColor:'#9ca9b3',
 		font:{fontSize:14,fontWeight:'bold', fontFamily:'Arial'},
 		top:0,
+		left:0,
 		height:25,
 		width:320,
 		text:'Type:		Time:	Recorder:		EPB(m):		ESG(m):		+/-:'

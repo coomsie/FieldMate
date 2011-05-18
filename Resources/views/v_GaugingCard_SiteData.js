@@ -44,6 +44,9 @@ Ti.App.addEventListener('change_river',function(e)
 	tableview.updateRow(1 ,{title:'River: ' + e.river, hasChild:false});
 	tableview.updateRow(2 ,{title:'SiteName: ' + e.title, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'});
 	tableview.updateRow(3 ,{title:'Date: ' + e.datetaken, hasChild:false});
+	
+	/// if in form data the for is new i.e. no unquie code for it => create new and update form model
+	Ti.App.utils.saveForm('GaugingCard',null,'',e.title ); //simple save db test
 });
 
 // add table view to the window
