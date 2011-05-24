@@ -22,14 +22,16 @@ tableview.addEventListener('click', function(e)
 		if (Ti.Platform.name === "android") {
 			win = Titanium.UI.createWindow({
 				url:e.rowData.url,
-				title:e.rowData.title
+				title:e.rowData.title,
+				tabBarHidden:true
 			});
 		} else {
 			win = Titanium.UI.createWindow({
 				url:e.rowData.url,
 				title:e.rowData.title,
 				backgroundColor:'#fff',
-				barColor:'#1A75A2'
+				barColor:'#1A75A2',
+				tabBarHidden:true
 			});
 		}
 		Titanium.UI.currentTab.open(win,{animated:true});

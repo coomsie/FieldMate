@@ -61,7 +61,7 @@ messageWin.add(messageView);
 messageWin.add(messageLabel);
 
 // create tab group
-var tabGroup = Titanium.UI.createTabGroup({
+	Ti.App.tabGroup = Titanium.UI.createTabGroup({
 	barColor:'#1A75A2',
 	backgroundGradient: {
 		type:'linear',
@@ -77,6 +77,8 @@ var tabGroup = Titanium.UI.createTabGroup({
 		backFillStart:false
 	}
 });
+
+//Ti.App.myUI.tabGroup = new tabGroup;
 
 var win = Titanium.UI.currentWindow;
 
@@ -143,21 +145,21 @@ var tab4 = Titanium.UI.createTab({
 //
 //  add tabs
 //
-tabGroup.addTab(tab1);
-tabGroup.addTab(tab2);
-tabGroup.addTab(tab3);
-tabGroup.addTab(tab4);
+Ti.App.tabGroup.addTab(tab1);
+Ti.App.tabGroup.addTab(tab2);
+Ti.App.tabGroup.addTab(tab3);
+Ti.App.tabGroup.addTab(tab4);
 
-tabGroup.setActiveTab(0);
+Ti.App.tabGroup.setActiveTab(0);
 
 // open tab group
-tabGroup.open({
+Ti.App.tabGroup.open({
 	transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
 });
 
 //set listener for tab changes
 // focus event listener for tracking tab changes
-tabGroup.addEventListener('focus', function(e)
+Ti.App.tabGroup.addEventListener('focus', function(e)
 {
 	Ti.API.info("prev index" + e.previousIndex);
 	//CHECK IF DRAFT TAB

@@ -75,11 +75,17 @@ function isInteger(val) {
 	return re.test(val);
 }
 
-//function to test double
+//function to test double **** maynot be correct ***
 function isDouble(val){
 	var re = new RegExp("[0-9.]");
 	Titanium.API.debug('isDouble:' + re.test(val));
 	return re.test(val);
+}
+
+function isNumber(val) { // REAL NUMBERS
+	var re = new RegExp("/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/");
+	Titanium.API.debug('isNumber:' + re.test(val));
+return re.test(val);
 }
 
 //test for real val
@@ -152,9 +158,10 @@ function checkValidation(obj) {
 	obj.color = obj.validation.color;
 
 	//keep record of validation colors
-	if(!obj.validation.color)
+	if(!obj.validation.color){
 		obj.validation.color = obj.color;
-
+		obj.validation.backgroundColor = obj.backgroundColor;
+		}
 	//set valuation highlight effect
 	function setEffect(obj,isOff) {
 		if (isValid===false) {
@@ -162,10 +169,12 @@ function checkValidation(obj) {
 		} else {
 			if(!isOff) {
 				obj.color = 'Red';
+				obj.backgroundColor = 'Red';
 				isValid = false;
 			}
 			if(isOff) {
 				obj.color = obj.validation.color;
+				obj.backgroundColor = obj.validation.backgroundColor;
 				isValid = true;
 			}
 		}
@@ -181,13 +190,13 @@ function checkValidation(obj) {
 	if(isPresent(obj.value)) {
 		//check for double value
 		if(obj.validation.isdouble) {
-			if(!setEffect(obj,isDouble(obj.value)))
-			obj.value = removeLastEntry(obj.value);
-		}
+			setEffect(obj,isDouble(obj.value));
+		};
 		//check if need integer
 		if(obj.validation.isinteger) {
-			if (!setEffect(obj,isInteger(obj.value)))
-				obj.value = removeLastEntry(obj.value);
+			setEffect(obj,isInteger(obj.value));
+			// if (!setEffect(obj,isInteger(obj.value)))
+				// obj.value = removeLastEntry(obj.value);
 		};
 		//check if need min
 		if(obj.validation.minchars) {
@@ -195,11 +204,13 @@ function checkValidation(obj) {
 		};
 		//check if max
 		if(obj.validation.maxchars) {
-			if(!setEffect(obj,isWithinMaxChars(obj.value,obj.validation.maxchars)))
-			{
-				obj.value = removeLastEntry(obj.value);
-				checkValidation(obj);
-			}
+			setEffect(obj,isWithinMaxChars(obj.value,obj.validation.maxchars));
+			// removed next cos the check still returns false ....
+			// if(!isWithinMaxChars(obj.value,obj.validation.maxchars))
+			// {
+				// obj.value = removeLastEntry(obj.value);
+				// checkValidation(obj);
+			// }
 		};
 		//check within range
 		if(obj.validation.range) {
@@ -211,74 +222,7 @@ function checkValidation(obj) {
 	return isValid;
 };
 
-// //test valid date => returns bool
-// function isValidDate (dateStr, format) {
-// if (format == null) {
-// format = "MDY";
-// }
-// format = format.toUpperCase();
-// if (format.length != 3) {
-// format = "MDY";
-// }
-// if ( (format.indexOf("M") == -1) || (format.indexOf("D") == -1) || _
-// (format.indexOf("Y") == -1) ) {
-// format = "MDY";
-// }
-// if (format.substring(0, 1) == "Y") { // If the year is first
-// var reg1 = /^\d{2}(\-|\/|\.)\d{1,2}\1\d{1,2}$/
-// var reg2 = /^\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}$/
-// } else if (format.substring(1, 2) == "Y") { // If the year is second
-// var reg1 = /^\d{1,2}(\-|\/|\.)\d{2}\1\d{1,2}$/
-// var reg2 = /^\d{1,2}(\-|\/|\.)\d{4}\1\d{1,2}$/
-// } else { // The year must be third
-// var reg1 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{2}$/
-// var reg2 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/
-// }
-// // If it doesn't conform to the right format (with either a 2 digit year or 4 digit year), fail
-// if ( (reg1.test(dateStr) == false) && (reg2.test(dateStr) == false) ) {
-// return false;
-// }
-// var parts = dateStr.split(RegExp.$1); // Split into 3 parts based on what the divider was
-// // Check to see if the 3 parts end up making a valid date
-// if (format.substring(0, 1) == "M") {
-// var mm = parts[0];
-// } else _
-// if (format.substring(1, 2) == "M") {
-// var mm = parts[1];
-// } else {
-// var mm = parts[2];
-// }
-// if (format.substring(0, 1) == "D") {
-// var dd = parts[0];
-// } else _
-// if (format.substring(1, 2) == "D") {
-// var dd = parts[1];
-// } else {
-// var dd = parts[2];
-// }
-// if (format.substring(0, 1) == "Y") {
-// var yy = parts[0];
-// } else _
-// if (format.substring(1, 2) == "Y") {
-// var yy = parts[1];
-// } else {
-// var yy = parts[2];
-// }
-// if (parseFloat(yy) <= 50) {
-// yy = (parseFloat(yy) + 2000).toString();
-// }
-// if (parseFloat(yy) <= 99) {
-// yy = (parseFloat(yy) + 1900).toString();
-// }
-// var dt = new Date(parseFloat(yy), parseFloat(mm)-1, parseFloat(dd), 0, 0, 0, 0);
-// if (parseFloat(dd) != dt.getDate()) {
-// return false;
-// }
-// if (parseFloat(mm)-1 != dt.getMonth()) {
-// return false;
-// }
-// return true;
-// }
+
 //
 // //test valid email address => returns bool
 // function isValidEmail(emailAddress) {
@@ -312,38 +256,3 @@ function checkValidation(obj) {
 // var re  = /^(http|https|ftp)\:\/\/[a-z0-9\-\.]+\.[a-z]{2,3}(:[a-z0-9]*)?\/?([a-z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*$/i
 // return re.test(val);
 // }
-
-// //test valid time => return bool
-// // valid entries 12:25 & 12:25PM
-// function isValidTime(value) {
-// var hasMeridian = false;
-// var re = /^\d{1,2}[:]\d{2}([:]\d{2})?( [aApP][mM]?)?$/;
-// if (!re.test(value)) {
-// return false;
-// }
-// if (value.toLowerCase().indexOf("p") != -1) {
-// hasMeridian = true;
-// }
-// if (value.toLowerCase().indexOf("a") != -1) {
-// hasMeridian = true;
-// }
-// var values = value.split(":");
-// if ( (parseFloat(values[0]) < 0) || (parseFloat(values[0]) > 23) ) {
-// return false;
-// }
-// if (hasMeridian) {
-// if ( (parseFloat(values[0]) < 1) || (parseFloat(values[0]) > 12) ) {
-// return false;
-// }
-// }
-// if ( (parseFloat(values[1]) < 0) || (parseFloat(values[1]) > 59) ) {
-// return false;
-// }
-// if (values.length > 2) {
-// if ( (parseFloat(values[2]) < 0) || (parseFloat(values[2]) > 59) ) {
-// return false;
-// }
-// }
-// return true;
-// }
-//

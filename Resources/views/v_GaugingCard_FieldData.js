@@ -4,6 +4,92 @@ Titanium.include('../../helpers/validation.js');
 
 var win = Ti.UI.currentWindow;
 
+var tableView;
+
+// create keyboard done button hack
+	// Flexible Space for Button bars
+var flexSpace = Titanium.UI.createButton({
+    systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+});
+
+//Done System Button
+var btn_done = Titanium.UI.createButton({
+    //systemButton:Titanium.UI.iPhone.SystemButton.ACTION
+    title:"Hide"
+});
+
+// Creating the Keyboard Toobar
+var keyboardToolbar = Titanium.UI.createToolbar({
+    items:[flexSpace,btn_done],
+    bottom:210,
+    borderTop:true,
+    borderBottom:true,
+    visible:false,
+    opacity:0,
+    barColor:'#1A75A2'
+});
+win.add(keyboardToolbar);
+
+// ==============================
+// = KEYBOARD TOOLBAR ANIMATION =
+// ==============================
+ 
+function showKeyboardToobar() {
+    Ti.API.info("showKeyboardToobar Function Called")
+ 
+    keyboarToolbarAnimation = Titanium.UI.createAnimation({
+        curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT,
+        bottom:210,
+        opacity: .75,
+        duration: 300,
+        delay: 200,
+        zIndex:4
+    });
+    keyboardToolbar.visible = true;
+    keyboardToolbar.animate(keyboarToolbarAnimation);
+ 
+}
+ 
+function hideKeyboardToobar() {
+    Ti.API.info("hideKeyboardToobar Function Called")
+ 
+    keyboarToolbarAnimation = Titanium.UI.createAnimation({
+        curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT,
+        bottom:210,
+        opacity: 0,
+        duration: 100,
+        delay: 0,
+        zIndex:4
+    });
+    keyboardToolbar.visible = false;
+    keyboardToolbar.animate(keyboarToolbarAnimation);
+}
+var blurObj;
+ 
+Titanium.App.addEventListener('showKeyboardToolbar', function(e)
+{
+    showKeyboardToobar();
+    //blurObj = e.sourceobj;
+});
+ 
+Titanium.App.addEventListener('hideKeyboardToolbar', function(e)
+{
+    hideKeyboardToobar();
+});
+
+// ==============
+// = Listeners = for keyboard
+// ==============
+ 
+//Done button on the keyboard toolbar to blur the keyboard focus
+btn_done.addEventListener('click', function(e)
+{
+    Titanium.API.info('done btn on keyboard toolbar fired');
+    tb_spintestbefore.blur();
+    Titanium.App.fireEvent("hideKeyboardToolbar");
+});
+
+
 // create table view data object
 var data = [];
 
@@ -47,6 +133,11 @@ tb_spintestbefore.addEventListener('change', function(e) {
 tb_spintestbefore.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
 	displayValErr();
+});
+
+tb_spintestbefore.addEventListener('focus', function(e) {
+//show keyboard
+Titanium.App.fireEvent("showKeyboardToolbar");
 });
 
 row.add(lb_spintestbefore);
@@ -281,7 +372,7 @@ row.add(tb_temp);
 
 data[data.length+1] = row;
 
-var tableView = Ti.UI.createTableView({
+tableView = Ti.UI.createTableView({
 	data:data
 });
 
