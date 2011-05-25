@@ -71,7 +71,8 @@ tableView.addEventListener('delete',function(e)
 //iphone version
 
 var add = Titanium.UI.createButton({
-	title:'Add'
+// system buttons
+	systemButton:Titanium.UI.iPhone.SystemButton.ADD
 });
 
 add.addEventListener('click', function()
@@ -173,3 +174,34 @@ for (var i = data.length - 1; i >= 0; i--) {
 	histdata.reverse();
 return	histdata;	
 }
+
+/// event to accept the stage readings add event
+Ti.App.addEventListener('add_reading', function(e) {
+	var row = Ti.UI.createTableViewRow();
+		row.height  =38;
+		//add data to row
+		var type =  mylb(e.rtype,20,5);
+		var datetaken =  mylb(e.datetaken,50,30);
+		var recorder =  mylb(e.recorder,53,100);
+		var epb =  mylb(e.epb,53,160);
+		var esg =  mylb(e.esg,53,225);
+		if(e.epb !== 0){
+		var diff =  mylb(Math.round(Math.abs(e.recorder - e.epb)*1000),20,295); 
+		}else{
+		var diff =  mylb('',20,295);
+		}
+		row.add(type);
+		row.add(datetaken);
+		row.add(recorder);
+		row.add(epb);
+		row.add(esg);
+		row.add(diff);	
+	tableView.appendRow( row , {animated:true});
+	
+// 	
+	// e.rowid , {
+		// title: e.title,
+		// hasChild:e.hasChild,
+		// url:e.url
+// 		
+}); 

@@ -1,17 +1,33 @@
 //Ti.App.utils.readLookupFiles('metertypes.json',Ti.App.model.mymetertypes,fn_buildmeterTbl);
 
-Ti.App.utils.readLookupFiles('metertypes.json',null,fn_buildmeterTbl);
 
 var win = Titanium.UI.currentWindow;
+
+// create more button
+var btnAdd = Titanium.UI.createButton({
+	 title:'More'
+})
+var fulllist = false;
+//set listener
+btnAdd.addEventListener('click', function(e) {
+	//reload tableview with all entries
+	fulllist = true;
+	Ti.App.utils.readLookupFiles('metertypes.json',null,fn_buildmeterTbl);
+});
+
+win.setRightNavButton(btnAdd);
 
 function fn_buildmeterTbl(mymetertypes) {
 	
 	Ti.API.info('build list data');
 	///to hold list data
 	var data = [];
-	Ti.API.info(mymetertypes.data.item.length);
+	Ti.API.info('fullist? ' + fulllist + 'mymetertypes lght ' + mymetertypes.data.item.length);
 	if (mymetertypes.data.length !==0) {
-		for (var i = mymetertypes.data.item.length - 1; i >= 0; i--) {
+		///restrict list to x number or favourte list
+			var mlength=mymetertypes.data.item.length;
+			if (fulllist === false) mlength = 6;
+		for (var i = mlength - 1; i >= 0; i--) {
 			{
 			//Ti.API.debug(mymetertypes.data.item[i]);
 			var lb1 = Titanium.UI.createLabel({
@@ -53,3 +69,6 @@ function fn_buildmeterTbl(mymetertypes) {
 	// add table view to the window
 	Titanium.UI.currentWindow.add(tableview);
 };
+
+//call the reading of the file and start things off
+Ti.App.utils.readLookupFiles('metertypes.json',null,fn_buildmeterTbl);

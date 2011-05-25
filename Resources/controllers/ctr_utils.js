@@ -118,6 +118,7 @@ function utils() {
 			Titanium.API.info('file read');
 			Titanium.API.info('calling callback with ' + this.myobj);
 			fn_callback(this.myobj);
+			return this.myobj;
 		} catch(e) {
 			Titanium.API.info('reading file lookups error' + e.error);
 			m.errorMessage.concat(e.error);

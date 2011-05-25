@@ -119,9 +119,6 @@ tableView.addEventListener('click', function(e){
 		dialog.show();
 })
 
-
-win.add(tableView);
-
 //
 // BASIC DIALOG
 //
@@ -139,6 +136,27 @@ dialog.addEventListener('click',function(e)
 	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] },{animated:true});
 });
 
+var mytitle = 'Measured';
+
+//add event listener for going back
+win.addEventListener('close',function(e)
+{
+		var win = Ti.UI.currentWindow;
+		var rdata = {
+		rtype : 'M', //tableView.data[0].title,
+		datetaken : '1100', // tableView.data[1].title,
+		recorder : '1.76', // tableView.data[2].title,
+		epb : '1.73', // tableView.data[3].title,
+		esg : '1.74', // tableView.data[4].title,
+		diff: '2' // tableView.data[5].title
+		};
+	//add row to existing tableview stage readings. => raise event
+	Ti.App.fireEvent('add_reading',rdata);
+});
+
+
+
+win.add(tableView);
 
 
 //UI FOR  EVENT 
