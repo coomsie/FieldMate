@@ -44,6 +44,32 @@ tableView.addEventListener('delete',function(e)
 	Titanium.API.info("row myid = " + e.row.myid + "deleted - row="+e.row+", index="+e.index+", section="+e.section);
 });
 
+// add click event listener
+tableView.addEventListener('click',function(e)
+{
+	Titanium.API.info( "deleted - row="+e.row+", index="+e.index+", section="+e.section);
+	//open dialog
+	var win = null;
+		if (Ti.Platform.name == "android") {
+			win = Titanium.UI.createWindow({
+				url:'/views/v_GaugingCard_StageReadingsAdd.js',
+				title:'Edit Reading',
+				data: e.row.data,
+				myrowid: e.index
+			});
+		} else {
+			win = Titanium.UI.createWindow({
+				url:'/views/v_GaugingCard_StageReadingsAdd.js',
+				title:'Edit Reading',
+				backgroundColor:'#fff',
+				barColor:'#1A75A2',
+				data: e.row.data,
+				myrowid: e.index
+			});
+		}
+		Titanium.UI.currentTab.open(win,{animated:true});
+});
+
 win.add(header);
 win.add(tableView);
 
@@ -141,6 +167,7 @@ for (var i = data.length - 1; i >= 0; i--) {
 		var row = Ti.UI.createTableViewRow();
 		row.height  =38;
 		row.myid = i;
+		row.className = 'StageHistory';
 
 		if (i === 0)
 			row.header = 'History';
@@ -177,10 +204,22 @@ return	histdata;
 
 /// event to accept the stage readings add event
 Ti.App.addEventListener('add_reading', function(e) {
+	tableView.appendRow( create_stageRow(e) , {animated:true});
+});
+
+ /// event to accept the stage readings add event
+Ti.App.addEventListener('edit_reading', function(e) {
+	tableView.updateRow( e.myrowid ,create_stageRow(e) , {animated:true});
+});
+
+//function for add reading and edit reading
+// creating the approirate row
+function create_stageRow(e){
 	var row = Ti.UI.createTableViewRow();
 		row.height  =38;
+		row.className = 'Stage';
 		//add data to row
-		var type =  mylb(e.rtype,20,5);
+		var type =  mylb(e.rtypeid,20,5);
 		var datetaken =  mylb(e.datetaken,50,30);
 		var recorder =  mylb(e.recorder,53,100);
 		var epb =  mylb(e.epb,53,160);
@@ -195,13 +234,7 @@ Ti.App.addEventListener('add_reading', function(e) {
 		row.add(recorder);
 		row.add(epb);
 		row.add(esg);
-		row.add(diff);	
-	tableView.appendRow( row , {animated:true});
-	
-// 	
-	// e.rowid , {
-		// title: e.title,
-		// hasChild:e.hasChild,
-		// url:e.url
-// 		
-}); 
+		row.add(diff);
+		row.data = {myrowid: tableView.length-1,rtypeid:e.rtypeid,rtype:e.rtype,datetaken:e.datetaken,recorder:e.recorder,epb:e.epb,esg:e.esg,diff:e.diff};	///testing
+	return row;
+}

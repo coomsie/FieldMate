@@ -5,7 +5,39 @@ var win = Ti.UI.currentWindow;
 // create table view data object
 var data = [];
 
-data[0] = {title:'Type:',hasChild:true};
+//reading add data structure
+var rdata = {
+		myrowid: 0,
+		rtype : '', //tableView.data[0].title,
+		rtypeid: '',
+		datetaken : 0, // tableView.data[1].title,
+		recorder : '', // tableView.data[2].title,
+		epb : '', // tableView.data[3].title,
+		esg : '', // tableView.data[4].title,
+		diff: '' // tableView.data[5].title
+		};
+		
+//dirty flag for edited
+var edited = false;		
+var editmode = false;
+if (win.data) {
+	editmode = true; ///flag to understand if editing.
+	//set row ids where came from
+	rdata.myrowid = win.myrowid;
+	rdata.rtype = win.data.rtype;
+	rdata.rtypeid= win.data.rtypeid;
+	rdata.datetaken = win.data.datetaken;
+	rdata.recorder = win.data.recorder;
+	rdata.epb = win.data.epb;
+	rdata.esg = win.data.esg;
+	rdata.diff= win.data.diff;
+	}
+//set value for edited
+var mytype = 'Type:*';
+if(win.data)
+mytype = mytype  + ' ' + win.data.rtype;
+
+data[0] = {title:mytype,hasChild:true};
 
 var row = Ti.UI.createTableViewRow({height:50});
 
@@ -23,6 +55,16 @@ var tb_time = Titanium.UI.createTextField({
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+
+//set value for edited
+if(win.data)
+tb_time.value = win.data.datetaken;
+
+tb_time.addEventListener('blur',function(e){
+	rdata.datetaken = e.source.value;
+	edited = true;
+});
+
 row.add(lb_time);
 row.add(tb_time);
 
@@ -44,6 +86,15 @@ var tb_record = Titanium.UI.createTextField({
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+//set value for edited
+if(win.data)
+tb_record.value = win.data.recorder;
+
+tb_record.addEventListener('blur',function(e){
+	rdata.recorder = e.source.value;
+	edited = true;
+});
+
 row.add(lb_record);
 row.add(tb_record);
 data[2] = row;
@@ -64,6 +115,15 @@ var tb_well = Titanium.UI.createTextField({
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+//set value for edited
+if(win.data)
+tb_well.value = win.data.epb;
+
+tb_well.addEventListener('blur',function(e){
+	rdata.epb = e.source.value;
+	edited = true;
+});
+
 row.add(lb_well);
 row.add(tb_well);
 
@@ -84,6 +144,16 @@ var tb_gauge = Titanium.UI.createTextField({
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+
+//set value for edited
+if(win.data)
+tb_gauge.value = win.data.esg;
+
+tb_gauge.addEventListener('blur',function(e){
+	rdata.esg = e.source.value;
+	edited = true;
+});
+
 row.add(lb_gauge);
 row.add(tb_gauge);
 
@@ -104,6 +174,15 @@ var tb_dif = Titanium.UI.createTextField({
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
+//set value for edited
+if(win.data)
+tb_dif.value = win.data.diff;
+
+tb_dif.addEventListener('blur',function(e){
+	rdata.diff = e.source.value;
+	edited = true;
+});
+
 row.add(lb_dif);
 row.add(tb_dif);
 
@@ -134,59 +213,24 @@ dialog.addEventListener('click',function(e)
 {
 	Titanium.API.info(e.source.options[e.index]);
 	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] },{animated:true});
+	rdata.rtypeid = e.source.options[e.index].toString().charAt(0);
+	rdata.rtype = e.source.options[e.index];
+	edited = true;
 });
 
-var mytitle = 'Measured';
 
+		
 //add event listener for going back
 win.addEventListener('close',function(e)
 {
 		var win = Ti.UI.currentWindow;
-		var rdata = {
-		rtype : 'M', //tableView.data[0].title,
-		datetaken : '1100', // tableView.data[1].title,
-		recorder : '1.76', // tableView.data[2].title,
-		epb : '1.73', // tableView.data[3].title,
-		esg : '1.74', // tableView.data[4].title,
-		diff: '2' // tableView.data[5].title
-		};
+		
 	//add row to existing tableview stage readings. => raise event
+	if(editmode ===false)
 	Ti.App.fireEvent('add_reading',rdata);
+	//edit row to existing tableview stage readings. => raise event
+	if(editmode ===true)
+	Ti.App.fireEvent('edit_reading',rdata);
 });
 
-
-
 win.add(tableView);
-
-
-//UI FOR  EVENT 
-// 
-// // create the rest of the rows
-// for (var c=0;c<8;c++)
-// {
-	// var row = Ti.UI.createTableViewRow();
-	// row.height  =38;
-	// row.myid = c;
-// 	
-	// var ty =  mylb('M',20,5);
-	// var t =  mylb('1300',53,30);
-	// var r =  mylb('0.7330',53,100);
-	// var epb =  mylb('0.7500',53,160);
-	// var esg =  mylb('0.7500',53,225);
-	// var d =  mylb('15',20,295);
-// 	
-	// ty.rowNum = c;
-	// t.rowNum = c;
-	// r.rowNum = c;
-	// epb.rowNum = c;
-	// esg.rowNum = c;
-	// d.rowNum = c;
-	// row.add(ty);
-	// row.add(t);
-	// row.add(r);
-	// row.add(epb);
-	// row.add(esg);
-	// row.add(d);
-	// data.push(row);
-// }
-
