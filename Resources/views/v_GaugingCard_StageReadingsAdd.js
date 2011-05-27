@@ -1,3 +1,5 @@
+Titanium.include('../../helpers/validation.js');
+
 //create UI objects
 
 var win = Ti.UI.currentWindow;
@@ -63,7 +65,14 @@ tb_time.value = win.data.datetaken;
 tb_time.addEventListener('blur',function(e){
 	rdata.datetaken = e.source.value;
 	edited = true;
+	if(e.source.isValid === false)
+	displayValErr();
 });
+
+tb_time.addEventListener('change', function(e) {
+	tb_time.isValid = checkValidation(tb_time);
+});
+
 
 row.add(lb_time);
 row.add(tb_time);

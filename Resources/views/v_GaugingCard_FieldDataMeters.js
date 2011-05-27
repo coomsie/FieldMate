@@ -25,11 +25,8 @@ function fn_buildmeterTbl(mymetertypes) {
 	Ti.API.info('fullist? ' + fulllist + 'mymetertypes lght ' + mymetertypes.data.item.length);
 	if (mymetertypes.data.length !==0) {
 		///restrict list to x number or favourte list
-			var mlength=mymetertypes.data.item.length;
-			if (fulllist === false) mlength = 6;
-		for (var i = mlength - 1; i >= 0; i--) {
+		for (var i = mymetertypes.data.item.length - 1; i >= 0; i--) {
 			{
-			//Ti.API.debug(mymetertypes.data.item[i]);
 			var lb1 = Titanium.UI.createLabel({
 				color:'#666',
 				text:mymetertypes.data.item[i].name,
@@ -41,7 +38,19 @@ function fn_buildmeterTbl(mymetertypes) {
 				className:"metertypesdata"
 			});
 			thisRow.add(lb1);
+			
+			///favourite check
+			if (fulllist === false)
+			{
+			//only add if favourite
+			if (mymetertypes.data.item[i].Fav === 'true' ) 
 			data.push(thisRow);
+			}
+			else
+			{
+			data.push(thisRow);
+			}
+			
 			}
 		};
 	}

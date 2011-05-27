@@ -419,6 +419,15 @@ Ti.App.addEventListener('change_fielddata', function(e) {
 		animated:true
 	});
 	if (e.title ==='Type: FlowTracker' || e.title ==='Type: ADCP') {
+
+row = Ti.UI.createTableViewRow({
+	height:50
+});
+
+//tb_spintestafter.hide;	
+//row.add(lb_spintestafter);
+//row.add(tb_spintestafter);
+
 		tableView.updateRow(1, {
 			title:'n/a'
 		}, {
