@@ -4,14 +4,27 @@ Titanium.include('../../helpers/validation.js');
 
 var win = Ti.UI.currentWindow;
 
+//hide till all values are completed.
+//win.hideNavBar();
+
+var leftNav = Titanium.UI.createButton({
+	title:'Input Error',
+	height:40,
+	width:145,
+	top:160,
+	left:10,
+	enabled:false
+});
+
 // create table view data object
 var data = [];
+var mytype = 'Type:*';
 
 //reading add data structure
 var rdata = {
 		myrowid: 0,
 		rtype : '', //tableView.data[0].title,
-		rtypeid: '',
+		rtypeid: null,
 		datetaken : 0, // tableView.data[1].title,
 		recorder : '', // tableView.data[2].title,
 		epb : '', // tableView.data[3].title,
@@ -33,13 +46,22 @@ if (win.data) {
 	rdata.epb = win.data.epb;
 	rdata.esg = win.data.esg;
 	rdata.diff= win.data.diff;
-	}
-//set value for edited
-var mytype = 'Type:*';
-if(win.data)
-mytype = mytype  + ' ' + win.data.rtype;
 
-data[0] = {title:mytype,hasChild:true};
+	//set value for edited
+	mytype = mytype  + ' ' + win.data.rtype;
+	}
+	else
+	{
+		win.leftNavButton = leftNav;
+	}
+
+data[0] = {
+			title:mytype,
+			hasChild:true , 
+	 		validation:{ reqd:true },
+	 		isValid : false,
+	 		value: null
+	 		};
 
 var row = Ti.UI.createTableViewRow({height:50});
 
@@ -66,7 +88,9 @@ tb_time.addEventListener('blur',function(e){
 	rdata.datetaken = e.source.value;
 	edited = true;
 	if(e.source.isValid === false)
+	{
 	displayValErr();
+	}
 });
 
 tb_time.addEventListener('change', function(e) {
@@ -221,10 +245,14 @@ var dialog = Titanium.UI.createOptionDialog({
 dialog.addEventListener('click',function(e)
 {
 	Titanium.API.info(e.source.options[e.index]);
-	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] },{animated:true});
+	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] , rtypeid: e.index ,validation:{ reqd:true },isValid : false },{animated:true});
 	rdata.rtypeid = e.source.options[e.index].toString().charAt(0);
 	rdata.rtype = e.source.options[e.index];
 	edited = true;
+	
+	//win.showNavBar();
+	win.setLeftNavButton(null);
+	
 });
 
 
@@ -232,8 +260,10 @@ dialog.addEventListener('click',function(e)
 //add event listener for going back
 win.addEventListener('close',function(e)
 {
-		var win = Ti.UI.currentWindow;
-		
+	//check validation
+	Ti.API.info('run dropdown valdation');
+	
+	var win = Ti.UI.currentWindow;	
 	//add row to existing tableview stage readings. => raise event
 	if(editmode ===false)
 	Ti.App.fireEvent('add_reading',rdata);
