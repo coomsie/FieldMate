@@ -1,0 +1,1645 @@
+{
+	"data": {
+		"item": [
+			{
+				"SiteNumber": "62103",
+				"River": "Acheron River (Clarence)",
+				"SiteName": "Clarence (NIWA)",
+				"NZMGX": "2507100",
+				"NZMGY": "5870300",
+				"Region": "C"
+			}, {
+				"SiteNumber": "494711",
+				"River": "Ahuriri",
+				"SiteName": "Sth. Diadem",
+				"NZMGX": "2249600",
+				"NZMGY": "5632100",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71116",
+				"River": "Ahuriri River",
+				"SiteName": "South Diadem (NIWA)",
+				"NZMGX": "2249700",
+				"NZMGY": "5632000",
+				"Region": "T"
+			}, {
+				"SiteNumber": "314412",
+				"River": "Ashburton",
+				"SiteName": "Turtons Saddle",
+				"NZMGX": "2377308",
+				"NZMGY": "5759936",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68801",
+				"River": "Ashburton River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2409622",
+				"NZMGY": "5697609",
+				"Region": "T"
+			}, {
+				"SiteNumber": "322211",
+				"River": "Ashley",
+				"SiteName": "Ashley Gorge",
+				"NZMGX": "2446416",
+				"NZMGY": "5774983",
+				"Region": "C"
+			}, {
+				"SiteNumber": "321212",
+				"River": "Ashley",
+				"SiteName": "Lees Valley",
+				"NZMGX": "2443260",
+				"NZMGY": "5790222",
+				"Region": "C"
+			}, {
+				"SiteNumber": "322411",
+				"River": "Ashley",
+				"SiteName": "Okuku School",
+				"NZMGX": "2465045",
+				"NZMGY": "5774447",
+				"Region": "C"
+			}, {
+				"SiteNumber": "321310",
+				"River": "Ashley",
+				"SiteName": "Pig Flat",
+				"NZMGX": "2456489",
+				"NZMGY": "5794551",
+				"Region": "C"
+			}, {
+				"SiteNumber": "322110",
+				"River": "Ashley",
+				"SiteName": "Townshend",
+				"NZMGX": "2434793",
+				"NZMGY": "5779314",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66204",
+				"River": "Ashley River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2446400",
+				"NZMGY": "5774900",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66210",
+				"River": "Ashley River",
+				"SiteName": "Lees Valley (Recorder)",
+				"NZMGX": "2443100",
+				"NZMGY": "5790100",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66214",
+				"River": "Ashley River",
+				"SiteName": "Rangiora Traffic Bridge (Recorder)",
+				"NZMGX": "2476266",
+				"NZMGY": "5769339",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66602",
+				"River": "Avon River",
+				"SiteName": "Gloucester Street Bridge (Recorder)",
+				"NZMGX": "2480450",
+				"NZMGY": "5741895",
+				"Region": "C"
+			}, {
+				"SiteNumber": "408401",
+				"River": "Awakino",
+				"SiteName": "Sunny Peaks",
+				"NZMGX": "2301300",
+				"NZMGY": "5600600",
+				"Region": "T"
+			}, {
+				"SiteNumber": "67402",
+				"River": "Aylmers Stream",
+				"SiteName": "Upstream Council Intake (Recorder)",
+				"NZMGX": "2507560",
+				"NZMGY": "5709439",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66419",
+				"River": "Bealey River",
+				"SiteName": "Arthurs Pass",
+				"NZMGX": "2392488",
+				"NZMGY": "5807297",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69002",
+				"River": "Blees Drain",
+				"SiteName": "Lower Beach Rd (recorder)",
+				"NZMGX": "2411296",
+				"NZMGY": "5682652",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69201",
+				"River": "Boundary Drain",
+				"SiteName": "Trigpole Road (Recorder)",
+				"NZMGX": "2399794",
+				"NZMGY": "5678327",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68822",
+				"River": "Bowyers Stream",
+				"SiteName": "State Highway 72 (Recorder)",
+				"NZMGX": "2384700",
+				"NZMGY": "5723600",
+				"Region": "T"
+			}, {
+				"SiteNumber": "418010",
+				"River": "Broadgully Ck",
+				"SiteName": "Morven",
+				"NZMGX": "2354414",
+				"NZMGY": "5596055",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70908",
+				"River": "Buchanans Creek",
+				"SiteName": "Fletchers Farm (Recorder)",
+				"NZMGX": "2363043",
+				"NZMGY": "5601949",
+				"Region": "T"
+			}, {
+				"SiteNumber": "411012",
+				"River": "Bush Creek",
+				"SiteName": "Kakahu Bush",
+				"NZMGX": "2356406",
+				"NZMGY": "5672881",
+				"Region": "T"
+			}, {
+				"SiteNumber": "366",
+				"River": "Cam River",
+				"SiteName": "Youngs Road",
+				"NZMGX": "2480100",
+				"NZMGY": "5763200",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68544",
+				"River": "Cameron River",
+				"SiteName": "Big Gully (Recorder)",
+				"NZMGX": "2357900",
+				"NZMGY": "5749600",
+				"Region": "T"
+			}, {
+				"SiteNumber": "64305",
+				"River": "Charwell River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2539260",
+				"NZMGY": "5867490",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64303",
+				"River": "Charwell River",
+				"SiteName": "Upstream State Highway 70 (Recorder)",
+				"NZMGX": "2539800",
+				"NZMGY": "5865200",
+				"Region": "C"
+			}, {
+				"SiteNumber": "231910",
+				"River": "Clarence",
+				"SiteName": "Shingle Fan",
+				"NZMGX": "2584544",
+				"NZMGY": "5899646",
+				"Region": "C"
+			}, {
+				"SiteNumber": "62105",
+				"River": "Clarence River",
+				"SiteName": "Jollies (NIWA)",
+				"NZMGX": "2502300",
+				"NZMGY": "5861100",
+				"Region": "C"
+			}, {
+				"SiteNumber": "232710",
+				"River": "Clinton Ck",
+				"SiteName": "Clinton Ridge",
+				"NZMGX": "2568841",
+				"NZMGY": "5883439",
+				"Region": "C"
+			}, {
+				"SiteNumber": "305810",
+				"River": "Clyde river",
+				"SiteName": "Erewhon",
+				"NZMGX": "2336468",
+				"NZMGY": "5741142",
+				"Region": "T"
+			}, {
+				"SiteNumber": "234201",
+				"River": "Conway",
+				"SiteName": "Cloudy Range",
+				"NZMGX": "2528600",
+				"NZMGY": "5863900",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64304",
+				"River": "Conway River",
+				"SiteName": "SH1 (Recorder)",
+				"NZMGX": "2544240",
+				"NZMGY": "5845300",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66472",
+				"River": "Coopers Creek",
+				"SiteName": "Mountain Road (Recorder)",
+				"NZMGX": "2436340",
+				"NZMGY": "5770470",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66474",
+				"River": "Courtenay Stream",
+				"SiteName": "D/S Kaiapoi River Confluence Bridge",
+				"NZMGX": "2482960",
+				"NZMGY": "5757590",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66473",
+				"River": "Courtenay Stream",
+				"SiteName": "U/S Kaiapoi River Confluence Bridge",
+				"NZMGX": "2482960",
+				"NZMGY": "5757580",
+				"Region": "C"
+			}, {
+				"SiteNumber": "323610",
+				"River": "Cust Main Drain",
+				"SiteName": "Threlkelds Road",
+				"NZMGX": "2478614",
+				"NZMGY": "5760483",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66417",
+				"River": "Cust Main Drain",
+				"SiteName": "Threlkelds Road (Recorder)",
+				"NZMGX": "2478559",
+				"NZMGY": "5760401",
+				"Region": "C"
+			}, {
+				"SiteNumber": "1664414",
+				"River": "Cust River",
+				"SiteName": "Carleton Road Bridge",
+				"NZMGX": "2450200",
+				"NZMGY": "5769100",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66475",
+				"River": "Cust River",
+				"SiteName": "Rangiora Oxford Rd (Recorder)",
+				"NZMGX": "2466082",
+				"NZMGY": "5766032",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68320",
+				"River": "Doyleston Drain",
+				"SiteName": "Downstream The Lake Road (Recorder)",
+				"NZMGX": "2457948",
+				"NZMGY": "5714977",
+				"Region": "C"
+			}, {
+				"SiteNumber": "165121",
+				"River": "Dry Stream (Hurunui)",
+				"SiteName": "Hurunui River Confluence",
+				"NZMGX": "2498600",
+				"NZMGY": "5819220",
+				"Region": "C"
+			}, {
+				"SiteNumber": "166405",
+				"River": "Eyre River",
+				"SiteName": "Trigpole Road Ford",
+				"NZMGX": "2429690",
+				"NZMGY": "5769760",
+				"Region": "C"
+			}, {
+				"SiteNumber": "324201",
+				"River": "Eyrewell (Sinai)",
+				"SiteName": "Poyntzs Rd",
+				"NZMGX": "2449618",
+				"NZMGY": "5752312",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69003",
+				"River": "Flemington Drain",
+				"SiteName": "Lower Beach Rd (recorder)",
+				"NZMGX": "2411100",
+				"NZMGY": "5682200",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71129",
+				"River": "Fork Stream",
+				"SiteName": "Balmoral (NIWA)",
+				"NZMGX": "2301400",
+				"NZMGY": "5689200",
+				"Region": "T"
+			}, {
+				"SiteNumber": "67408",
+				"River": "French Farm Stream",
+				"SiteName": "French Farm Valley Road (Recorder)",
+				"NZMGX": "2502404",
+				"NZMGY": "5714431",
+				"Region": "C"
+			}, {
+				"SiteNumber": "166416",
+				"River": "Gammans Creek",
+				"SiteName": "Bush Road Bridge",
+				"NZMGX": "2440550",
+				"NZMGY": "5768860",
+				"Region": "C"
+			}, {
+				"SiteNumber": "1871",
+				"River": "Grays River",
+				"SiteName": "Footbridge",
+				"NZMGX": "2303698",
+				"NZMGY": "5660122",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71162",
+				"River": "Grays River",
+				"SiteName": "Footbridge (recorder)",
+				"NZMGX": "2303698",
+				"NZMGY": "5660122",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66414",
+				"River": "Greigs Drain",
+				"SiteName": "Taylors Road (Recorder)",
+				"NZMGX": "2478600",
+				"NZMGY": "5754200",
+				"Region": "C"
+			}, {
+				"SiteNumber": "403601",
+				"River": "Hakataramea",
+				"SiteName": "McRaes Gorge",
+				"NZMGX": "2321562",
+				"NZMGY": "5647568",
+				"Region": "T"
+			}, {
+				"SiteNumber": "405610",
+				"River": "Hakataramea",
+				"SiteName": "Mt Florence",
+				"NZMGX": "2324758",
+				"NZMGY": "5625153",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71155",
+				"River": "Hakataramea River",
+				"SiteName": "Above Mt Florence (Recorder)",
+				"NZMGX": "2324791",
+				"NZMGY": "5625399",
+				"Region": "T"
+			}, {
+				"SiteNumber": "326611",
+				"River": "Halswell",
+				"SiteName": "Coopers Knob",
+				"NZMGX": "2479400",
+				"NZMGY": "5728300",
+				"Region": "C"
+			}, {
+				"SiteNumber": "326512",
+				"River": "Halswell",
+				"SiteName": "Ryans Bge",
+				"NZMGX": "2473100",
+				"NZMGY": "5727200",
+				"Region": "C"
+			}, {
+				"SiteNumber": "67805",
+				"River": "Halswell River",
+				"SiteName": "Ryans Bridge (Recorder)",
+				"NZMGX": "2473084",
+				"NZMGY": "5727178",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68322",
+				"River": "Harts Creek",
+				"SiteName": "Timber Yard Road (Recorder)",
+				"NZMGX": "2456780",
+				"NZMGY": "5712030",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68005",
+				"River": "Hawkins River",
+				"SiteName": "Willows (Recorder)",
+				"NZMGX": "2415690",
+				"NZMGY": "5758070",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66642",
+				"River": "Haytons Stream",
+				"SiteName": "Wigram Retention Basin Siphon",
+				"NZMGX": "2476050",
+				"NZMGY": "5749250",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66612",
+				"River": "Heathcote River",
+				"SiteName": "Buxton Terrace (Recorder)",
+				"NZMGX": "2481562",
+				"NZMGY": "5738474",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69102",
+				"River": "Hinds River",
+				"SiteName": "Poplar Road (Recorder)",
+				"NZMGX": "2400700",
+				"NZMGY": "5681300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69101",
+				"River": "Hinds River Sth Branch",
+				"SiteName": "Syphon (Recorder)",
+				"NZMGX": "2377200",
+				"NZMGY": "5711500",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70701",
+				"River": "Hook River",
+				"SiteName": "Upstream Intake (recorder)",
+				"NZMGX": "2349200",
+				"NZMGY": "5616100",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70702",
+				"River": "Hook River Tributary",
+				"SiteName": "Gunns Bush (recorder)",
+				"NZMGX": "2349800",
+				"NZMGY": "5614300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "307001",
+				"River": "Hooker",
+				"SiteName": "Mt Cook",
+				"NZMGX": "2276100",
+				"NZMGY": "5715400",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66604",
+				"River": "Hoon Hay Stream",
+				"SiteName": "Weir (Recorder)",
+				"NZMGX": "2478482",
+				"NZMGY": "5733676",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64608",
+				"River": "Hope River",
+				"SiteName": "Glynn Wye (Recorder)",
+				"NZMGX": "2469812",
+				"NZMGY": "5846316",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68006",
+				"River": "Hororata River",
+				"SiteName": "Mitchells Road (Recorder)",
+				"NZMGX": "2432200",
+				"NZMGY": "5735400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "239101",
+				"River": "Hurunui",
+				"SiteName": "Hurunui No 1",
+				"NZMGX": "2517717",
+				"NZMGY": "5812595",
+				"Region": "C"
+			}, {
+				"SiteNumber": "227510",
+				"River": "Hurunui",
+				"SiteName": "Mandamus",
+				"NZMGX": "2472424",
+				"NZMGY": "5823914",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65104",
+				"River": "Hurunui River",
+				"SiteName": "Mandamus (NIWA)",
+				"NZMGX": "2472500",
+				"NZMGY": "5824000",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65108",
+				"River": "Hurunui River",
+				"SiteName": "No.2 Hut (Recorder)",
+				"NZMGX": "2437233",
+				"NZMGY": "5833121",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65101",
+				"River": "Hurunui River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2517717",
+				"NZMGY": "5812595",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65109",
+				"River": "Hurunui River South Branch",
+				"SiteName": "Esk Head (Recorder)",
+				"NZMGX": "2455000",
+				"NZMGY": "5819600",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65112",
+				"River": "Hurunui River South Branch",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2446246",
+				"NZMGY": "5821983",
+				"Region": "C"
+			}, {
+				"SiteNumber": "71135",
+				"River": "Jollie River",
+				"SiteName": "Mt Cook Station (NIWA)",
+				"NZMGX": "2283500",
+				"NZMGY": "5701900",
+				"Region": "T"
+			}, {
+				"SiteNumber": "233402",
+				"River": "Kahutara",
+				"SiteName": "Blind Saddle",
+				"NZMGX": "2544880",
+				"NZMGY": "5873700",
+				"Region": "C"
+			}, {
+				"SiteNumber": "328711",
+				"River": "Kaituna",
+				"SiteName": "Kaituna Valley Rd",
+				"NZMGX": "2484400",
+				"NZMGY": "5716700",
+				"Region": "C"
+			}, {
+				"SiteNumber": "67702",
+				"River": "Kaituna River",
+				"SiteName": "Kaituna Valley Road (Recorder)",
+				"NZMGX": "2484400",
+				"NZMGY": "5716600",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69633",
+				"River": "Kakahu River",
+				"SiteName": "Mitchells Weir No.9 (Recorder)",
+				"NZMGX": "2351913",
+				"NZMGY": "5679449",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69645",
+				"River": "Kakahu River",
+				"SiteName": "Mulvihills (Recorder)",
+				"NZMGX": "2353783",
+				"NZMGY": "5673926",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69634",
+				"River": "Kakahu River",
+				"SiteName": "Turnbulls Weir No.10 (Recorder)",
+				"NZMGX": "2353594",
+				"NZMGY": "5677892",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71156",
+				"River": "Kirkliston Stream",
+				"SiteName": "Upstream Water Supply (Recorder)",
+				"NZMGX": "2312928",
+				"NZMGY": "5619808",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66101",
+				"River": "Kowai River North Branch (Amberley)",
+				"SiteName": "Grays Road (Recorder)",
+				"NZMGX": "2487460",
+				"NZMGY": "5782500",
+				"Region": "C"
+			}, {
+				"SiteNumber": "63201",
+				"River": "Kowhai",
+				"SiteName": "Below Orange Grove (Recorder)",
+				"NZMGX": "2555880",
+				"NZMGY": "5874873",
+				"Region": "C"
+			}, {
+				"SiteNumber": "233510",
+				"River": "Kowhai",
+				"SiteName": "Snowflake Ridge",
+				"NZMGX": "2557328",
+				"NZMGY": "5878679",
+				"Region": "C"
+			}, {
+				"SiteNumber": "319211",
+				"River": "Kowhai Stm",
+				"SiteName": "Blandswood",
+				"NZMGX": "2368028",
+				"NZMGY": "5699026",
+				"Region": "T"
+			}, {
+				"SiteNumber": "67901",
+				"River": "L-2 River",
+				"SiteName": "Pannetts Road (Recorder)",
+				"NZMGX": "2465700",
+				"NZMGY": "5723400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68304",
+				"River": "Lake Ellesmere",
+				"SiteName": "Kaituna",
+				"NZMGX": "2481983",
+				"NZMGY": "5713705",
+				"Region": "C"
+			}, {
+				"SiteNumber": "328310",
+				"River": "Lake Ellesmere",
+				"SiteName": "Taumutu",
+				"NZMGX": "2460100",
+				"NZMGY": "5706400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68302",
+				"River": "Lake Ellesmere",
+				"SiteName": "Taumutu (Recorder)",
+				"NZMGX": "2459600",
+				"NZMGY": "5705300",
+				"Region": "C"
+			}, {
+				"SiteNumber": "328411",
+				"River": "Lake Ellesmere",
+				"SiteName": "Taumutu (Wind Direction)",
+				"NZMGX": "2460100",
+				"NZMGY": "5706400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "328412",
+				"River": "Lake Ellesmere",
+				"SiteName": "Taumutu (Wind Run & Maximum Gust)",
+				"NZMGX": "2460100",
+				"NZMGY": "5706400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "327610",
+				"River": "Lake Ellesmere Wind Direction",
+				"SiteName": "Kaituna",
+				"NZMGX": "2481983",
+				"NZMGY": "5713705",
+				"Region": "C"
+			}, {
+				"SiteNumber": "327611",
+				"River": "Lake Ellesmere Wind Run",
+				"SiteName": "Kaituna",
+				"NZMGX": "2481983",
+				"NZMGY": "5713705",
+				"Region": "C"
+			}, {
+				"SiteNumber": "67603",
+				"River": "Lake Forsyth",
+				"SiteName": "Chch Akaroa Road (Recorder)",
+				"NZMGX": "2488802",
+				"NZMGY": "5711909",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68504",
+				"River": "Lake Heron",
+				"SiteName": "South Lake (Recorder)",
+				"NZMGX": "2360900",
+				"NZMGY": "5744600",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68401",
+				"River": "Lee River",
+				"SiteName": "Brooklands (Recorder)",
+				"NZMGX": "2452350",
+				"NZMGY": "5706210",
+				"Region": "C"
+			}, {
+				"SiteNumber": "233610",
+				"River": "Luke Ck",
+				"SiteName": "Luke Ck",
+				"NZMGX": "2561263",
+				"NZMGY": "5874457",
+				"Region": "C"
+			}, {
+				"SiteNumber": "63001",
+				"River": "Lyell Creek",
+				"SiteName": "D/S Warren Creek Confl (Recorder)",
+				"NZMGX": "2565798",
+				"NZMGY": "5868080",
+				"Region": "C"
+			}, {
+				"SiteNumber": "306610",
+				"River": "Macaulay",
+				"SiteName": "Mt Gerald",
+				"NZMGX": "2317812",
+				"NZMGY": "5722261",
+				"Region": "T"
+			}, {
+				"SiteNumber": "409310",
+				"River": "Maerewhenua",
+				"SiteName": "Danseys Pass",
+				"NZMGX": "2302430",
+				"NZMGY": "5579261",
+				"Region": "T"
+			}, {
+				"SiteNumber": "65102",
+				"River": "Mandamus River",
+				"SiteName": "Tekoa Road Bridge (Recorder)",
+				"NZMGX": "2473800",
+				"NZMGY": "5824250",
+				"Region": "C"
+			}, {
+				"SiteNumber": "71122",
+				"River": "Mary Burn",
+				"SiteName": "Mt McDonald (NIWA)",
+				"NZMGX": "2292300",
+				"NZMGY": "5678300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71130",
+				"River": "Mary Burn",
+				"SiteName": "SH8 Bridge (Recorder)",
+				"NZMGX": "2296000",
+				"NZMGY": "5666700",
+				"Region": "T"
+			}, {
+				"SiteNumber": "64622",
+				"River": "Mason River",
+				"SiteName": "Downstream Lottery River Confluence (Recorder)",
+				"NZMGX": "2517600",
+				"NZMGY": "5842700",
+				"Region": "C"
+			}, {
+				"SiteNumber": "70705",
+				"River": "Merrys Stream",
+				"SiteName": "SH1 Bridge (recorder)",
+				"NZMGX": "2362020",
+				"NZMGY": "5612820",
+				"Region": "T"
+			}, {
+				"SiteNumber": "63101",
+				"River": "Middle Creek",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2565999",
+				"NZMGY": "5870706",
+				"Region": "C"
+			}, {
+				"SiteNumber": "404810",
+				"River": "Motukaika",
+				"SiteName": "Mt Nimrod",
+				"NZMGX": "2341258",
+				"NZMGY": "5639167",
+				"Region": "T"
+			}, {
+				"SiteNumber": "65701",
+				"River": "Motunau River",
+				"SiteName": "Vulcan Flats (Recorder)",
+				"NZMGX": "2515000",
+				"NZMGY": "5796300",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68810",
+				"River": "North Ashburton River",
+				"SiteName": "Old Weir (Recorder)",
+				"NZMGX": "2387956",
+				"NZMGY": "5735744",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69615",
+				"River": "North Opuha River",
+				"SiteName": "Clayton Road Bridge (ECS)",
+				"NZMGX": "2339900",
+				"NZMGY": "5695600",
+				"Region": "T"
+			}, {
+				"SiteNumber": "314411",
+				"River": "Nth Ashburton",
+				"SiteName": "Cookies Hut",
+				"NZMGX": "2383388",
+				"NZMGY": "5744625",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69519",
+				"River": "Ohapi Creek",
+				"SiteName": "Houstons (Recorder)",
+				"NZMGX": "2380894",
+				"NZMGY": "5661772",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71194",
+				"River": "Ohau River",
+				"SiteName": "Below Syphon (Recorder)",
+				"NZMGX": "2266700",
+				"NZMGY": "5653560",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66435",
+				"River": "Ohoka Spring",
+				"SiteName": "Dalleys Weir (Recorder)",
+				"NZMGX": "2476002",
+				"NZMGY": "5758387",
+				"Region": "C"
+			}, {
+				"SiteNumber": "322410",
+				"River": "Okuku",
+				"SiteName": "Fox Ck",
+				"NZMGX": "2460275",
+				"NZMGY": "5784854",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66213",
+				"River": "Okuku River",
+				"SiteName": "Fox Creek (Recorder)",
+				"NZMGX": "2460275",
+				"NZMGY": "5784854",
+				"Region": "C"
+			}, {
+				"SiteNumber": "495810",
+				"River": "Omarama",
+				"SiteName": "Dunstan Peaks",
+				"NZMGX": "2260261",
+				"NZMGY": "5619700",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71189",
+				"River": "Omarama Stream",
+				"SiteName": "Above Tara Hills (Recorder)",
+				"NZMGX": "2262425",
+				"NZMGY": "5625961",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71136",
+				"River": "Omarama Stream",
+				"SiteName": "Wardells Bridge (Recorder)",
+				"NZMGX": "2267700",
+				"NZMGY": "5630500",
+				"Region": "T"
+			}, {
+				"SiteNumber": "65905",
+				"River": "Omihi Stream",
+				"SiteName": "Glen Ray (Recorder)",
+				"NZMGX": "2491707",
+				"NZMGY": "5793470",
+				"Region": "C"
+			}, {
+				"SiteNumber": "67001",
+				"River": "Opara Stream (Okains Bay)",
+				"SiteName": "Friesian Stud Farm (Recorder)",
+				"NZMGX": "2512895",
+				"NZMGY": "5721591",
+				"Region": "C"
+			}, {
+				"SiteNumber": "400710",
+				"River": "Opihi",
+				"SiteName": "Kimbell",
+				"NZMGX": "2327551",
+				"NZMGY": "5682318",
+				"Region": "T"
+			}, {
+				"SiteNumber": "400910",
+				"River": "Opihi",
+				"SiteName": "Rockwood",
+				"NZMGX": "2345501",
+				"NZMGY": "5669093",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69618",
+				"River": "Opihi River",
+				"SiteName": "Rockwood (Recorder)",
+				"NZMGX": "2345515",
+				"NZMGY": "5669046",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69650",
+				"River": "Opihi River",
+				"SiteName": "Saleyards Bridge (ECS)",
+				"NZMGX": "2361700",
+				"NZMGY": "5660300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69607",
+				"River": "Opihi River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2371800",
+				"NZMGY": "5659158",
+				"Region": "T"
+			}, {
+				"SiteNumber": "309810",
+				"River": "Opuha",
+				"SiteName": "Clayton",
+				"NZMGX": "2337100",
+				"NZMGY": "5701700",
+				"Region": "T"
+			}, {
+				"SiteNumber": "410010",
+				"River": "Opuha",
+				"SiteName": "Geraldine Forest",
+				"NZMGX": "2350745",
+				"NZMGY": "5681209",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69614",
+				"River": "Opuha River",
+				"SiteName": "Skipton (Recorder)",
+				"NZMGX": "2348304",
+				"NZMGY": "5679167",
+				"Region": "T"
+			}, {
+				"SiteNumber": "419211",
+				"River": "Orari",
+				"SiteName": "Mt Frances",
+				"NZMGX": "2362787",
+				"NZMGY": "5696845",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69505",
+				"River": "Orari River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2365356",
+				"NZMGY": "5695179",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69510",
+				"River": "Orari River",
+				"SiteName": "SH1 - Victoria Bridge",
+				"NZMGX": "2374500",
+				"NZMGY": "5673900",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69514",
+				"River": "Orari River",
+				"SiteName": "U/S Confluence of Ohapi Creek (Recorder)",
+				"NZMGX": "2381600",
+				"NZMGY": "5662000",
+				"Region": "T"
+			}, {
+				"SiteNumber": "405910",
+				"River": "Otaio",
+				"SiteName": "Bluecliffs",
+				"NZMGX": "2346807",
+				"NZMGY": "5628253",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70303",
+				"River": "Otaio River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2345672",
+				"NZMGY": "5630031",
+				"Region": "T"
+			}, {
+				"SiteNumber": "165122",
+				"River": "Pahau River",
+				"SiteName": "Upstream Hurunui Drain Confl (Dalzells Bridge)",
+				"NZMGX": "2501600",
+				"NZMGY": "5819790",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69001",
+				"River": "Parakanoi Drain",
+				"SiteName": "Lower Beach Road (Recorder)",
+				"NZMGX": "2405727",
+				"NZMGY": "5679402",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70105",
+				"River": "Pareora River",
+				"SiteName": "Huts (Recorder)",
+				"NZMGX": "2355257",
+				"NZMGY": "5642176",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70103",
+				"River": "Pareora River",
+				"SiteName": "SH1 (Recorder)",
+				"NZMGX": "2366317",
+				"NZMGY": "5633573",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68829",
+				"River": "Pudding Hill",
+				"SiteName": "Mt Hutt Retreat (recorder)",
+				"NZMGX": "2390320",
+				"NZMGY": "5736260",
+				"Region": "T"
+			}, {
+				"SiteNumber": "315510",
+				"River": "Pudding Hill Stm",
+				"SiteName": "Mt Hutt",
+				"NZMGX": "2391617",
+				"NZMGY": "5740167",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66708",
+				"River": "Purau Bay Stream",
+				"SiteName": "Camping Ground (Recorder)",
+				"NZMGX": "2489800",
+				"NZMGY": "5729700",
+				"Region": "C"
+			}, {
+				"SiteNumber": "71118",
+				"River": "Quail Burn",
+				"SiteName": "Quailburn Road",
+				"NZMGX": "2263223",
+				"NZMGY": "5638753",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68534",
+				"River": "Rakaia River",
+				"SiteName": "Fishing Reserve (Recorder)",
+				"NZMGX": "2449000",
+				"NZMGY": "5701800",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68502",
+				"River": "Rakaia River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2401434",
+				"NZMGY": "5742378",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68501",
+				"River": "Rakaia River",
+				"SiteName": "SH1 Bridge (Recorder)",
+				"NZMGX": "2431969",
+				"NZMGY": "5717067",
+				"Region": "C"
+			}, {
+				"SiteNumber": "317210",
+				"River": "Rangitata",
+				"SiteName": "Klondyke",
+				"NZMGX": "2366500",
+				"NZMGY": "5715000",
+				"Region": "T"
+			}, {
+				"SiteNumber": "304610",
+				"River": "Rangitata",
+				"SiteName": "Mistake Flat",
+				"NZMGX": "2323437",
+				"NZMGY": "5748450",
+				"Region": "T"
+			}, {
+				"SiteNumber": "269302",
+				"River": "Rangitata River",
+				"SiteName": "Klondyke (Backup recorder)",
+				"NZMGX": "2366716",
+				"NZMGY": "5714796",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69302",
+				"River": "Rangitata River",
+				"SiteName": "Klondyke (Recorder)",
+				"NZMGX": "2366716",
+				"NZMGY": "5714796",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69621",
+				"River": "Rocky Gully",
+				"SiteName": "Rockburn (Recorder)",
+				"NZMGX": "2332500",
+				"NZMGY": "5651300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "403711",
+				"River": "Rocky Gully",
+				"SiteName": "Rocky Gully",
+				"NZMGX": "2330177",
+				"NZMGY": "5649054",
+				"Region": "T"
+			}, {
+				"SiteNumber": "234511",
+				"River": "Rosy Morn",
+				"SiteName": "Tea Tree Terrace",
+				"NZMGX": "2555315",
+				"NZMGY": "5861876",
+				"Region": "C"
+			}, {
+				"SiteNumber": "63501",
+				"River": "Rosy Morn",
+				"SiteName": "Weir (NIWA)",
+				"NZMGX": "2555500",
+				"NZMGY": "5861100",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69901",
+				"River": "Saltwater Creek (Timaru)",
+				"SiteName": "SH1 (Recorder)",
+				"NZMGX": "2369988",
+				"NZMGY": "5641870",
+				"Region": "T"
+			}, {
+				"SiteNumber": "313710",
+				"River": "Selwyn",
+				"SiteName": "13 Mile Bush",
+				"NZMGX": "2411926",
+				"NZMGY": "5756837",
+				"Region": "C"
+			}, {
+				"SiteNumber": "314701",
+				"River": "Selwyn",
+				"SiteName": "High Peak",
+				"NZMGX": "2407580",
+				"NZMGY": "5750320",
+				"Region": "C"
+			}, {
+				"SiteNumber": "326112",
+				"River": "Selwyn",
+				"SiteName": "Ridgens Rd",
+				"NZMGX": "2437185",
+				"NZMGY": "5732849",
+				"Region": "C"
+			}, {
+				"SiteNumber": "315910",
+				"River": "Selwyn",
+				"SiteName": "Whitecliffs",
+				"NZMGX": "2420494",
+				"NZMGY": "5748841",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68002",
+				"River": "Selwyn River",
+				"SiteName": "Coes Ford (Recorder)",
+				"NZMGX": "2462636",
+				"NZMGY": "5723301",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68003",
+				"River": "Selwyn River",
+				"SiteName": "Ridgens Road (Recorder)",
+				"NZMGX": "2437185",
+				"NZMGY": "5732847",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68004",
+				"River": "Selwyn River",
+				"SiteName": "Scotts Road Ford (Recorder)",
+				"NZMGX": "2427680",
+				"NZMGY": "5744490",
+				"Region": "C"
+			}, {
+				"SiteNumber": "168001",
+				"River": "Selwyn River",
+				"SiteName": "Whitecliffs (Backup)",
+				"NZMGX": "2420300",
+				"NZMGY": "5748600",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66415",
+				"River": "Silverstream (Kaiapoi)",
+				"SiteName": "Harpers Road (Recorder)",
+				"NZMGX": "2474800",
+				"NZMGY": "5753600",
+				"Region": "C"
+			}, {
+				"SiteNumber": "1708022",
+				"River": "Sir Charles Creek",
+				"SiteName": "Haymans Road Bridge",
+				"NZMGX": "2364320",
+				"NZMGY": "5604860",
+				"Region": "T"
+			}, {
+				"SiteNumber": "315010",
+				"River": "South Ashburton River",
+				"SiteName": "Boundary Creek",
+				"NZMGX": "2353409",
+				"NZMGY": "5741002",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68827",
+				"River": "South Ashburton River",
+				"SiteName": "Buicks Bridge (Recorder)",
+				"NZMGX": "2361440",
+				"NZMGY": "5734480",
+				"Region": "T"
+			}, {
+				"SiteNumber": "316310",
+				"River": "South Ashburton River",
+				"SiteName": "Mt Somers",
+				"NZMGX": "2373586",
+				"NZMGY": "5731431",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68806",
+				"River": "South Ashburton River",
+				"SiteName": "Mt Somers (Recorder)",
+				"NZMGX": "2372600",
+				"NZMGY": "5726100",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66407",
+				"River": "South Brook Spring",
+				"SiteName": "Schluters Weir (Recorder)",
+				"NZMGX": "2476008",
+				"NZMGY": "5765445",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69616",
+				"River": "South Opuha River",
+				"SiteName": "Monument Bridge (ECS)",
+				"NZMGX": "2337400",
+				"NZMGY": "5688200",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69619",
+				"River": "South Opuha River",
+				"SiteName": "Stoneleigh Road (Recorder)",
+				"NZMGX": "2330069",
+				"NZMGY": "5690416",
+				"Region": "T"
+			}, {
+				"SiteNumber": "165123",
+				"River": "St Leonards Drain",
+				"SiteName": "Pahau River Confluence",
+				"NZMGX": "2502070",
+				"NZMGY": "5819460",
+				"Region": "C"
+			}, {
+				"SiteNumber": "236113",
+				"River": "Stanton",
+				"SiteName": "Cheddar Valley",
+				"NZMGX": "2521664",
+				"NZMGY": "5841710",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64610",
+				"River": "Stanton River",
+				"SiteName": "Cheddar Valley (NIWA)",
+				"NZMGX": "2521600",
+				"NZMGY": "5841800",
+				"Region": "C"
+			}, {
+				"SiteNumber": "69202",
+				"River": "Stormy Drain",
+				"SiteName": "Lower Beach/Ocean View Rd (Recorder)",
+				"NZMGX": "2397606",
+				"NZMGY": "5673389",
+				"Region": "T"
+			}, {
+				"SiteNumber": "68828",
+				"River": "Stour River",
+				"SiteName": "Barrosa (Recorder)",
+				"NZMGX": "2370533",
+				"NZMGY": "5729284",
+				"Region": "T"
+			}, {
+				"SiteNumber": "66425",
+				"River": "Styx River",
+				"SiteName": "Radcliffe Road (Recorder)",
+				"NZMGX": "2481726",
+				"NZMGY": "5749037",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66216",
+				"River": "Taranaki Creek",
+				"SiteName": "Gressons Road (Recorder)",
+				"NZMGX": "2480973",
+				"NZMGY": "5766867",
+				"Region": "C"
+			}, {
+				"SiteNumber": "68819",
+				"River": "Taylors Stream",
+				"SiteName": "State Highway 72 (Recorder)",
+				"NZMGX": "2387289",
+				"NZMGY": "5730743",
+				"Region": "T"
+			}, {
+				"SiteNumber": "410111",
+				"River": "Te Moana North Branch",
+				"SiteName": "Woodbury",
+				"NZMGX": "2362420",
+				"NZMGY": "5683920",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69644",
+				"River": "Te Moana River",
+				"SiteName": "Glentohi (Recorder)",
+				"NZMGX": "2358330",
+				"NZMGY": "5683491",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71131",
+				"River": "Tekapo River",
+				"SiteName": "Spillway (Recorder)",
+				"NZMGX": "2307880",
+				"NZMGY": "5685796",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69602",
+				"River": "Temuka River",
+				"SiteName": "Manse Bridge (Recorder)",
+				"NZMGX": "2371779",
+				"NZMGY": "5661070",
+				"Region": "T"
+			}, {
+				"SiteNumber": "401610",
+				"River": "Tengawai",
+				"SiteName": "MacKenzie Pass",
+				"NZMGX": "2323937",
+				"NZMGY": "5666496",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69635",
+				"River": "Tengawai River",
+				"SiteName": "Picnic Grounds (Recorder)",
+				"NZMGX": "2348454",
+				"NZMGY": "5654542",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71117",
+				"River": "Twizel River",
+				"SiteName": "Lake Poaka (Recorder)",
+				"NZMGX": "2278506",
+				"NZMGY": "5662619",
+				"Region": "T"
+			}, {
+				"SiteNumber": "226510",
+				"River": "Waiau",
+				"SiteName": "Glynn Wye",
+				"NZMGX": "2469739",
+				"NZMGY": "5846269",
+				"Region": "C"
+			}, {
+				"SiteNumber": "222610",
+				"River": "Waiau",
+				"SiteName": "Malings",
+				"NZMGX": "2481486",
+				"NZMGY": "5887177",
+				"Region": "C"
+			}, {
+				"SiteNumber": "227810",
+				"River": "Waiau",
+				"SiteName": "Marble Point",
+				"NZMGX": "2491326",
+				"NZMGY": "5840711",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64604",
+				"River": "Waiau River",
+				"SiteName": "Glenhope (Recorder)",
+				"NZMGX": "2473600",
+				"NZMGY": "5846700",
+				"Region": "C"
+			}, {
+				"SiteNumber": "237101",
+				"River": "Waiau River",
+				"SiteName": "Lowry Hills",
+				"NZMGX": "2518609",
+				"NZMGY": "5823838",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64606",
+				"River": "Waiau River",
+				"SiteName": "Malings Pass (Recorder)",
+				"NZMGX": "2481059",
+				"NZMGY": "5887470",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64602",
+				"River": "Waiau River",
+				"SiteName": "Marble Point (Recorder)",
+				"NZMGX": "2491468",
+				"NZMGY": "5840191",
+				"Region": "C"
+			}, {
+				"SiteNumber": "64609",
+				"River": "Waiau River",
+				"SiteName": "Mouth (Recorder)",
+				"NZMGX": "2539363",
+				"NZMGY": "5826609",
+				"Region": "C"
+			}, {
+				"SiteNumber": "417110",
+				"River": "Waihao",
+				"SiteName": "Poingdestres",
+				"NZMGX": "2363900",
+				"NZMGY": "5607300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "405711",
+				"River": "Waihao North Branch",
+				"SiteName": "Kimbrace",
+				"NZMGX": "2332299",
+				"NZMGY": "5626712",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70902",
+				"River": "Waihao River",
+				"SiteName": "McCulloughs Bridge (Recorder)",
+				"NZMGX": "2349655",
+				"NZMGY": "5598774",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70913",
+				"River": "Waihao River",
+				"SiteName": "Upstream Bradshaws Bridge",
+				"NZMGX": "2363520",
+				"NZMGY": "5600740",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70904",
+				"River": "Waihao River North Branch",
+				"SiteName": "Waihao Forks (recorder)",
+				"NZMGX": "2347100",
+				"NZMGY": "5600300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70903",
+				"River": "Waihao River South Branch",
+				"SiteName": "Waihaorunga Road Bridge (recorder)",
+				"NZMGX": "2344850",
+				"NZMGY": "5602250",
+				"Region": "C"
+			}, {
+				"SiteNumber": "407810",
+				"River": "Waihaorunga",
+				"SiteName": "Waihaorunga",
+				"NZMGX": "2334200",
+				"NZMGY": "5609742",
+				"Region": "T"
+			}, {
+				"SiteNumber": "410213",
+				"River": "Waihi",
+				"SiteName": "Parkhurst",
+				"NZMGX": "2366482",
+				"NZMGY": "5686405",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69649",
+				"River": "Waihi River",
+				"SiteName": "DOC Reserve (Recorder)",
+				"NZMGX": "2362202",
+				"NZMGY": "5687795",
+				"Region": "T"
+			}, {
+				"SiteNumber": "71195",
+				"River": "Waikakahi Stream",
+				"SiteName": "Te Maiharoa Road Bridge",
+				"NZMGX": "2359534",
+				"NZMGY": "5586189",
+				"Region": "T"
+			}, {
+				"SiteNumber": "389",
+				"River": "Waikuku Stream",
+				"SiteName": "Waikuku Beach Road",
+				"NZMGX": "2484590",
+				"NZMGY": "5768550",
+				"Region": "C"
+			}, {
+				"SiteNumber": "219510",
+				"River": "Waimakariri",
+				"SiteName": "Arthurs Pass",
+				"NZMGX": "2392734",
+				"NZMGY": "5806297",
+				"Region": "C"
+			}, {
+				"SiteNumber": "219910",
+				"River": "Waimakariri",
+				"SiteName": "Bull Ck",
+				"NZMGX": "2425928",
+				"NZMGY": "5811439",
+				"Region": "C"
+			}, {
+				"SiteNumber": "310510",
+				"River": "Waimakariri",
+				"SiteName": "Carrington",
+				"NZMGX": "2383437",
+				"NZMGY": "5803769",
+				"Region": "C"
+			}, {
+				"SiteNumber": "321710",
+				"River": "Waimakariri",
+				"SiteName": "Cheeseman",
+				"NZMGX": "2403666",
+				"NZMGY": "5779973",
+				"Region": "C"
+			}, {
+				"SiteNumber": "311910",
+				"River": "Waimakariri",
+				"SiteName": "Esk",
+				"NZMGX": "2425623",
+				"NZMGY": "5787218",
+				"Region": "C"
+			}, {
+				"SiteNumber": "311810",
+				"River": "Waimakariri",
+				"SiteName": "Grasmere",
+				"NZMGX": "2409633",
+				"NZMGY": "5793826",
+				"Region": "C"
+			}, {
+				"SiteNumber": "324611",
+				"River": "Waimakariri",
+				"SiteName": "Kainga Yard",
+				"NZMGX": "2481993",
+				"NZMGY": "5754485",
+				"Region": "C"
+			}, {
+				"SiteNumber": "217810",
+				"River": "Waimakariri",
+				"SiteName": "Mt Byrne",
+				"NZMGX": "2416999",
+				"NZMGY": "5827660",
+				"Region": "C"
+			}, {
+				"SiteNumber": "320010",
+				"River": "Waimakariri",
+				"SiteName": "Nigger Hill",
+				"NZMGX": "2432855",
+				"NZMGY": "5801004",
+				"Region": "C"
+			}, {
+				"SiteNumber": "218810",
+				"River": "Waimakariri",
+				"SiteName": "Ranger Stream",
+				"NZMGX": "2416370",
+				"NZMGY": "5814787",
+				"Region": "C"
+			}, {
+				"SiteNumber": "324110",
+				"River": "Waimakariri",
+				"SiteName": "Waimakariri Gorge",
+				"NZMGX": "2433113",
+				"NZMGY": "5760459",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66404",
+				"River": "Waimakariri River",
+				"SiteName": "Esk (Recorder)",
+				"NZMGX": "2425700",
+				"NZMGY": "5787200",
+				"Region": "C"
+			}, {
+				"SiteNumber": "166402",
+				"River": "Waimakariri River",
+				"SiteName": "Gorge (Backup)",
+				"NZMGX": "2433100",
+				"NZMGY": "5760400",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66402",
+				"River": "Waimakariri River",
+				"SiteName": "Gorge (Recorder)",
+				"NZMGX": "2433112",
+				"NZMGY": "5760461",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66401",
+				"River": "Waimakariri River",
+				"SiteName": "Old Highway Bridge (Recorder)",
+				"NZMGX": "2481829",
+				"NZMGY": "5754718",
+				"Region": "C"
+			}, {
+				"SiteNumber": "66403",
+				"River": "Waimakariri River",
+				"SiteName": "Otarama (Recorder)",
+				"NZMGX": "2424489",
+				"NZMGY": "5771762",
+				"Region": "C"
+			}, {
+				"SiteNumber": "70802",
+				"River": "Waimate Creek",
+				"SiteName": "Kelceys Bush Car Park (recorder)",
+				"NZMGX": "2348990",
+				"NZMGY": "5609810",
+				"Region": "T"
+			}, {
+				"SiteNumber": "70906",
+				"River": "Wainono Dead Arm",
+				"SiteName": "Poingdestres Road (Recorder)",
+				"NZMGX": "2363900",
+				"NZMGY": "5607300",
+				"Region": "T"
+			}, {
+				"SiteNumber": "321610",
+				"River": "Waipara",
+				"SiteName": "White Gorge",
+				"NZMGX": "2478584",
+				"NZMGY": "5793629",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65904",
+				"River": "Waipara River",
+				"SiteName": "Teviotdale (Recorder)",
+				"NZMGX": "2491784",
+				"NZMGY": "5788581",
+				"Region": "C"
+			}, {
+				"SiteNumber": "65901",
+				"River": "Waipara River",
+				"SiteName": "White Gorge (Recorder)",
+				"NZMGX": "2478638",
+				"NZMGY": "5793713",
+				"Region": "C"
+			}, {
+				"SiteNumber": "71104",
+				"River": "Waitaki River",
+				"SiteName": "Kurow (Recorder)",
+				"NZMGX": "2308000",
+				"NZMGY": "5608800",
+				"Region": "T"
+			}, {
+				"SiteNumber": "65106",
+				"River": "Waitohi River",
+				"SiteName": "Lake Sumner Road Bridge (Recorder)",
+				"NZMGX": "2471470",
+				"NZMGY": "5816670",
+				"Region": "C"
+			}, {
+				"SiteNumber": "414110",
+				"River": "Washdyke Ck",
+				"SiteName": "Hadlow",
+				"NZMGX": "2358122",
+				"NZMGY": "5648047",
+				"Region": "T"
+			}, {
+				"SiteNumber": "69004",
+				"River": "Windermere Drain",
+				"SiteName": "Lower Beach Rd (recorder)",
+				"NZMGX": "2404220",
+				"NZMGY": "5678310",
+				"Region": "T"
+			}
+		]
+	}
+}

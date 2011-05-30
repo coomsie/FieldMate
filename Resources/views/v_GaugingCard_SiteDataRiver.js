@@ -1,3 +1,4 @@
+
 var myobj;
 Ti.App.utils.readLookupFiles('sites.json',null,fn_buildsitesTbl);
 
@@ -21,7 +22,7 @@ function fn_buildsitesTbl(mysites) {
 	var tblindex=[],mycharindex;
 	Ti.API.info('mysites.data.item.length ' + mysites.data.item.length);
 	if (mysites.data.length !==0) {
-		for (var i = mysites.data.item.length - 1; i >= 0; i--) {
+		for (var i=0; i< mysites.data.item.length - 1; i++) {
 
 			//displaying header rows logic
 			var displayheader=false;
@@ -36,6 +37,7 @@ function fn_buildsitesTbl(mysites) {
 					siteid: mysites.data.item[i].SiteNumber,
 					region: mysites.data.item[i].Region,
 					nzmgx:  mysites.data.item[i].NZMGX,
+					nzmgy:  mysites.data.item[i].NZMGY,
 					lat:  '',
 					lng:  '',
 					river: mysites.data.item[i].River,
@@ -48,6 +50,7 @@ function fn_buildsitesTbl(mysites) {
 					siteid: mysites.data.item[i].SiteNumber,
 					region: mysites.data.item[i].Region,
 					nzmgx:  mysites.data.item[i].NZMGX,
+					nzmgy:  mysites.data.item[i].NZMGY,
 					lat:  '',
 					lng:  '',
 					river: mysites.data.item[i].River
@@ -70,9 +73,9 @@ function fn_buildsitesTbl(mysites) {
 		}///do for loop
 	};
 
-	//re sort array
-	data.reverse();
-	tblindex.reverse();
+	//re sort array /// NOT USING THE FASTER REVERSE ARRAY.
+	//data.reverse();
+	//tblindex.reverse();
 
 	var search = Titanium.UI.createSearchBar();
 	// create table view
