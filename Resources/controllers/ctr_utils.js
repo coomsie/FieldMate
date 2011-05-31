@@ -5,6 +5,11 @@ function utils() {
 
 	// //*** Public properties:
 
+	var isAndroid = false;
+	if (Titanium.Platform.name == 'android') {
+		isAndroid = true;
+	}
+	
 	// //*** Protected variables:
 	// var somevar = "";
 
@@ -402,6 +407,194 @@ function utils() {
 	}
 	
 	};
+	///
+	///	function to grab the users location via the gps
+	///
+	/// returns lat lng altidue object
+	utils.prototype.getLocation = function getLocation()
+		{
+			Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+
+			//
+			//  SET DISTANCE FILTER.  THIS DICTATES HOW OFTEN AN EVENT FIRES BASED ON THE DISTANCE THE DEVICE MOVES
+			//  THIS VALUE IS IN METERS
+			//
+			Titanium.Geolocation.distanceFilter = 5;
+
+			//
+			// GET CURRENT POSITION - THIS FIRES ONCE
+			//
+			Titanium.Geolocation.getCurrentPosition(function(e)
+			{
+			    if (e.error)
+			    {
+			        alert('Cannot get your current location');
+			        return;
+			    }
+			
+				var myobj = {
+			    longitude : e.coords.longitude,
+			  	latitude : e.coords.latitude,
+			    altitude : e.coords.altitude,
+			    heading : e.coords.heading,
+			    accuracy : e.coords.accuracy,
+			    speed : e.coords.speed,
+			    timestamp : e.coords.timestamp,
+			    altitudeAccuracy : e.coords.altitudeAccuracy
+			    }
+				return myobj;
+			});
+		};
+		
+	///
+	/// function to create map view
+	///
+	/// returns map view for win. 
+	utils.prototype.create_mapView = function create_mapView(lat, lng , title, subtitle)
+		{
+		
+		Ti.API.debug(lat + ' ' +  lng + ' ' + title+ ' ' + subtitle);
+		///MAP VIEW
+		var mypushpin = Titanium.Map.createAnnotation({
+			latitude: lat,
+			longitude: lng,
+			title: title,
+			subtitle: subtitle,
+			pincolor: Titanium.Map.ANNOTATION_GREEN,
+			animate:true,
+			myid:1 // CUSTOM ATTRIBUTE THAT IS PASSED INTO EVENT OBJECTS
+		});
+		//
+		// CREATE MAP VIEW
+		//
+		var _mapview = Titanium.Map.createView({
+			mapType: Titanium.Map.STANDARD_TYPE,
+			region:{latitude:lat, longitude:lng, latitudeDelta:0.01, longitudeDelta:0.01},
+			animate:true,
+			regionFit:true,
+			userLocation:true,
+			annotations:[mypushpin]
+		});
+		
+		if (!isAndroid) {
+			_mapview.addAnnotation(mypushpin);
+		}
+		_mapview.selectAnnotation(mypushpin);
+		
+		return _mapview;
+	};
+		
+	///
+	/// create window with nav bars etc to show map view in
+	///
+	// open with //w.open({modal:true});
+	utils.prototype.createMapWindow = function createMapWindow(_mapview)
+		{
+		//open  window showing map
+		var w = Titanium.UI.createWindow({
+			backgroundColor:'#336699',
+			title:'Map',
+			barColor:'#1A75A2'
+		});
+		var b = Titanium.UI.createButton({
+			title:'Close',
+			style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN
+		});
+		w.setLeftNavButton(b);
+		
+		//
+		// TOOLBAR BUTTONS
+		//
+		
+		var flexSpace = Titanium.UI.createButton({
+				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+		});
+		
+		 // button to change map type to SAT
+		var sat = null;
+		if (!Ti.App.utils.isAndroid) {
+			sat = Titanium.UI.createButton({
+				title:'Sat',
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+			});
+		} else {
+			sat = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Sat'});
+		}
+		sat.addEventListener('click',function()
+		{
+			// set map type to satellite
+			_mapview.setMapType(Titanium.Map.SATELLITE_TYPE);
+		});
+		
+		// button to change map type to STD
+		var std = null;
+		if (!Ti.App.utils.isAndroid) {
+			std = Titanium.UI.createButton({
+				title:'Std',
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+			});
+		} else {
+			std = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Std'});
+		}
+		std.addEventListener('click',function()
+		{
+			// set map type to standard
+			_mapview.setMapType(Titanium.Map.STANDARD_TYPE);
+		});
+		
+		// button to change map type to HYBRID
+		var hyb = null;
+		if (!Ti.App.utils.isAndroid) {
+			hyb = Titanium.UI.createButton({
+				title:'Hyb',
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+			});
+		} else {
+			hyb = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Hyb'});
+		}
+		hyb.addEventListener('click',function()
+		{
+			// set map type to hybrid
+			_mapview.setMapType(Titanium.Map.HYBRID_TYPE);
+		});
+		if (!Ti.App.utils.isAndroid) {
+			w.setToolbar([flexSpace,std,flexSpace,hyb,flexSpace,sat,flexSpace]);
+		} else {
+			menu.add(std);
+			menu.add(hyb);
+			menu.add(sat);
+			Titanium.UI.Android.OptionMenu.setMenu(menu);
+		}
+	
+		//
+		// NAVBAR BUTTONS
+		//
+		var removeAll = null;
+		
+		if (!Ti.App.utils.isAndroid) {
+			removeAll = Titanium.UI.createButton({
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
+				title:'Clear'
+			});
+		} else {
+			removeAll = Titanium.UI.Android.OptionMenu.createMenuItem({title:'Remove All'});
+		}
+		removeAll.addEventListener('click', function()
+		{
+			_mapview.removeAllAnnotations();
+		});
+		if (!Ti.App.utils.isAndroid) {
+			w.rightNavButton = removeAll;
+		}
+		
+		w.add(_mapview);
+		b.addEventListener('click',function()
+		{
+			w.close();
+		});
+		return w;
+	}
+	
 	
 	//end of main function closure
 }

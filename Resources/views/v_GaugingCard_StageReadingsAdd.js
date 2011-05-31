@@ -1,5 +1,8 @@
 Titanium.include('../../helpers/validation.js');
 
+var valMessages = new validationMessages();
+
+valMessages.reqdfieldsRemaining=2;
 //create UI objects
 
 var win = Ti.UI.currentWindow;
@@ -75,6 +78,7 @@ var tb_time = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    isValid: '',
     validation:{ isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true },
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -89,8 +93,10 @@ tb_time.addEventListener('blur',function(e){
 	edited = true;
 	if(e.source.isValid === false)
 	{
-	displayValErr();
+	Ti.API.debug('show validation message');
+	valMessages.displayValErr();
 	}
+	checkforallValErrs();
 });
 
 tb_time.addEventListener('change', function(e) {
@@ -115,6 +121,7 @@ var tb_record = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    isValid: '',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -126,6 +133,16 @@ tb_record.value = win.data.recorder;
 tb_record.addEventListener('blur',function(e){
 	rdata.recorder = e.source.value;
 	edited = true;
+	if(e.source.isValid === false)
+	{
+	Ti.API.debug('show validation message');
+	valMessages.displayValErr();
+	}
+	checkforallValErrs();
+});
+
+tb_record.addEventListener('change',function(e){
+	tb_record.isValid = checkValidation(tb_record);
 });
 
 row.add(lb_record);
@@ -144,6 +161,7 @@ var tb_well = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    isValid: '',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -155,6 +173,16 @@ tb_well.value = win.data.epb;
 tb_well.addEventListener('blur',function(e){
 	rdata.epb = e.source.value;
 	edited = true;
+	if(e.source.isValid === false)
+	{
+	Ti.API.debug('show validation message');
+	valMessages.displayValErr();
+	}
+	checkforallValErrs();
+});
+
+tb_well.addEventListener('change',function(e){
+	tb_well.isValid = checkValidation(tb_well);
 });
 
 row.add(lb_well);
@@ -173,6 +201,7 @@ var tb_gauge = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
+    isValid:'',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
     validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -185,6 +214,16 @@ tb_gauge.value = win.data.esg;
 tb_gauge.addEventListener('blur',function(e){
 	rdata.esg = e.source.value;
 	edited = true;
+	if(e.source.isValid === false)
+	{
+	Ti.API.debug('show validation message');
+	valMessages.displayValErr();
+	}
+	checkforallValErrs();
+});
+
+tb_gauge.addEventListener('change',function(e){
+	tb_gauge.isValid = checkValidation(tb_gauge);
 });
 
 row.add(lb_gauge);
@@ -214,6 +253,7 @@ tb_dif.value = win.data.diff;
 tb_dif.addEventListener('blur',function(e){
 	rdata.diff = e.source.value;
 	edited = true;
+	diffValidation();
 });
 
 row.add(lb_dif);
@@ -228,7 +268,10 @@ var tableView = Ti.UI.createTableView({
 tableView.addEventListener('click', function(e){
 	Titanium.API.info(e.index);
 	if(e.index ===0) //only show if first row.
+	{
 		dialog.show();
+		checkforallValErrs();
+	}
 })
 
 //
@@ -244,15 +287,14 @@ var dialog = Titanium.UI.createOptionDialog({
 // add event listener
 dialog.addEventListener('click',function(e)
 {
+	//if (rdata.rtypeid = null) //first time fired
+	valMessages.reqdfieldsRemaining=valMessages.reqdfieldsRemaining - 1;
+	
 	Titanium.API.info(e.source.options[e.index]);
 	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] , rtypeid: e.index ,validation:{ reqd:true },isValid : false },{animated:true});
 	rdata.rtypeid = e.source.options[e.index].toString().charAt(0);
 	rdata.rtype = e.source.options[e.index];
 	edited = true;
-	
-	//win.showNavBar();
-	win.setLeftNavButton(null);
-	
 });
 
 
@@ -273,3 +315,20 @@ win.addEventListener('close',function(e)
 });
 
 win.add(tableView);
+
+function checkforallValErrs()
+{
+	Ti.API.debug('remain' + valMessages.reqdfieldsRemaining);
+	Ti.API.debug('errors' + valMessages.totalErrors);
+	//if (valMessages.reqdfieldsRemaining === 0 && valMessages.totalErrors ===0)
+	win.leftNavButton = null;
+}
+
+function diffValidation()
+{
+	var d = Math.round(Math.abs(rdata.recorder - rdata.epb)*1000) ;
+	if ((rdata.diff) - d !== 0)
+	alert('Note: Difference is not correct.(' + d + ')');
+	
+	Ti.API.debug('diff' + Math.round(Math.abs(rdata.recorder - rdata.epb)*1000));
+}

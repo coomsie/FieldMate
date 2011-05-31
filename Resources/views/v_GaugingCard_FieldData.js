@@ -1,5 +1,7 @@
 Titanium.include('../../helpers/validation.js');
 
+var valMessages = new validationMessages();
+
 //create UI objects
 
 var win = Ti.UI.currentWindow;
@@ -132,7 +134,7 @@ tb_spintestbefore.addEventListener('change', function(e) {
 
 tb_spintestbefore.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 tb_spintestbefore.addEventListener('focus', function(e) {
@@ -469,4 +471,4 @@ dialog.addEventListener('click', function(e) {
 });
 
 //add validation
-win.add(valView);
+//win.add(valView);

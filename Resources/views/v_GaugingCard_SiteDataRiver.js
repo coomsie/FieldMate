@@ -38,8 +38,8 @@ function fn_buildsitesTbl(mysites) {
 					region: mysites.data.item[i].Region,
 					nzmgx:  mysites.data.item[i].NZMGX,
 					nzmgy:  mysites.data.item[i].NZMGY,
-					lat:  '',
-					lng:  '',
+					lat:  mysites.data.item[i].WGS84_LATITUDE,
+					lng:  mysites.data.item[i].WGS84_LONGITUDE,
 					river: mysites.data.item[i].River,
 					header: mysites.data.item[i].River
 				}
@@ -51,8 +51,8 @@ function fn_buildsitesTbl(mysites) {
 					region: mysites.data.item[i].Region,
 					nzmgx:  mysites.data.item[i].NZMGX,
 					nzmgy:  mysites.data.item[i].NZMGY,
-					lat:  '',
-					lng:  '',
+					lat:  mysites.data.item[i].WGS84_LATITUDE,
+					lng:  mysites.data.item[i].WGS84_LONGITUDE,
 					river: mysites.data.item[i].River
 				}
 			};
@@ -113,7 +113,11 @@ function fn_buildsitesTbl(mysites) {
 			title:e.row.title,
 			siteid:e.row.siteid,
 			river:e.row.river,
-			datetaken:d
+			datetaken:d,
+			x: row.nzmgx,
+			y: row.nzmgy,
+			lat: row.lat,
+			lng: row.lng
 		});
 		win.close('/views/v_GaugingCard_SiteData.js', {
 			animated:true

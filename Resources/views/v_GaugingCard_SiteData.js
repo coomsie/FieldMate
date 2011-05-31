@@ -1,3 +1,5 @@
+
+var win = Titanium.UI.currentWindow;
 	
 	//create  UI
 
@@ -10,6 +12,9 @@ var data = [
 	{title:'SiteName:', hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
 	{title:'Date:' , hasChild:false}
 ];
+
+//map view
+var mapview;
 
 // create table view
 var tableview = Titanium.UI.createTableView({
@@ -47,7 +52,36 @@ Ti.App.addEventListener('change_river',function(e)
 	
 	/// if in form data the for is new i.e. no unquie code for it => create new and update form model
 	Ti.App.utils.saveForm('GaugingCard',null,'',e.title ); //simple save db test
+	
+	///create maps
+	mapview = Ti.App.utils.create_mapView(parseFloat(e.lat), parseFloat(e.lng), e.river, e.title);
+	create_btnMap();
 });
 
 // add table view to the window
 Titanium.UI.currentWindow.add(tableview);
+
+function create_btnMap()
+{
+
+//create map view button when have river
+if (!Ti.App.utils.isAndroid) {
+	btnMap = Titanium.UI.createButton({
+		title:'Map'
+	});
+	win.rightNavButton = btnMap;
+	}
+	
+///add listener for clicks
+btnMap.addEventListener('click',function(e){
+	
+	//check for network if not dont do anything.
+	if(Ti.App.utils.checkNetwork)
+	{
+	var mw = Ti.App.utils.createMapWindow(mapview);
+	mw.open({modal:true});
+	}else { alert('No Internet!'); }
+}) ///end of btnMap event
+
+};//end of create btn map
+

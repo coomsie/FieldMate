@@ -73,15 +73,19 @@ tableView.addEventListener('click',function(e)
 win.add(header);
 win.add(tableView);
 
+Ti.App.db.readStageReadings('68002',createHistoryView);
+
+function createHistoryView(data)
+{
 var HistorytableView = Titanium.UI.createTableView({
-	data:createHistoryRows(Ti.App.db.readStageReadings('68002')),
+	data:createHistoryRows(data),
 	top:225,
 	///deleteButtonTitle:'Delete',
 	editable:false
 });
 
 win.add(HistorytableView);
-
+};
 
 tableView.addEventListener('delete',function(e)
 {
@@ -225,7 +229,7 @@ function create_stageRow(e){
 		var epb =  mylb(e.epb,53,160);
 		var esg =  mylb(e.esg,53,225);
 		if(e.epb !== 0){
-		var diff =  mylb(Math.round(Math.abs(e.recorder - e.epb)*1000),20,295); 
+		var diff =  mylb(e.diff,20,295); 
 		}else{
 		var diff =  mylb('',20,295);
 		}

@@ -191,7 +191,7 @@ db.prototype.readForms = function readForms(state)
 
 
 //read stage records
-db.prototype.readStageReadings = function readStageReadings(siteid)
+db.prototype.readStageReadings = function readStageReadings(siteid,fn_callback)
 {
 	//grab readings for site
 	var readings = models.stagedreadings.all({
@@ -212,7 +212,9 @@ db.prototype.readStageReadings = function readStageReadings(siteid)
 				readings.next();
 			}
 	readings.close();
-	return data;
+	
+	//run callback function.
+	fn_callback(data);
 }
 
 

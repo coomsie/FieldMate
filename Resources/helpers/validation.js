@@ -1,65 +1,76 @@
 //UI for valiation
-var imgPath=Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,"images/bubble.png");
 
-// 
-// var messageWin = Titanium.UI.createWindow({
-	// height:57,
-	// width:205,
-	// top:50,
-	// touchEnabled:false,
-	// orientationModes : [
-	// Titanium.UI.PORTRAIT
-	// ]
-// });
+function validationMessages(){
 
-var valView =  Titanium.UI.createView({
-	width:250,
-	height:30,
-	backgroundColor:'Red',
-	borderRadius:10,
-	opacity:0.7,
-	touchEnabled:false,
-	visible:false,
-	//backgroundImage: "images/bubble.png",
-	top:2,
-	left:35
-});
+	//*** 'me' acts as an alias that can be used within the methods
+	var me = this;
+	var imgPath=Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,"images/bubble.png");
 
-Ti.API.info(valView.backgroundImage);
+	validationMessages.totalErrors =0;
+	validationMessages.reqdfieldsRemaining=0;
+	
+	this.messageWin = Titanium.UI.createWindow({
+		height: 50,
+		width:310,
+		top:40,
+		touchEnabled:false,
+		visible:true,
+		zIndex: 999,
+		orientationModes : [
+		Titanium.UI.PORTRAIT
+		]
+	});
 
-var valLabel =  Titanium.UI.createLabel({
-	text:'Missing or error in field (see red text)',
-	color:'#fff',
-	width:250,
-	height:'auto',
-	font: {
-		fontFamily:'Helvetica Neue',
-		fontSize:13,
-		fontWeight:'bold'
-	},
-	textAlign:'center'
-});
+	this.valView =  Titanium.UI.createView({
+		width:310,
+		height:50,
+		//backgroundColor:'Red',
+		//borderRadius:10,
+		opacity:1.0,
+		touchEnabled:false,
+		visible:false,
+		backgroundImage: imgPath.nativePath
+		//left:35
+	});
+	
+	this.valLabel =  Titanium.UI.createLabel({
+		text:'Missing or error in field (see red text)',
+		color:'#fff',
+		width:300,
+		height:50,
+		top:2,
+		font: {
+			fontFamily:'Helvetica Neue',
+			fontSize:16,
+			fontWeight:'bold'
+		},
+		textAlign:'center'
+	});
 
-valView.add(valLabel);
+	this.valView.add(this.valLabel);
+	
+	this.messageWin.add(this.valView);
 
-var anim_out = Titanium.UI.createAnimation();
-anim_out.opacity=0;
-anim_out.duration = 4000;
+	this.anim_out = Titanium.UI.createAnimation();
+	this.anim_out.opacity=0;
+	this.anim_out.duration = 4000;
 
-//function to display view
-function displayValErr()
-{
-    valView.visible = true;
-	valView.opacity =.7;
-	valView.show();
-	valView.animate(anim_out);
-	setTimeout(function()
-			{
-				//for fading out error tip and closing
-				valView.hide();
-				//messageWin.close({opacity:0,duration:500});
-			},4000);
+	//function to display view
+	validationMessages.prototype.displayValErr  = function displayValErr()
+	{
+		this.valView.opacity = 1.0;
+	    this.valView.visible = true;
+		this.valView.show();
+		this.messageWin.open();
+		this.valView.animate(this.anim_out);
+		// setTimeout(function()
+				// {
+					// //for fading out error tip and closing
+					// this.valView.hide();
+					// //messageWin.close({opacity:0,duration:500});
+				// },4000);
 	}
+}
 
 //test is Valid Number => returns bool
 function isValidNumber(val) {
