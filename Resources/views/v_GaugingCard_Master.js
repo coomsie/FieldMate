@@ -1,6 +1,11 @@
+Titanium.include('../../models/m_GaugingCard.js');
+
 //load current forms model to var
 
-Ti.App.utils.readFormModels('m_GaugingCard.json',Ti.App.model.currentform,createFormMasterUI);
+//Ti.App.utils.readFormModels('m_GaugingCard.json',Ti.App.model.currentform,createFormMasterUI);
+var myform = new m_GauguingCard();
+
+createFormMasterUI( myform , false);
 
 function createFormMasterUI(frmModel, readonlymode){
 

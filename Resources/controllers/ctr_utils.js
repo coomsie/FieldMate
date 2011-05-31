@@ -344,7 +344,7 @@ function utils() {
 	/// this.var
 	// //*** Protected variables:
 	// var somevar = "";
-	var formObj;
+	var formObj = Ti.App.model.currentform;
 	
 	// //*** Protected method used only internally. Call with 'me.my_own()'
 	// this.my_own = function (arg1) {
@@ -354,7 +354,7 @@ function utils() {
 	//get the active model
 	//update the field if valid
 	
-	this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
+	//this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
 	
 	function setValues(obj){
 		// for (var i = obj.length - 1; i >= 0; i--){
@@ -363,8 +363,8 @@ function utils() {
 		// };
 		formObj = obj;
 		Ti.API.debug(formObj);
-		formObj.spinbefore = '222' //ctrl.value.toString();
-		Ti.API.debug(formObj.spinbefore);
+		//formObj.spinbefore = '222' //ctrl.value.toString();
+		//Ti.API.debug(formObj.spinbefore);
 		Ti.API.debug(formObj);
 		db.prototype.insertNewForm(JSON.stringify(formObj), formtype,'1.01',formname);
 	
@@ -380,7 +380,7 @@ function utils() {
 	/// this.var
 	// //*** Protected variables:
 	// var somevar = "";
-	var formObj;
+	var formObj =Ti.App.model.currentform;
 	
 	// //*** Protected method used only internally. Call with 'me.my_own()'
 	// this.my_own = function (arg1) {
@@ -390,7 +390,7 @@ function utils() {
 	//get the active model
 	//update the field if valid
 	
-	this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
+	//this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
 	
 	function setValues(obj){
 		// for (var i = obj.length - 1; i >= 0; i--){
@@ -399,8 +399,8 @@ function utils() {
 		// };
 		formObj = obj;
 		Ti.API.debug(formObj);
-		formObj.spinbefore = '222' //ctrl.value.toString();
-		Ti.API.debug(formObj.spinbefore);
+		//formObj.spinbefore = '222' //ctrl.value.toString();
+		//Ti.API.debug(formObj.spinbefore);
 		Ti.API.debug(formObj);
 		db.prototype.updateForm(JSON.stringify(formObj), formtype,'1.01',formname);
 	
@@ -588,8 +588,10 @@ function utils() {
 		}
 		
 		w.add(_mapview);
-		b.addEventListener('click',function()
+		b.addEventListener('click',function() ///close btn
 		{
+			Ti.API.debug('turn gps off');
+			_mapview.userLocation=false; //turn off gps.
 			w.close();
 		});
 		return w;

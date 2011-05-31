@@ -14,7 +14,8 @@ var data = [
 ];
 
 //map view
-var mapview;
+var mapView;
+var mapWindow;
 
 // create table view
 var tableview = Titanium.UI.createTableView({
@@ -54,7 +55,7 @@ Ti.App.addEventListener('change_river',function(e)
 	Ti.App.utils.saveForm('GaugingCard',null,'',e.title ); //simple save db test
 	
 	///create maps
-	mapview = Ti.App.utils.create_mapView(parseFloat(e.lat), parseFloat(e.lng), e.river, e.title);
+	mapView = Ti.App.utils.create_mapView(parseFloat(e.lat), parseFloat(e.lng), e.river, e.title);
 	create_btnMap();
 });
 
@@ -78,8 +79,10 @@ btnMap.addEventListener('click',function(e){
 	//check for network if not dont do anything.
 	if(Ti.App.utils.checkNetwork)
 	{
-	var mw = Ti.App.utils.createMapWindow(mapview);
-	mw.open({modal:true});
+	mapWindow = Ti.App.utils.createMapWindow(mapView);
+	Ti.API.debug('turn gps on');
+	mapView.userLocation=true; //turn on gps.
+	mapWindow.open({modal:true});
 	}else { alert('No Internet!'); }
 }) ///end of btnMap event
 
