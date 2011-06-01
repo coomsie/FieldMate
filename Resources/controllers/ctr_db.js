@@ -90,14 +90,18 @@ db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion
 			//grab date
 			var d=new Date();
 			d.toLocaleDateString();
+			
+			//grab current user
+			var user = Ti.App.model.appConfig.CurrentUser;
+			
             //insert only one row
             var newFORM = models.formdata.newRecord({
             	type: formtype,
 				version:formversion,
 				deviceid: Ti.Platform.id ,
 				appversion: Ti.App.version,
-				user:'Iainc',
-				data:data,
+				user: user,
+				data: data,
 				inserteddate: d.toString(),
 				submitteddate: null,
 				syncdate:null
@@ -195,12 +199,12 @@ db.prototype.readForms = function readForms(state)
   	Ti.API.info(forms);
   	var data = [];
   	while (forms.isValidRow()) {
-  				var mydata  = forms.fieldByName('data');
-  				var mytitle = JSON.parse(mydata);
-  				mytitle = mytitle.sitename + ' ' + forms.fieldByName('inserteddate');
+  				var formdata = forms.fieldByName('data');
+  				var mydata  = JSON.parse(formdata);
+  				var mytitle = mydata.sitename + ' ' + forms.fieldByName('inserteddate');
 				data.push({
 					dbrowid: forms.fieldByName('id'),
-					formmodel : mydata,
+					formmodel : formdata,
 				  	title: mytitle,
 				  	hasChild: true,
 				  	url:'/views/v_GaugingCard_Master.js'

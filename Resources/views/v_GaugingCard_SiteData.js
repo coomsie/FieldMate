@@ -5,13 +5,18 @@ var myform = Ti.App.model.get_currentform();
 //create  UI
 
 //grab values from current form.
-
+var hasChild = true, sitesurl = 'v_GaugingCard_SiteDataRiver.js';
+if (myform.details.isReadonly === 'true')
+{
+	hasChild = false;
+	sitesurl = null;
+}
 
 // create table view data object
 var data = [
 	{title:'SiteID*: ' + myform.siteid, hasChild:false},
 	{title:'River: ' + myform.river, hasChild:false},
-	{title:'SiteName: ' + myform.sitename, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
+	{title:'SiteName: ' + myform.sitename, hasChild: hasChild, url: sitesurl},
 	{title:'Date: ' + myform.datetaken , hasChild:false}
 ];
 

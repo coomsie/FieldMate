@@ -6,7 +6,8 @@ var myform = {
 	id: null, //id form db
 	name: null,
 	type: 'GaugingCard',
-	ver : 1.0
+	ver : 1.0,
+	isReadonly: 'false'
 	}, 
 	siteid : '',
 	sitename : '',
@@ -43,12 +44,10 @@ var myform = {
 
 if (Ti.App.model.get_currentform() === null)
 Ti.App.model.set_currentform(myform);
-// Ti.API.info('currentform' + Ti.App.model.get_currentform()) ;
-// Ti.API.info('own prop' + Ti.App.model.hasOwnProperty("currentform"));
 
-createFormMasterUI( null , false);
+createFormMasterUI();
 
-function createFormMasterUI(frmModel, readonlymode){
+function createFormMasterUI(){
 
 //create  FORMS MASTER  UI
 
@@ -111,6 +110,10 @@ btn_submit.addEventListener('click',function(e)
 	alertDialog.addEventListener('click',function(e){
 		if(e.index !== 1)
 		{
+		fm = Ti.App.model.get_currentform();
+		fm.details.isReadonly = 'true';
+		Ti.App.model.set_currentform(fm);
+		Ti.App.utils.saveForm(); //simple save db test
 		Ti.App.utils.submitForm(); //simple save db test
 		//close window.
 		Titanium.UI.currentWindow.close();
@@ -121,7 +124,8 @@ btn_submit.addEventListener('click',function(e)
 });
 
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
-///if (!readonlymode)
+fm = Ti.App.model.get_currentform();
+if (fm.details.isReadonly !== 'true')
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
 
 Titanium.UI.currentWindow.title = 'Gauging Recorder';

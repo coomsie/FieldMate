@@ -5,6 +5,18 @@ var valMessages = new validationMessages();
 //create UI objects
 
 var win = Ti.UI.currentWindow;
+var myform = Ti.App.model.get_currentform();
+	
+//create  UI
+
+//grab values from current form.
+var hasChild = true, sitesurl, isEnabled= true;
+if (myform.details.isReadonly === 'true')
+{
+	hasChild = false;
+	sitesurl = null;
+	isEnabled = false;
+}
 
 var tableView;
 
@@ -97,7 +109,7 @@ var data = [];
 
 data[0] = {
 	title:'Type:*',
-	hasChild:true,
+	hasChild:hasChild,
 	url:'/views/v_GaugingCard_FieldDataMeters.js',
 	header:'Meter',
 	validation:{ reqd:true }
@@ -121,6 +133,7 @@ var tb_spintestbefore = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
+	enabled: isEnabled,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
@@ -161,6 +174,7 @@ var tb_spintestafter = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
+	enabled: isEnabled,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
@@ -175,7 +189,7 @@ tb_spintestafter.addEventListener('change', function(e) {
 
 tb_spintestafter.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 row.add(lb_spintestafter);
@@ -185,7 +199,7 @@ data[data.length+1] = row;
 data[data.length+1] = {
 	title:'Method:*',
 	dialogid:'MeasuredMethod',
-	hasChild:true,
+	hasChild:hasChild,
 	origtitle: 'Method: ',
 	dialogoptions :['slackline','cableway','boat','upstream bridge','downstream bridge','wading', 'volumetric'],
 	header:'Measured'
@@ -206,6 +220,7 @@ var tb_measured = Titanium.UI.createTextField({
 	height:35,
 	left:120,
 	width:200,
+	enabled: isEnabled,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -218,7 +233,7 @@ tb_measured.addEventListener('change', function(e) {
 
 tb_measured.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 row.add(lb_measured);
@@ -228,7 +243,7 @@ data[data.length+1] = row;
 
 data[data.length+1] = {
 	title:'Position:*',
-	hasChild:true,
+	hasChild:hasChild,
 	dialogid:'MeasuredPosition',
 	origtitle: 'Position: ',
 	dialogoptions : ['above','below','at']
@@ -236,7 +251,7 @@ data[data.length+1] = {
 
 data[data.length+1] = {
 	title:'Landmark:*',
-	hasChild:true,
+	hasChild:hasChild,
 	dialogid:'MeasuredLandmark',
 	origtitle: 'Landmark: ',
 	dialogoptions : ['Bridge','Recorder','Ford','Weir','Culvert D/S','Culvert U/S','Staff Gauge','Confluence','Slackline','Intake','Cable Way','Underneath Bridge']
@@ -244,7 +259,7 @@ data[data.length+1] = {
 
 data[data.length+1] = {
 	title:'Direction:*',
-	hasChild:true,
+	hasChild:hasChild,
 	header:'Wind',
 	dialogid:'WindDirection',
 	origtitle: 'Direction: ',
@@ -266,6 +281,7 @@ var tb_wind = Titanium.UI.createTextField({
 	height:35,
 	left:120,
 	width:200,
+	enabled: isEnabled,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -278,7 +294,7 @@ tb_wind.addEventListener('change', function(e) {
 
 tb_wind.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 row.add(lb_wind);
@@ -288,7 +304,7 @@ data[data.length+1] = row;
 
 data[data.length+1] = {
 	title:'Type:*',
-	hasChild:true,
+	hasChild:hasChild,
 	header:'Angle',
 	dialogid:'AngleType',
 	origtitle: 'Type: ',
@@ -310,6 +326,7 @@ var tb_current = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
+	enabled: isEnabled,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -322,7 +339,7 @@ tb_current.addEventListener('change', function(e) {
 
 tb_current.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 row.add(lb_current);
@@ -332,7 +349,7 @@ data[data.length+1] = row;
 
 data[data.length+1] = {
 	title:'Colour:*',
-	hasChild:true,
+	hasChild:hasChild,
 	header:'Water',
 	dialogid:'WaterColour',
 	origtitle: 'Colour: ',
@@ -354,6 +371,7 @@ var tb_temp = Titanium.UI.createTextField({
 	height:35,
 	left:100,
 	width:220,
+	enabled: isEnabled,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 	validation:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -366,7 +384,7 @@ tb_temp.addEventListener('change', function(e) {
 
 tb_temp.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
-	displayValErr();
+	valMessages.displayValErr();
 });
 
 row.add(lb_temp);
@@ -378,6 +396,8 @@ tableView = Ti.UI.createTableView({
 	data:data
 });
 
+//only add if not readonly
+if (myform.details.isReadonly !== 'true')
 tableView.addEventListener('click', function(e) {
 	// dialogs
 	if (e.rowData.dialogid) //exists
@@ -457,6 +477,7 @@ var dialog = Titanium.UI.createOptionDialog({
 });
 
 // add event listener
+
 dialog.addEventListener('click', function(e) {
 	//Titanium.API.info(e.source.options[e.index]);
 	//Titanium.API.info(dialog.rowid);
