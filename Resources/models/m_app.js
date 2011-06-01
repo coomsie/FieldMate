@@ -25,19 +25,23 @@ function model() {
 		LookupFilesUpdated: '',
 		LookupURLS: [{
 			FileName:'sites.json',
-			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON'
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Sites/JSON',
+			inDB: false
 		}
 		,{
 			FileName:'metertypes.json',
-			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Meter%20Types/JSON'
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Meter%20Types/JSON',
+			inDB: false
 		}
 		,{
 			FileName:'stagedreadings.json',
-			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON'
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON',
+			inDB: true
 		},
 		{
 			FileName:'gaugingstdcomments.json',
-			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Std%20Comments/JSON'
+			URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Gauging%20Std%20Comments/JSON',
+			inDB: false
 		}
 		]
 	};

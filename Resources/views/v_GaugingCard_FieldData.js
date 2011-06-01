@@ -11,7 +11,7 @@ var myform = Ti.App.model.get_currentform();
 
 //grab values from current form.
 var hasChild = true, sitesurl, isEnabled= true;
-if (myform.details.isReadonly === 'true')
+if (myform.details.isReadonly === true)
 {
 	hasChild = false;
 	sitesurl = null;
@@ -397,7 +397,7 @@ tableView = Ti.UI.createTableView({
 });
 
 //only add if not readonly
-if (myform.details.isReadonly !== 'true')
+if (myform.details.isReadonly !== true)
 tableView.addEventListener('click', function(e) {
 	// dialogs
 	if (e.rowData.dialogid) //exists

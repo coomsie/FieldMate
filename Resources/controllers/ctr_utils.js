@@ -25,9 +25,13 @@ function utils() {
 	//		myurl =>http url for grab file (json)
 	//		myobj =>object to load data in
 	//		myfilename => file name to store for persistences
-	utils.prototype.getLookupData = function getLookupData(myurl,myobj,myfilename,progressBar,fn_callback) {
+	utils.prototype.getLookupData = function getLookupData(LookupURL,myobj,progressBar,fn_callback) {
 		//check network if not do nothing
 		if (me.checkNetwork()) {
+			var myurl = LookupURL.URL;
+			var inDB = LookupURL.inDB;
+			var myfilename= LookupURL.FileName;
+			
 			//start progress bar
 			if(progressBar)
 				progressBar.setProgressMessage('Downloading ' + myfilename +' ');
@@ -48,6 +52,15 @@ function utils() {
 				me.saveLookupFiles(myfilename,myobj,progressBar);
 				if(progressBar)
 					progressBar.setProgress();
+				//load db if needed
+				//test function to load up database if present
+				if (inDB)
+				{
+				Ti.App.db.loadData(LookupURL, myobj);
+				if(progressBar)
+				progressBar.setProgressMessage('Updating Database ' + myfilename +' ');
+				}
+
 				fn_callback();
 			};
 			xhr2.onerror = function(e) {
@@ -340,12 +353,16 @@ function utils() {
 
 		//get the active form
 		var formObj =Ti.App.model.get_currentform();
+		var dbrowid;
 
 		Ti.API.debug(formObj);
 		////if form has id then its an update else new form
 		if(formObj.details.id === null)
 		{
-			db.prototype.insertNewForm(JSON.stringify(formObj), formObj.details.type,formObj.details.ver);
+			dbrowid = db.prototype.insertNewForm(JSON.stringify(formObj), formObj.details.type,formObj.details.ver);
+			formObj.details.id = dbrowid;
+			Ti.App.model.set_currentform(formObj);
+			Ti.App.utils.saveForm(); //simple save db test
 		} else //needs updatig
 		{
 			db.prototype.updateForm(JSON.stringify(formObj) ,formObj.details.id);

@@ -172,13 +172,12 @@ Ti.App.tabGroup.open({
 // focus event listener for tracking tab changes
 Ti.App.tabGroup.addEventListener('focus', function(e)
 {
-	Ti.API.info("prev index" + e.previousIndex);
+	Ti.API.info("index" + e.index);
 	//CHECK IF DRAFT TAB
    if(e.index===1)
    Ti.App.Drafts_View.reloadDrafts(e.source);
    if(e.index===2)
    Ti.App.Sync_View.reloadSync(e.source);
-   //win2.tableview.data = Ti.App.db.readForms();
 });
 
 
@@ -202,31 +201,11 @@ for (var i = Ti.App.model.appConfig.LookupURLS.length - 1; i >= 0; i--) {
 };
 if(lookupfilesPresent===false) {
 	Ti.API.debug('lookupfilePresent:'+lookupfilesPresent);
-	alert('Files need updating');
-	tabGroup.setActiveTab(2);
+	alert('Data need updating now.');
+	Ti.App.tabGroup.setActiveTab(2);
 
 	// open tab group
-	tabGroup.open({
+	Ti.App.tabGroup.open({
 		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
 	});
 }
-
-// //set listener for tab changes
-// // focus event listener for tracking tab changes
-// tabGroup.addEventListener('focus', function(e)
-// {
-// Ti.API.info("tab 0 focus fired & prev index" + e.previousIndex);
-// //check if to weather and needs refresh.
-// if(e.index===0 && e.previousIndex!=0  && Ti.App.model.refresh===true)
-// //some code
-// });
-
-
-///some functions
-
-var myJSONObject = new Object;
-
-//test function to load up database if present
-if(Ti.App.utils.lookupFilesExists('stagedreadings.json'))
-Ti.App.utils.readLookupFiles('stagedreadings.json',myJSONObject,Ti.App.db.mytestfn);
-

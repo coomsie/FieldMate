@@ -63,6 +63,13 @@ function insert_StagedReadings(stagedreadings,rows) {
             //first delete all the records
             stagedreadings.deleteRecords();
             
+            //drop index
+            var dropixsql = "DROP index if exists 'main'.'ix_stagedreadings_sitenumber'";
+            var mydb = Titanium.Database.open('fieldmate');
+           	mydb.execute(dropixsql);
+           	Titanium.API.info('JUST created staged readings index');
+			mydb.close(); // close db when you're done to save resources
+            
             for (var i = rows.length - 1; i >= 0; i--){
    				// if (myJSON.data.item[i].SiteNumber === "62103")
     			// Ti.API.debug(myJSON.data.item[i].Date + ','+ myJSON.data.item[i].Time + ','+ myJSON.data.item[i].Recorder_Stage);
@@ -78,6 +85,14 @@ function insert_StagedReadings(stagedreadings,rows) {
                         // persist it
                         newSR.save();
 			};
+			
+			//add index
+			var createixsql = "CREATE  INDEX if not exists  'main'.'ix_stagedreadings_sitenumber' ON 'stagedreadings' ('sitenumber' ASC)";
+			var mydb = Titanium.Database.open('fieldmate');
+           	mydb.execute(createixsql);
+           	Titanium.API.info('JUST created staged readings index');
+			mydb.close(); // close db when you're done to save resources
+
 };                        
 
 //** PUBLIC METHODS ** //
@@ -111,6 +126,9 @@ db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion
             
             //increase badges
             tab2.badge =tab2.badge+1;
+            
+            Ti.API.debug('id of form'  + joli.connection.lastInsertRowId() );
+            return joli.connection.lastInsertRowId();
 };                          
 
  
@@ -157,8 +175,8 @@ db.prototype.submitForm  = function submit_FormData(data,dbid) {
 //		data => data from json of form model with actuals  
 //		formtype => form name
 //		 
-db.prototype.uploadForm  = function upload_FormData(data,dbid) {
-			Ti.API.info('about to update row id =>' + myrowid);
+db.prototype.uploadForm  = function upload_FormData(dbid) {
+			Ti.API.info('about to update row id =>' + dbid);
 			//grab date
 			var d=new Date();
 			d.toLocaleDateString();
@@ -243,17 +261,16 @@ db.prototype.readStageReadings = function readStageReadings(siteid,fn_callback)
 	fn_callback(data);
 }
 
-
-
-
                 
-///testing ground
-
-
-db.prototype.mytestfn = function mytestfn(myJSON)
+//		LOAD LOOKUP data into tables
+//		expects LOOKUP Object form model
+//		LookupURLS: [{
+//		FileName:'stagedreadings.json',
+//		URL:'http://tools.ecan.govt.nz/DataCatalogue/data/Water/Stage%20Readings/JSON',
+// 		inDB: true
+//		//}]
+db.prototype.loadData = function loadData(LookupURL, myJSON)
 {
-Ti.API.debug(JSON.stringify(myJSON).substring(0,100));
-///for (var key in myJSON.data.item)
 insert_StagedReadings(models.stagedreadings,myJSON.data.item);
 };
 

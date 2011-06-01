@@ -113,7 +113,7 @@ function dataDownload()
 				Titanium.API.debug('filetotal ' + filetotal);
 				if (it <= filetotal) {
 					Titanium.API.debug('call function');
-					Ti.App.utils.getLookupData(m.appConfig.LookupURLS[it-1].URL,m.sites,m.appConfig.LookupURLS[it-1].FileName,pb,getEachFile);
+					Ti.App.utils.getLookupData(m.appConfig.LookupURLS[it-1],m.sites,pb,getEachFile);
 					it++;
 				};
 			};
@@ -139,8 +139,8 @@ Ti.App.addEventListener('sync_DownloadingFinished',function(e)
 			
 			for (var i = me.data.length - 1; i >= 0; i--){
 			pb.setProgressMessage('Uploading Forms ', me.data.length-i, me.data.length);
-			//Ti.App.db.uploadForm (data,formtype,formversion,formdisplayname,rowid)
-			Ti.App.db.uploadForm(null,null,null,null, me.data[i].dbrowid);
+			//Ti.App.db.uploadForm (dbrowid)
+			Ti.App.db.uploadForm(me.data[i].dbrowid);
 			me.tableview.deleteRow(i);
 			pb.setProgress();
 			};

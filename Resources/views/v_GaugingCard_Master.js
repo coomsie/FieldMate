@@ -7,7 +7,7 @@ var myform = {
 	name: null,
 	type: 'GaugingCard',
 	ver : 1.0,
-	isReadonly: 'false'
+	isReadonly: false
 	}, 
 	siteid : '',
 	sitename : '',
@@ -111,12 +111,13 @@ btn_submit.addEventListener('click',function(e)
 		if(e.index !== 1)
 		{
 		fm = Ti.App.model.get_currentform();
-		fm.details.isReadonly = 'true';
+		fm.details.isReadonly = true;
 		Ti.App.model.set_currentform(fm);
 		Ti.App.utils.saveForm(); //simple save db test
 		Ti.App.utils.submitForm(); //simple save db test
 		//close window.
 		Titanium.UI.currentWindow.close();
+		Ti.App.tabGroup.setActiveTab(0); //send back to new form.
 		}
 		
 		
@@ -125,7 +126,7 @@ btn_submit.addEventListener('click',function(e)
 
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
 fm = Ti.App.model.get_currentform();
-if (fm.details.isReadonly !== 'true')
+if (fm.details.isReadonly !== true)
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
 
 Titanium.UI.currentWindow.title = 'Gauging Recorder';

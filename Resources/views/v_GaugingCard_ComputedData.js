@@ -13,7 +13,7 @@ var win = Ti.UI.currentWindow;
 	
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
 myform = Ti.App.model.get_currentform();
-var isEnabled = (myform.details.isReadonly !== 'true') ? true : false;
+var isEnabled = (myform.details.isReadonly !== true) ? true : false;
 
 // create table view data object
 var data = [];

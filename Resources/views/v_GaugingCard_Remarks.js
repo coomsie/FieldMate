@@ -32,7 +32,7 @@ var add = Titanium.UI.createButton({
 	title:'Add'
 });
 
-if (fm.details.isReadonly !== 'true')
+if (fm.details.isReadonly !== true)
 if (Ti.Platform.name === 'iPhone OS') {
 	add.addEventListener('click', function() {
 		//open dialog
@@ -46,7 +46,7 @@ if (Ti.Platform.name === 'iPhone OS') {
 //add if android
 
 // add android specific tests
-if (fm.details.isReadonly !== 'true')
+if (fm.details.isReadonly !== true)
 if (Titanium.Platform.osname === 'android') {
 	Ti.API.info("creating menu option");
 	var activity = Ti.Android.currentActivity;

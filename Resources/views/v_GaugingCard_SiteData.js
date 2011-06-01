@@ -6,7 +6,7 @@ var myform = Ti.App.model.get_currentform();
 
 //grab values from current form.
 var hasChild = true, sitesurl = 'v_GaugingCard_SiteDataRiver.js';
-if (myform.details.isReadonly === 'true')
+if (myform.details.isReadonly === true)
 {
 	hasChild = false;
 	sitesurl = null;
@@ -60,6 +60,7 @@ Ti.App.addEventListener('change_river',function(e)
 	
 	/// if in form data the for is new i.e. no unquie code for it => create new and update form model
 	Ti.App.utils.saveForm(); //simple save db test
+	
 	
 	///create maps
 	mapView = Ti.App.utils.create_mapView(parseFloat(e.lat), parseFloat(e.lng), e.river, e.title);

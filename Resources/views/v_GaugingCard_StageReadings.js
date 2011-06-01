@@ -122,7 +122,7 @@ add.addEventListener('click', function() {
 
 //add refresh button iOS
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
-if (myform.details.isReadonly !== 'true')
+if (myform.details.isReadonly !== true)
 if (Ti.Platform.name === 'iPhone OS') {
 	win.setRightNavButton(add);
 };
@@ -130,7 +130,7 @@ if (Ti.Platform.name === 'iPhone OS') {
 //add if android
 
 // add android specific tests
-if (myform.details.isReadonly !== 'true')
+if (myform.details.isReadonly !== true)
 if (Titanium.Platform.osname === 'android') {
 	Ti.API.info("creating menu option");
 	var win = Ti.UI.currentWindow;
