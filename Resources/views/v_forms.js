@@ -1,5 +1,7 @@
 ///Ti.include('redux.js');
 
+
+
 //create  FORMS  UI
 
 // create table view data object
@@ -15,6 +17,9 @@ var tableview = Titanium.UI.createTableView({
 
 tableview.addEventListener('click', function(e)
 {
+	//make sure the active form is null
+	Ti.App.model.set_currentform(null);
+	
 	if (e.rowData.url)
 	{
 		Ti.API.info('load child UI' + e.rowData.url); 

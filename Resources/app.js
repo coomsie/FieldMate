@@ -6,17 +6,19 @@ Titanium.include('joli.js');
 
 //load 
 Titanium.include('models/m_app.js');
+Ti.App.model = new model();
+
 //Titanium.include('helpers/validation.js');
 Titanium.include('controllers/ctr_utils.js');
-Titanium.include('controllers/ctr_db.js');
-Titanium.include('views/v_drafts.js');
-Titanium.include('views/v_sync.js');
-
 Ti.App.utils = new utils();
+
+Titanium.include('controllers/ctr_db.js');
 Ti.App.db = new db();
-Ti.App.model = new model();
-var m = Ti.App.model;
+
+Titanium.include('views/v_drafts.js');
 Ti.App.Drafts_View = new Drafts_View();
+
+Titanium.include('views/v_sync.js');
 Ti.App.Sync_View = new Sync_View();
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
@@ -142,6 +144,15 @@ var tab4 = Titanium.UI.createTab({
 //load controllers
 //Titanium.include('controllers/ctr_settingsTab.js');
 
+///&(*&(&(&(*&&(&(*&))))))
+//try some tab focus events
+tab2.addEventListener('blur',function(e)
+{
+	//try to grab in focus event
+	Ti.App.Drafts_View.reloadDrafts(e.source);
+});
+
+
 //
 //  add tabs
 //
@@ -175,8 +186,8 @@ Ti.App.tabGroup.addEventListener('focus', function(e)
 Titanium.API.info("check to see all lookup files present");
 /// check all lookup files
 var lookupfilesPresent,ff=0;
-for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--) {
-	if(Ti.App.utils.lookupFilesExists(m.appConfig.LookupURLS[i].FileName)===false)
+for (var i = Ti.App.model.appConfig.LookupURLS.length - 1; i >= 0; i--) {
+	if(Ti.App.utils.lookupFilesExists(Ti.App.model.appConfig.LookupURLS[i].FileName)===false)
 	{
 		lookupfilesPresent = false;
 	}else{
@@ -184,8 +195,8 @@ for (var i = m.appConfig.LookupURLS.length - 1; i >= 0; i--) {
 		{ 
 			ff=1;
 			//get date updated
-			m.appConfig.LookupFilesUpdated = Ti.App.utils.lookupFileTimeStamp(m.appConfig.LookupURLS[i].FileName);
-			Ti.API.info('fileudatedlast ' + m.appConfig.LookupFilesUpdated);
+			Ti.App.model.appConfig.LookupFilesUpdated = Ti.App.utils.lookupFileTimeStamp(Ti.App.model.appConfig.LookupURLS[i].FileName);
+			Ti.API.info('fileudatedlast ' + Ti.App.model.appConfig.LookupFilesUpdated);
 		}
 		}
 };
@@ -206,7 +217,7 @@ if(lookupfilesPresent===false) {
 // {
 // Ti.API.info("tab 0 focus fired & prev index" + e.previousIndex);
 // //check if to weather and needs refresh.
-// if(e.index===0 && e.previousIndex!=0  && m.refresh===true)
+// if(e.index===0 && e.previousIndex!=0  && Ti.App.model.refresh===true)
 // //some code
 // });
 

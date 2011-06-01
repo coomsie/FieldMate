@@ -68,6 +68,12 @@ me.tableview.addEventListener('click', function(e) {
 			animated:true
 		});
 	}
+	
+	//load form data into current form plus load id
+	var myform = JSON.parse(e.rowData.formmodel);
+	myform.details.id =e.rowData.dbrowid;  
+	Ti.App.model.set_currentform(myform);
+	
 });
 // add table view to the window
 win.add(me.tableview);

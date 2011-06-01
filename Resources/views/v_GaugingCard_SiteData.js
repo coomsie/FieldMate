@@ -1,16 +1,18 @@
 
 var win = Titanium.UI.currentWindow;
+var myform = Ti.App.model.get_currentform();
 	
-	//create  UI
+//create  UI
 
-///Ti.API.info(v_GaugingCard.version);
+//grab values from current form.
+
 
 // create table view data object
 var data = [
-	{title:'SiteID:*', hasChild:false},
-	{title:'River:', hasChild:false},
-	{title:'SiteName:', hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
-	{title:'Date:' , hasChild:false}
+	{title:'SiteID*: ' + myform.siteid, hasChild:false},
+	{title:'River: ' + myform.river, hasChild:false},
+	{title:'SiteName: ' + myform.sitename, hasChild:true, url:'v_GaugingCard_SiteDataRiver.js'},
+	{title:'Date: ' + myform.datetaken , hasChild:false}
 ];
 
 //map view
@@ -52,7 +54,7 @@ Ti.App.addEventListener('change_river',function(e)
 	tableview.updateRow(3 ,{title:'Date: ' + e.datetaken, hasChild:false});
 	
 	/// if in form data the for is new i.e. no unquie code for it => create new and update form model
-	Ti.App.utils.saveForm('GaugingCard',null,'',e.title ); //simple save db test
+	Ti.App.utils.saveForm(); //simple save db test
 	
 	///create maps
 	mapView = Ti.App.utils.create_mapView(parseFloat(e.lat), parseFloat(e.lng), e.river, e.title);
@@ -61,6 +63,16 @@ Ti.App.addEventListener('change_river',function(e)
 
 // add table view to the window
 Titanium.UI.currentWindow.add(tableview);
+
+//add map btn etc if already have data.
+if (myform.sitename !=='')
+{
+///create maps
+	mapView = Ti.App.utils.create_mapView(parseFloat(myform.lat), parseFloat(myform.lng), myform.river, myform.sitename);
+	create_btnMap();
+}
+
+
 
 function create_btnMap()
 {

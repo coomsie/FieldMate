@@ -1,18 +1,12 @@
 
 var myobj;
-Ti.App.utils.readLookupFiles('sites.json',null,fn_buildsitesTbl);
-
+var myform = Ti.App.model.get_currentform();
 var win = Titanium.UI.currentWindow;
+
+Ti.App.utils.readLookupFiles('sites.json',null,fn_buildsitesTbl);
 
 function fn_buildsitesTbl(mysites) {
 	
-	//add to model
-	// Ti.App.model.mysites = this.mysites;
-	// Ti.API.info(Ti.App.model.mysites);
-	// for (var name in Ti.App.model.mysites) {
-		// Ti.API.info('Ti.App.model.mysites properties '+name);
-	// }
-
 	Ti.API.info('build list data');
 	///to hold list data
 	var data = [];
@@ -92,28 +86,34 @@ function fn_buildsitesTbl(mysites) {
 		var section = e.section;
 		var row = e.row;
 		var rowdata = e.rowData;
-
-		//add data to loaded form model
-		// Ti.App.model.currentform.siteid = e.row.siteid;
-		// Ti.App.model.currentform.sitename =e.row.title;
-		// Ti.App.model.currentform.river =e.row.river;
 		
+		//debug properties
+		// for (var name in myform) {
+			// Ti.API.info('Ti.App.model.currentform properties '+name);
+		// }
 		
+		///load value into form
+		myform.siteid = row.siteid;
+		myform.sitename = row.title;
+		myform.river = row.river;
+		myform.details.name = row.title;
+		myform.lat = row.lat;
+		myform.lng = row.lng;
+				
 		//if date not already there
-		for (var name in Ti.App.model.currentform) {
-			Ti.API.info('Ti.App.model.currentform properties '+name);
-		}
-		if(Ti.App.model.currentform.datetaken === undefined) {
+		if(myform.datetaken === '') {
 			d=new Date();
 			d.toLocaleDateString();
-			Ti.App.model.currentform.datetaken = d;
+			myform.datetaken = d;
 		}
+		
+		Ti.App.model.set_currentform(myform);
 
 		Ti.App.fireEvent('change_river', {
-			title:e.row.title,
-			siteid:e.row.siteid,
-			river:e.row.river,
-			datetaken:d,
+			title: row.title,
+			siteid: row.siteid,
+			river: row.river,
+			datetaken: myform.datetaken,
 			x: row.nzmgx,
 			y: row.nzmgy,
 			lat: row.lat,

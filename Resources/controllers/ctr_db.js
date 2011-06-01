@@ -23,13 +23,13 @@ table: 'formdata',
 columns: {
 id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
 type: 'TEXT',
-displayname: 'TEXT',
 version:'TEXT',
 deviceid: 'TEXT',
 appversion: 'TEXT',
 user:'TEXT',
 data:'TEXT',
 inserteddate: 'TEXT',
+lastupdated: 'TEXT',
 submitteddate: 'TEXT',
 syncdate:'TEXT'
 }
@@ -86,14 +86,13 @@ function insert_StagedReadings(stagedreadings,rows) {
 //		data => data from json of form model with actuals  
 //		formtype => form name
 //		 
-db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion,formdisplayname) {
+db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion) {
 			//grab date
 			var d=new Date();
 			d.toLocaleDateString();
             //insert only one row
             var newFORM = models.formdata.newRecord({
             	type: formtype,
-            	displayname:formdisplayname,
 				version:formversion,
 				deviceid: Ti.Platform.id ,
 				appversion: Ti.App.version,
@@ -115,27 +114,46 @@ db.prototype.insertNewForm  = function insert_FormData(data,formtype,formversion
 //		data => data from json of form model with actuals  
 //		formtype => form name
 //		 
-db.prototype.updateForm  = function update_FormData(data,formtype,formversion,formdisplayname) {
-			Ti.API.info('updating ' + formdisplayname);
+db.prototype.updateForm  = function update_FormData(data, dbid) {
+			Ti.API.info('updating ' + dbid);
 			//grab date
 			var d=new Date();
 			d.toLocaleDateString();
            	//update
            	var mydb = Titanium.Database.open('fieldmate');
            	var updateDate = d.toString();
-           	mydb.execute('UPDATE formdata SET submitteddate = ? WHERE submitteddate IS NULL',updateDate );
+           	mydb.execute('UPDATE formdata SET data = ? , lastupdated = ? WHERE id = ? ',data , updateDate, dbid );
            	Titanium.API.info('JUST updated, rowsAffected = ' + mydb.rowsAffected);
 			mydb.close(); // close db when you're done to save resources
-			
-            //increase badges
-            tab3.badge =tab3.badge+1;
 };
 
-//		update  row into form data  table
+//		submit form ready for sync process =>  row into form data  table
 //		data => data from json of form model with actuals  
 //		formtype => form name
 //		 
-db.prototype.uploadForm  = function upload_FormData(data,formtype,formversion,formdisplayname,myrowid) {
+db.prototype.submitForm  = function submit_FormData(data,dbid) {
+			Ti.API.info('updating ' + dbid);
+			//grab date
+			var d=new Date();
+			d.toLocaleDateString();
+           	//update
+           	var mydb = Titanium.Database.open('fieldmate');
+           	var updateDate = d.toString();
+           	mydb.execute('UPDATE formdata SET submitteddate = ?, lastupdated = ? WHERE submitteddate IS NULL AND id = ?',updateDate , updateDate, dbid);
+           	Titanium.API.info('JUST updated, rowsAffected = ' + mydb.rowsAffected);
+			mydb.close(); // close db when you're done to save resources
+			
+            //increase /decreases badges
+            tab3.badge =tab3.badge+1;
+            tab2.badge =tab2.badge-1;
+};
+
+
+//		upload  row into form data  table
+//		data => data from json of form model with actuals  
+//		formtype => form name
+//		 
+db.prototype.uploadForm  = function upload_FormData(data,dbid) {
 			Ti.API.info('about to update row id =>' + myrowid);
 			//grab date
 			var d=new Date();
@@ -143,11 +161,11 @@ db.prototype.uploadForm  = function upload_FormData(data,formtype,formversion,fo
            	//update
            	var mydb = Titanium.Database.open('fieldmate');
            	var updateDate = d.toString();
-           	mydb.execute('UPDATE formdata SET syncdate = ? WHERE syncdate IS NULL and rowid =  ? ', updateDate ,myrowid );
+           	mydb.execute('UPDATE formdata SET syncdate = ? WHERE syncdate IS NULL and id  =  ? ', updateDate ,dbid );
            	Titanium.API.info('JUST updated, rowsAffected = ' + mydb.rowsAffected);
 			mydb.close(); // close db when you're done to save resources
 			
-            //increase badges
+            //increase /decreases badges
             tab3.badge =0;
 };              
                           
@@ -177,9 +195,13 @@ db.prototype.readForms = function readForms(state)
   	Ti.API.info(forms);
   	var data = [];
   	while (forms.isValidRow()) {
+  				var mydata  = forms.fieldByName('data');
+  				var mytitle = JSON.parse(mydata);
+  				mytitle = mytitle.sitename + ' ' + forms.fieldByName('inserteddate');
 				data.push({
 					dbrowid: forms.fieldByName('id'),
-				  	title: forms.fieldByName('displayname') + forms.fieldByName('inserteddate'),
+					formmodel : mydata,
+				  	title: mytitle,
 				  	hasChild: true,
 				  	url:'/views/v_GaugingCard_Master.js'
 				});	

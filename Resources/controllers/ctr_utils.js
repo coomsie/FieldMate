@@ -9,7 +9,7 @@ function utils() {
 	if (Titanium.Platform.name == 'android') {
 		isAndroid = true;
 	}
-	
+
 	// //*** Protected variables:
 	// var somevar = "";
 
@@ -29,7 +29,8 @@ function utils() {
 		//check network if not do nothing
 		if (me.checkNetwork()) {
 			//start progress bar
-			if(progressBar) progressBar.setProgressMessage('Downloading ' + myfilename +' ');
+			if(progressBar)
+				progressBar.setProgressMessage('Downloading ' + myfilename +' ');
 			var myresult;
 			var xhr2 = Titanium.Network.createHTTPClient();
 			xhr2.setTimeout(40000);
@@ -45,14 +46,16 @@ function utils() {
 				//Titanium.API.info(myobj);
 				///do something with data.
 				me.saveLookupFiles(myfilename,myobj,progressBar);
-				if(progressBar) progressBar.setProgress();
+				if(progressBar)
+					progressBar.setProgress();
 				fn_callback();
 			};
 			xhr2.onerror = function(e) {
 				Ti.API.error('error getting data' + e.error);
 				m.errorMessage.concat(e.error);
 				m.errorDialog.show();
-				if(progressBar) progressBar.hide();
+				if(progressBar)
+					progressBar.hide();
 			};
 			xhr2.open("GET",myurl);
 			xhr2.send();
@@ -71,10 +74,11 @@ function utils() {
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
 			//check already exists? =>delete it
 			if(f.exists)
-			f.deleteFile;
+				f.deleteFile;
 			f.write(JSON.stringify(myobj));
 			Titanium.API.info('file written');
-			if(progressBar) progressBar.setProgressMessage('Written file ' + myfilename +' ');
+			if(progressBar)
+				progressBar.setProgressMessage('Written file ' + myfilename +' ');
 			return true;
 		} catch(e) {
 			Titanium.API.info('writing file lookups error' + e.error);
@@ -90,7 +94,7 @@ function utils() {
 	//		myfilename => file name to store for persistences
 	//		fn_callback => function to call back
 	utils.prototype.readLookupFiles = function readLookupFiles(myfilename,myobj,fn_callback) {
-	this.readFiles(myfilename,myobj,fn_callback,'LookupData','app');
+		this.readFiles(myfilename,myobj,fn_callback,'LookupData','app');
 	}
 	//		Read Model data from device and place in object
 	///
@@ -98,7 +102,7 @@ function utils() {
 	//		myfilename => file name to store for persistences
 	//		fn_callback => function to call back
 	utils.prototype.readFormModels = function readFormModels(myfilename,myobj,fn_callback) {
-	this.readFiles(myfilename,myobj,fn_callback,'models','res');
+		this.readFiles(myfilename,myobj,fn_callback,'models','res');
 	}
 	///
 	/// basic worker for above function
@@ -112,9 +116,9 @@ function utils() {
 			Titanium.API.info('starting reading files');
 			//var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'LookupData');
 			if(dirtype==='app')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
 			if(dirtype==='res')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
 			appDir.createDirectory();
 			Titanium.API.info(appDir.nativePath);
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
@@ -147,7 +151,6 @@ function utils() {
 		}
 		return true;
 	};
-	
 	///
 	//		Check for Lookup data from device
 	///
@@ -156,7 +159,6 @@ function utils() {
 	utils.prototype.lookupFilesExists = function lookupFilesExists(myfilename) {
 		return this.FilesExists(myfilename,'LookupData','app');
 	}
-	
 	/// basic worker for above function
 	//		myfilename => file name to store for persistences
 	//		return result =>bool
@@ -166,9 +168,9 @@ function utils() {
 		try {
 			Titanium.API.info('starting checking for files');
 			if(dirtype==='app')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
 			if(dirtype==='res')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
 			//appDir.createDirectory();
 			Titanium.API.info(appDir.nativePath);
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
@@ -182,7 +184,6 @@ function utils() {
 			return false;
 		}
 	};
-	
 	///
 	//		Check for Lookup data from device
 	///
@@ -200,9 +201,9 @@ function utils() {
 		try {
 			Titanium.API.info('starting checking for file Timestamp');
 			if(dirtype==='app')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,dir);
 			if(dirtype==='res')
-			var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
+				var appDir = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,dir);
 			//appDir.createDirectory();
 			Titanium.API.info(appDir.nativePath);
 			var f = Titanium.Filesystem.getFile(appDir.nativePath,myfilename);
@@ -216,7 +217,6 @@ function utils() {
 			return false;
 		}
 	};
-
 	///
 	//		Create a progress bar
 	///
@@ -236,48 +236,46 @@ function utils() {
 
 			me.totalfiles = totalfiles;
 			me.action = action;
-			
-			try {
-				if (Titanium.Platform.name == 'iPhone OS')
-				{		
-				//create the UI for iPhone
-				Titanium.API.info('creating ui of progress bar');
-				
-				this.flexSpace=Titanium.UI.createButton({
-				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-				});
 
-				this.ui=Titanium.UI.createProgressBar({
-					width:250,
-					min:0,
-					max:totalfiles,
-					value:0,
-					color:'#fff',
-					message: action + ' 0 of '+ totalfiles,
-					font: {
-						fontSize:14,
-						fontWeight:'bold'
-					},
-					style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN
-				});
+			try {
+				if (Titanium.Platform.name == 'iPhone OS') {
+					//create the UI for iPhone
+					Titanium.API.info('creating ui of progress bar');
+
+					this.flexSpace=Titanium.UI.createButton({
+						systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+					});
+
+					this.ui=Titanium.UI.createProgressBar({
+						width:250,
+						min:0,
+						max:totalfiles,
+						value:0,
+						color:'#fff',
+						message: action + ' 0 of '+ totalfiles,
+						font: {
+							fontSize:14,
+							fontWeight:'bold'
+						},
+						style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN
+					});
 
 				}
 				// create Android Progress Indicator
-				else
-				{
-				// create indicator for Android
-				this.ui = Titanium.UI.createActivityIndicator({
-					location:Titanium.UI.ActivityIndicator.DIALOG,
-					type:Titanium.UI.ActivityIndicator.DETERMINANT,
-					message: action + ' 0 of '+ totalfiles,
-					min:0,
-					max:totalfiles,
-					value:0
-				});
+				else {
+					// create indicator for Android
+					this.ui = Titanium.UI.createActivityIndicator({
+						location:Titanium.UI.ActivityIndicator.DIALOG,
+						type:Titanium.UI.ActivityIndicator.DETERMINANT,
+						message: action + ' 0 of '+ totalfiles,
+						min:0,
+						max:totalfiles,
+						value:0
+					});
 				}
 				//show
 				this.ui.show();
-				
+
 				return true;
 			} catch(e) {
 				Titanium.API.info('creating progress bar error' + e.error);
@@ -286,24 +284,21 @@ function utils() {
 				return false;
 			};
 		};
-		
 		this.setProgressMessage  = function(action, load , totalfiles) {
-			
+
 			if(load)
-			me.load = load;
-			
+				me.load = load;
+
 			if (totalfiles)
-			me.totalfiles = totalfiles;
-			
-			if (Titanium.Platform.name == 'iPhone OS')
-				{	
-					me.ui.message = action + me.load + ' of '+ me.totalfiles;
-				}else{
-					//android
-					me.ui.setMessage = action + me.load + ' of '+ me.totalfiles;
-				}
+				me.totalfiles = totalfiles;
+
+			if (Titanium.Platform.name == 'iPhone OS') {
+				me.ui.message = action + me.load + ' of '+ me.totalfiles;
+			} else {
+				//android
+				me.ui.setMessage = action + me.load + ' of '+ me.totalfiles;
+			}
 		}
-			
 		//function to display the page progress
 		this.setProgress  = function() {
 			//check progress ?finished
@@ -317,11 +312,10 @@ function utils() {
 					alert(me.action + ' of data finished :)')
 				},2000);
 			} else {
-				if (Titanium.Platform.name == 'iPhone OS')
-				{
+				if (Titanium.Platform.name == 'iPhone OS') {
 					me.ui.value = me.load;
-				}else{
-				//android
+				} else {
+					//android
 					me.ui.setValue(me.load);
 				};
 				me.load++;
@@ -335,124 +329,86 @@ function utils() {
 			me.ui.hide();
 		};
 	};
-	
-	// 
-	// function to save form data to model  
-	// 
-	utils.prototype.saveForm = function saveForm(formtype,ctrl,ctrlname,formname) {
-	// //*** Public properties:
-	/// this.var
-	// //*** Protected variables:
-	// var somevar = "";
-	var formObj = Ti.App.model.currentform;
-	
-	// //*** Protected method used only internally. Call with 'me.my_own()'
-	// this.my_own = function (arg1) {
-	// };
-	//** PUBLIC METHODS ** //
-	
-	//get the active model
-	//update the field if valid
-	
-	//this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
-	
-	function setValues(obj){
-		// for (var i = obj.length - 1; i >= 0; i--){
-		// if(obj[i] === ctrlname)
-		// obj[i]
-		// };
-		formObj = obj;
+	//
+	// function to save form data to model
+	//
+	utils.prototype.saveForm = function saveForm() {
+		// //*** Public properties:
+		/// this.var
+		// //*** Protected variables:
+		// var somevar = "";
+
+		//get the active form
+		var formObj =Ti.App.model.get_currentform();
+
 		Ti.API.debug(formObj);
-		//formObj.spinbefore = '222' //ctrl.value.toString();
-		//Ti.API.debug(formObj.spinbefore);
-		Ti.API.debug(formObj);
-		db.prototype.insertNewForm(JSON.stringify(formObj), formtype,'1.01',formname);
-	
-	}
-	
+		////if form has id then its an update else new form
+		if(formObj.details.id === null)
+		{
+			db.prototype.insertNewForm(JSON.stringify(formObj), formObj.details.type,formObj.details.ver);
+		} else //needs updatig
+		{
+			db.prototype.updateForm(JSON.stringify(formObj) ,formObj.details.id);
+		}
 	};
-	
-	// 
-	// function to save form data to model  
-	// 
-	utils.prototype.submitForm = function submitForm(formtype,ctrl,ctrlname,formname) {
-	// //*** Public properties:
-	/// this.var
-	// //*** Protected variables:
-	// var somevar = "";
-	var formObj =Ti.App.model.currentform;
-	
-	// //*** Protected method used only internally. Call with 'me.my_own()'
-	// this.my_own = function (arg1) {
-	// };
-	//** PUBLIC METHODS ** //
-	
-	//get the active model
-	//update the field if valid
-	
-	//this.readFiles('m_' + formtype +'.json',formObj,setValues,'models','res');
-	
-	function setValues(obj){
-		// for (var i = obj.length - 1; i >= 0; i--){
-		// if(obj[i] === ctrlname)
-		// obj[i]
+	//
+	// function to save form data to model
+	//
+	utils.prototype.submitForm = function submitForm() {
+		// //*** Public properties:
+		/// this.var
+		// //*** Protected variables:
+		// var somevar = "";
+		var formObj =Ti.App.model.get_currentform();
+
+		// //*** Protected method used only internally. Call with 'me.my_own()'
+		// this.my_own = function (arg1) {
 		// };
-		formObj = obj;
+		//** PUBLIC METHODS ** //
 		Ti.API.debug(formObj);
-		//formObj.spinbefore = '222' //ctrl.value.toString();
-		//Ti.API.debug(formObj.spinbefore);
-		Ti.API.debug(formObj);
-		db.prototype.updateForm(JSON.stringify(formObj), formtype,'1.01',formname);
-	
-	}
-	
+		db.prototype.submitForm(JSON.stringify(formObj) ,formObj.details.id);
 	};
 	///
 	///	function to grab the users location via the gps
 	///
 	/// returns lat lng altidue object
-	utils.prototype.getLocation = function getLocation()
-		{
-			Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+	utils.prototype.getLocation = function getLocation() {
+		Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
 
-			//
-			//  SET DISTANCE FILTER.  THIS DICTATES HOW OFTEN AN EVENT FIRES BASED ON THE DISTANCE THE DEVICE MOVES
-			//  THIS VALUE IS IN METERS
-			//
-			Titanium.Geolocation.distanceFilter = 5;
+		//
+		//  SET DISTANCE FILTER.  THIS DICTATES HOW OFTEN AN EVENT FIRES BASED ON THE DISTANCE THE DEVICE MOVES
+		//  THIS VALUE IS IN METERS
+		//
+		Titanium.Geolocation.distanceFilter = 5;
 
-			//
-			// GET CURRENT POSITION - THIS FIRES ONCE
-			//
-			Titanium.Geolocation.getCurrentPosition(function(e)
-			{
-			    if (e.error)
-			    {
-			        alert('Cannot get your current location');
-			        return;
-			    }
-			
-				var myobj = {
-			    longitude : e.coords.longitude,
-			  	latitude : e.coords.latitude,
-			    altitude : e.coords.altitude,
-			    heading : e.coords.heading,
-			    accuracy : e.coords.accuracy,
-			    speed : e.coords.speed,
-			    timestamp : e.coords.timestamp,
-			    altitudeAccuracy : e.coords.altitudeAccuracy
-			    }
-				return myobj;
-			});
-		};
-		
+		//
+		// GET CURRENT POSITION - THIS FIRES ONCE
+		//
+		Titanium.Geolocation.getCurrentPosition( function(e) {
+			if (e.error) {
+				alert('Cannot get your current location');
+				return;
+			}
+
+			var myobj = {
+				longitude : e.coords.longitude,
+				latitude : e.coords.latitude,
+				altitude : e.coords.altitude,
+				heading : e.coords.heading,
+				accuracy : e.coords.accuracy,
+				speed : e.coords.speed,
+				timestamp : e.coords.timestamp,
+				altitudeAccuracy : e.coords.altitudeAccuracy
+			}
+			return myobj;
+		});
+	};
 	///
 	/// function to create map view
 	///
-	/// returns map view for win. 
-	utils.prototype.create_mapView = function create_mapView(lat, lng , title, subtitle)
-		{
-		
+	/// returns map view for win.
+	utils.prototype.create_mapView = function create_mapView(lat, lng , title, subtitle) {
+
 		Ti.API.debug(lat + ' ' +  lng + ' ' + title+ ' ' + subtitle);
 		///MAP VIEW
 		var mypushpin = Titanium.Map.createAnnotation({
@@ -469,27 +425,30 @@ function utils() {
 		//
 		var _mapview = Titanium.Map.createView({
 			mapType: Titanium.Map.STANDARD_TYPE,
-			region:{latitude:lat, longitude:lng, latitudeDelta:0.01, longitudeDelta:0.01},
+			region: {
+				latitude:lat,
+				longitude:lng,
+				latitudeDelta:0.01,
+				longitudeDelta:0.01
+			},
 			animate:true,
 			regionFit:true,
 			userLocation:true,
 			annotations:[mypushpin]
 		});
-		
+
 		if (!isAndroid) {
 			_mapview.addAnnotation(mypushpin);
 		}
 		_mapview.selectAnnotation(mypushpin);
-		
+
 		return _mapview;
 	};
-		
 	///
 	/// create window with nav bars etc to show map view in
 	///
 	// open with //w.open({modal:true});
-	utils.prototype.createMapWindow = function createMapWindow(_mapview)
-		{
+	utils.prototype.createMapWindow = function createMapWindow(_mapview) {
 		//open  window showing map
 		var w = Titanium.UI.createWindow({
 			backgroundColor:'#336699',
@@ -501,16 +460,16 @@ function utils() {
 			style:Titanium.UI.iPhone.SystemButtonStyle.PLAIN
 		});
 		w.setLeftNavButton(b);
-		
+
 		//
 		// TOOLBAR BUTTONS
 		//
-		
+
 		var flexSpace = Titanium.UI.createButton({
-				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 		});
-		
-		 // button to change map type to SAT
+
+		// button to change map type to SAT
 		var sat = null;
 		if (!Ti.App.utils.isAndroid) {
 			sat = Titanium.UI.createButton({
@@ -518,14 +477,14 @@ function utils() {
 				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
 			});
 		} else {
-			sat = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Sat'});
+			sat = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title : 'Sat'
+			});
 		}
-		sat.addEventListener('click',function()
-		{
+		sat.addEventListener('click', function() {
 			// set map type to satellite
 			_mapview.setMapType(Titanium.Map.SATELLITE_TYPE);
 		});
-		
 		// button to change map type to STD
 		var std = null;
 		if (!Ti.App.utils.isAndroid) {
@@ -534,14 +493,14 @@ function utils() {
 				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
 			});
 		} else {
-			std = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Std'});
+			std = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title : 'Std'
+			});
 		}
-		std.addEventListener('click',function()
-		{
+		std.addEventListener('click', function() {
 			// set map type to standard
 			_mapview.setMapType(Titanium.Map.STANDARD_TYPE);
 		});
-		
 		// button to change map type to HYBRID
 		var hyb = null;
 		if (!Ti.App.utils.isAndroid) {
@@ -550,10 +509,11 @@ function utils() {
 				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
 			});
 		} else {
-			hyb = Titanium.UI.Android.OptionMenu.createMenuItem({title : 'Hyb'});
+			hyb = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title : 'Hyb'
+			});
 		}
-		hyb.addEventListener('click',function()
-		{
+		hyb.addEventListener('click', function() {
 			// set map type to hybrid
 			_mapview.setMapType(Titanium.Map.HYBRID_TYPE);
 		});
@@ -565,30 +525,31 @@ function utils() {
 			menu.add(sat);
 			Titanium.UI.Android.OptionMenu.setMenu(menu);
 		}
-	
+
 		//
 		// NAVBAR BUTTONS
 		//
 		var removeAll = null;
-		
+
 		if (!Ti.App.utils.isAndroid) {
 			removeAll = Titanium.UI.createButton({
 				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
 				title:'Clear'
 			});
 		} else {
-			removeAll = Titanium.UI.Android.OptionMenu.createMenuItem({title:'Remove All'});
+			removeAll = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title:'Remove All'
+			});
 		}
-		removeAll.addEventListener('click', function()
-		{
+		removeAll.addEventListener('click', function() {
 			_mapview.removeAllAnnotations();
 		});
 		if (!Ti.App.utils.isAndroid) {
 			w.rightNavButton = removeAll;
 		}
-		
+
 		w.add(_mapview);
-		b.addEventListener('click',function() ///close btn
+		b.addEventListener('click', function() ///close btn
 		{
 			Ti.API.debug('turn gps off');
 			_mapview.userLocation=false; //turn off gps.
@@ -596,7 +557,5 @@ function utils() {
 		});
 		return w;
 	}
-	
-	
 	//end of main function closure
 }

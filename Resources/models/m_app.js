@@ -2,9 +2,17 @@ function model() {
 
 	//*** 'me' acts as an alias that can be used within the methods
 	var me = this;
+	var currentform = null; ///load the current form in use here.
 
 	// //*** Public properties:
-	this.currentform={}; ///load the current form in use here.
+	this.set_currentform  = function set_currentform(v)
+	{
+		//Ti.API.info(v);
+		currentform = v;
+		//Ti.API.info(currentform);
+	}
+	this.get_currentform = function () { 
+		return currentform };
 	this.mysites = new Object;
 	this.mymetertypes;//= new Object;
 	this.appConfig = {

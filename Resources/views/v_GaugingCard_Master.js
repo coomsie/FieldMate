@@ -1,16 +1,54 @@
-Titanium.include('../../models/m_GaugingCard.js');
 
-//load current forms model to var
+// FORM MODEL
+var myform = {
+	//variables that need to be present for all forms
+	details : {
+	id: null, //id form db
+	name: null,
+	type: 'GaugingCard',
+	ver : 1.0
+	}, 
+	siteid : '',
+	sitename : '',
+	river : '',
+	lat : 0,
+	lng : 0,
+	datetaken : '',
+	metertype : null,
+	spintestbefore : null,
+	spintestafter : null,
+	measuredmethod : null,
+	measuredposition : null,
+	measureddistance : null,
+	measuredlandmark : null,
+	winddirection : null,
+	windspeed : null,
+	angletype : null,
+	anglecurrent : null,
+	watercolour : null,
+	watercolour : null,
+	computeddischarge : null,
+	computedarea : null,
+	computedmeanvel : null,
+	readingremark : null,
+	stagereadings : [{
+	type : null,
+	timetaken : null,
+	recorder : null,
+	well : null,
+	gauge : null,
+	diff : null
+	}]
+	};
 
-//Ti.App.utils.readFormModels('m_GaugingCard.json',Ti.App.model.currentform,createFormMasterUI);
-var myform = new m_GauguingCard();
+if (Ti.App.model.get_currentform() === null)
+Ti.App.model.set_currentform(myform);
+// Ti.API.info('currentform' + Ti.App.model.get_currentform()) ;
+// Ti.API.info('own prop' + Ti.App.model.hasOwnProperty("currentform"));
 
-createFormMasterUI( myform , false);
+createFormMasterUI( null , false);
 
 function createFormMasterUI(frmModel, readonlymode){
-
-//set up form model
-Ti.App.model.currentform = this.frmModel;
 
 //create  FORMS MASTER  UI
 
@@ -71,13 +109,21 @@ btn_submit.addEventListener('click',function(e)
 					});
 	alertDialog.show();
 	alertDialog.addEventListener('click',function(e){
-		if(e.index !== 1) 
-		Ti.App.utils.submitForm('GaugingCard',null,'spintestbefore','test1'); //simple save db test
+		if(e.index !== 1)
+		{
+		Ti.App.utils.submitForm(); //simple save db test
+		//close window.
+		Titanium.UI.currentWindow.close();
+		}
+		
+		
 	})
 });
 
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
 ///if (!readonlymode)
 Titanium.UI.currentWindow.rightNavButton = btn_submit;
+
+Titanium.UI.currentWindow.title = 'Gauging Recorder';
 
 }

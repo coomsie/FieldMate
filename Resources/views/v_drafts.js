@@ -58,15 +58,14 @@ me.tableview.addEventListener('click', function(e)
 		}
 		tab2.open(win,{animated:true});
 	}
+	
+	//load form data into current form plus load id
+	var myform = JSON.parse(e.rowData.formmodel);
+	myform.details.id =e.rowData.dbrowid;  
+	Ti.App.model.set_currentform(myform);
 });
 
-// add table view to the window
-// if(!win){
-	// Titanium.UI.currentWindow.add(tableview);
-// }else
-// {
-	win.add(me.tableview);
-// }
+win.add(me.tableview);
 
 
 //try to update the tab badge by return row count

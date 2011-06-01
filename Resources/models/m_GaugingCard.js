@@ -40,7 +40,7 @@ function m_GauguingCard(){
 	diff : null
 	};
 
-	this.siteid=null;
+	m_GauguingCard.siteid= '67676';
 	this.sitename = null;
 	this.river = null;
 	this.datetaken = null;
