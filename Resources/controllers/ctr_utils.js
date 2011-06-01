@@ -534,12 +534,34 @@ function utils() {
 			// set map type to hybrid
 			_mapview.setMapType(Titanium.Map.HYBRID_TYPE);
 		});
+		//button for directions on native version
+		var dir = null;
 		if (!Ti.App.utils.isAndroid) {
-			w.setToolbar([flexSpace,std,flexSpace,hyb,flexSpace,sat,flexSpace]);
+			dir = Titanium.UI.createButton({
+				title:'Directions',
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+			});
+		} else {
+			dir = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title : 'Directions'
+			});
+		}
+		dir.addEventListener('click', function() {
+			//open url to native
+			var latlng = _mapview.region.latitude + "," + _mapview.region.longitude;
+			var url = "http://maps.google.com/maps?ll="+ latlng + "&daddr=" + latlng;
+			Ti.API.debug('turn gps off');
+			_mapview.userLocation=false; //turn off gps.
+			w.close();
+			Ti.Platform.openURL(url);
+		});
+		if (!Ti.App.utils.isAndroid) {
+			w.setToolbar([flexSpace,std,flexSpace,hyb,flexSpace,sat,flexSpace,dir,flexSpace]);
 		} else {
 			menu.add(std);
 			menu.add(hyb);
 			menu.add(sat);
+			menu.add(dir);
 			Titanium.UI.Android.OptionMenu.setMenu(menu);
 		}
 
