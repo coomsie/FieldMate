@@ -450,16 +450,21 @@ row = Ti.UI.createTableViewRow({
 //row.add(lb_spintestafter);
 //row.add(tb_spintestafter);
 
-		tableView.updateRow(1, {
-			title:'n/a'
-		}, {
-			animated:true
-		});
-		tableView.updateRow(2, {
-			title:'n/a'
-		}, {
-			animated:true
-		});
+		// tableView.updateRow(1, {
+			// title:'n/a'
+		// }, {
+			// animated:true
+		// });
+		// tableView.updateRow(2, {
+			// title:'n/a'
+		// }, {
+			// animated:true
+		// });
+// 		
+		tb_spintestbefore.enabled = false;
+		tb_spintestbefore.value = null;
+		tb_spintestafter.enabled = false;
+		tb_spintestafter.value = null;
 	}
 });
 

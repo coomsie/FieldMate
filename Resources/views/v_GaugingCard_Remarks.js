@@ -1,12 +1,13 @@
 //create  remarks UI
 
 var win = Titanium.UI.currentWindow;
+var myform = Ti.App.model.get_currentform();
 
 var remark = Titanium.UI.createTextArea({
 	height:200,
 	width:300,
 	top:10,
-	value:'',
+	value: myform.readingremark,
 	font: {
 		fontSize:20,
 		fontWeight:'bold'
@@ -18,12 +19,21 @@ var remark = Titanium.UI.createTextArea({
 	suppressReturn: false
 });
 
+remark.addEventListener('change' , function(e)
+{
+//save back to form value
+myform.readingremark = e.value;
+}
+)
+
 win.add(remark);
 
-//only add the button if draft or new tab is open. FROM OPEN FORM DATA
-fm = Ti.App.model.get_currentform();
-//if (fm.details.isReadonly !== 'true')
+win.addEventListener('close', function(e) {
+Ti.API.info('save form');
+Ti.App.utils.saveForm(); //simple save db test
+});
 
+//only add the button if draft or new tab is open. FROM OPEN FORM DATA
 
 //button
 //iphone version
@@ -32,7 +42,7 @@ var add = Titanium.UI.createButton({
 	title:'Add'
 });
 
-if (fm.details.isReadonly !== true)
+if (myform.details.isReadonly !== true)
 if (Ti.Platform.name === 'iPhone OS') {
 	add.addEventListener('click', function() {
 		//open dialog
@@ -46,7 +56,7 @@ if (Ti.Platform.name === 'iPhone OS') {
 //add if android
 
 // add android specific tests
-if (fm.details.isReadonly !== true)
+if (myform.details.isReadonly !== true)
 if (Titanium.Platform.osname === 'android') {
 	Ti.API.info("creating menu option");
 	var activity = Ti.Android.currentActivity;

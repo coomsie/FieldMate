@@ -72,7 +72,7 @@ win.add(tableView);
 // Region dialog
 //
 var dialog_region = Titanium.UI.createOptionDialog({
-	options:['North', 'Central', 'South'],
+	options:['CHCH Team', 'Timaru Team'],
 	//destructive:2,
 	//cancel:1,
 	title:'Choose region ..'
