@@ -32,15 +32,18 @@ var myform = {
 	computedarea : null,
 	computedmeanvel : null,
 	readingremark : null,
-	stagereadings : [{
-	typeid : null,
-	typedesc : null,
-	timetaken : null,
-	recorder : null,
-	epb : null,
-	esg : null,
-	diff : null
-	}]
+	stagereadings : [
+	// structure is
+	// {
+	// typeid : null,
+	// typedesc : null,
+	// timetaken : null,
+	// recorder : null,
+	// epb : null,
+	// esg : null,
+	// diff : null
+	// }
+	]
 	};
 
 if (Ti.App.model.get_currentform() === null)
