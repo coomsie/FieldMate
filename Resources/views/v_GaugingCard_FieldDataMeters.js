@@ -1,11 +1,10 @@
 //Ti.App.utils.readLookupFiles('metertypes.json',Ti.App.model.mymetertypes,fn_buildmeterTbl);
 
-
 var win = Titanium.UI.currentWindow;
 
 // create more button
 var btnAdd = Titanium.UI.createButton({
-	 title:'More'
+	title:'More'
 })
 var fulllist = false;
 //set listener
@@ -14,11 +13,10 @@ btnAdd.addEventListener('click', function(e) {
 	fulllist = true;
 	Ti.App.utils.readLookupFiles('metertypes.json',null,fn_buildmeterTbl);
 });
-
 win.setRightNavButton(btnAdd);
 
 function fn_buildmeterTbl(mymetertypes) {
-	
+
 	Ti.API.info('build list data');
 	///to hold list data
 	var data = [];
@@ -38,19 +36,16 @@ function fn_buildmeterTbl(mymetertypes) {
 				className:"metertypesdata"
 			});
 			thisRow.add(lb1);
-			
+
 			///favourite check
-			if (fulllist === false)
-			{
-			//only add if favourite
-			if (mymetertypes.data.item[i].Fav === 'true' ) 
-			data.push(thisRow);
+			if (fulllist === false) {
+				//only add if favourite
+				if (mymetertypes.data.item[i].Fav === 'true' )
+					data.push(thisRow);
+			} else {
+				data.push(thisRow);
 			}
-			else
-			{
-			data.push(thisRow);
-			}
-			
+
 			}
 		};
 	}
@@ -64,6 +59,7 @@ function fn_buildmeterTbl(mymetertypes) {
 
 	// create table view event listener
 	tableview.addEventListener('click', function(e) {
+
 		//Titanium.UI.createAlertDialog({title:'Table View',message:'row ' + row + ' index ' + index + ' section ' + section  + ' row data ' + rowdata}).show();
 		Ti.App.fireEvent('change_fielddata', {
 			rowid: 0,
@@ -71,6 +67,13 @@ function fn_buildmeterTbl(mymetertypes) {
 			hasChild:true,
 			url: '/views/v_GaugingCard_FieldDataMeters.js'
 		});
+
+		//update field in form
+		var myform = Ti.App.model.get_currentform();
+		myform.metertype = e.source.text;
+		Ti.App.model.set_currentform(myform);
+
+		//close form
 		win.close('/views/v_GaugingCard_FieldData.js', {
 			animated:true
 		});

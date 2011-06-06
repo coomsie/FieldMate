@@ -27,17 +27,18 @@ var myform = {
 	angletype : null,
 	anglecurrent : null,
 	watercolour : null,
-	watercolour : null,
+	watertemp : null,
 	computeddischarge : null,
 	computedarea : null,
 	computedmeanvel : null,
 	readingremark : null,
 	stagereadings : [{
-	type : null,
+	typeid : null,
+	typedesc : null,
 	timetaken : null,
 	recorder : null,
-	well : null,
-	gauge : null,
+	epb : null,
+	esg : null,
 	diff : null
 	}]
 	};

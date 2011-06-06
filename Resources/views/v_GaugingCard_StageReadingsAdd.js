@@ -26,9 +26,9 @@ var mytype = 'Type:*';
 //reading add data structure
 var rdata = {
 		myrowid: 0,
-		rtype : '', //tableView.data[0].title,
-		rtypeid: null,
-		datetaken : 0, // tableView.data[1].title,
+		typedesc : '', //tableView.data[0].title,
+		typeid: null,
+		timetaken : 0, // tableView.data[1].title,
 		recorder : '', // tableView.data[2].title,
 		epb : '', // tableView.data[3].title,
 		esg : '', // tableView.data[4].title,
@@ -42,16 +42,16 @@ if (win.data) {
 	editmode = true; ///flag to understand if editing.
 	//set row ids where came from
 	rdata.myrowid = win.myrowid;
-	rdata.rtype = win.data.rtype;
-	rdata.rtypeid= win.data.rtypeid;
-	rdata.datetaken = win.data.datetaken;
+	rdata.typedesc = win.data.typedesc;
+	rdata.typeid= win.data.typeid;
+	rdata.timetaken = win.data.timetaken;
 	rdata.recorder = win.data.recorder;
 	rdata.epb = win.data.epb;
 	rdata.esg = win.data.esg;
 	rdata.diff= win.data.diff;
 
 	//set value for edited
-	mytype = mytype  + ' ' + win.data.rtype;
+	mytype = mytype  + ' ' + win.data.typedesc;
 	}
 	else
 	{
@@ -59,7 +59,7 @@ if (win.data) {
 	}
 
 data[0] = {
-			title:mytype,
+			title: mytype,
 			hasChild:true , 
 	 		validation:{ reqd:true },
 	 		isValid : false,
@@ -86,10 +86,10 @@ var tb_time = Titanium.UI.createTextField({
 
 //set value for edited
 if(win.data)
-tb_time.value = win.data.datetaken;
+tb_time.value = win.data.timetaken;
 
 tb_time.addEventListener('blur',function(e){
-	rdata.datetaken = e.source.value;
+	rdata.timetaken = e.source.value;
 	edited = true;
 	if(e.source.isValid === false)
 	{
@@ -287,13 +287,13 @@ var dialog = Titanium.UI.createOptionDialog({
 // add event listener
 dialog.addEventListener('click',function(e)
 {
-	//if (rdata.rtypeid = null) //first time fired
+	//if (rdata.typeid = null) //first time fired
 	valMessages.reqdfieldsRemaining=valMessages.reqdfieldsRemaining - 1;
 	
 	Titanium.API.info(e.source.options[e.index]);
-	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] , rtypeid: e.index ,validation:{ reqd:true },isValid : false },{animated:true});
-	rdata.rtypeid = e.source.options[e.index].toString().charAt(0);
-	rdata.rtype = e.source.options[e.index];
+	tableView.updateRow(0,{title:'Type: ' + e.source.options[e.index] , typeid: e.index ,validation:{ reqd:true },isValid : false },{animated:true});
+	rdata.typeid = e.source.options[e.index].toString().charAt(0);
+	rdata.typedesc = e.source.options[e.index];
 	edited = true;
 });
 

@@ -33,6 +33,7 @@ var tb_discharge = Titanium.UI.createTextField({
 	right:0,
 	width:150,
 	enabled: isEnabled,
+	value: myform.computeddischarge,
 	isValid: '',
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
@@ -75,6 +76,7 @@ var tb_area = Titanium.UI.createTextField({
 	right:0,
 	width:150,
 	enabled: isEnabled,
+	value: myform.computedarea,
 	isValid: '',
 	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
@@ -116,6 +118,7 @@ var tb_meanvel = Titanium.UI.createTextField({
 	right:0,
 	width:150,
 	enabled: isEnabled,
+	value: myform.computedmeanvel,
 	isValid: '',
 	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
@@ -151,3 +154,10 @@ var tableView = Ti.UI.createTableView({
 });
 
 win.add(tableView);
+
+
+win.addEventListener('close', function(e) {
+//Ti.API.info('save form');
+if (myform.details.isReadonly !== true)
+Ti.App.utils.saveForm(); //simple save db test
+});

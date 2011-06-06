@@ -49,6 +49,7 @@ var tableView = Titanium.UI.createTableView({
 // add delete event listener
 tableView.addEventListener('delete', function(e) {
 	Titanium.API.info("row myid = " + e.row.myid + "deleted - row="+e.row+", index="+e.index+", section="+e.section);
+	removeArrayItem(myform.stagereadings,e.index);
 });
 // add click event listener
 tableView.addEventListener('click', function(e) {
@@ -78,6 +79,15 @@ tableView.addEventListener('click', function(e) {
 });
 win.add(header);
 win.add(tableView);
+
+//add existing rows from form
+for (var i=0; i < myform.stagereadings.length; i++) {
+  //for every row create one.
+  tableView.appendRow( create_stageRow(myform.stagereadings[i]) , {
+		animated:true
+	});
+};
+
 
 Ti.App.db.readStageReadings(myform.siteid,createHistoryView);
 
@@ -181,7 +191,7 @@ function createHistoryRows(data) {
 				row.header = 'History';
 
 			var type =  mylb(data[i].type,20,5);
-			var datetaken =  mylb(data[i].datetaken,65,30,12);
+			var timetaken =  mylb(data[i].datetaken,65,30,12);
 			var recorder =  mylb(data[i].recorderstage,53,100);
 			var epb =  mylb(data[i].wellstage,53,160);
 			var esg =  mylb('',53,225);
@@ -191,13 +201,13 @@ function createHistoryRows(data) {
 				var diff =  mylb('',20,295);
 			}
 			type.rowNum = i;
-			datetaken.rowNum = i;
+			timetaken.rowNum = i;
 			recorder.rowNum = i;
 			epb.rowNum = i;
 			esg.rowNum = i;
 			diff.rowNum = i;
 			row.add(type);
-			row.add(datetaken);
+			row.add(timetaken);
 			row.add(recorder);
 			row.add(epb);
 			row.add(esg);
@@ -215,12 +225,39 @@ Ti.App.addEventListener('add_reading', function(e) {
 	tableView.appendRow( create_stageRow(e) , {
 		animated:true
 	});
+	
+	//add reading to myform
+	r = {
+	typeid : e.typeid,
+	typedesc : e.typedesc,
+	timetaken : e.timetaken,
+	recorder : e.recorder,
+	epb : e.epb,
+	esg : e.esg,
+	diff : e.diff
+	}
+	myform.stagereadings.push(r);
+	
 });
 /// event to accept the stage readings add event
 Ti.App.addEventListener('edit_reading', function(e) {
 	tableView.updateRow( e.myrowid ,create_stageRow(e) , {
 		animated:true
 	});
+	
+	//edit reading to myform
+	r = {
+	typeid : e.typeid,
+	typedesc : e.typedesc,
+	timetaken : e.timetaken,
+	recorder : e.recorder,
+	epb : e.epb,
+	esg : e.esg,
+	diff : e.diff
+	}
+	//get row and update
+	myform.stagereadings[e.myrowid] = r;
+	
 });
 //function for add reading and edit reading
 // creating the approirate row
@@ -229,8 +266,8 @@ function create_stageRow(e) {
 	row.height  =38;
 	row.className = 'Stage';
 	//add data to row
-	var type =  mylb(e.rtypeid,20,5);
-	var datetaken =  mylb(e.datetaken,50,30);
+	var type =  mylb(e.typeid,20,5);
+	var timetaken =  mylb(e.timetaken,50,30);
 	var recorder =  mylb(e.recorder,53,100);
 	var epb =  mylb(e.epb,53,160);
 	var esg =  mylb(e.esg,53,225);
@@ -240,16 +277,16 @@ function create_stageRow(e) {
 		var diff =  mylb('',20,295);
 	}
 	row.add(type);
-	row.add(datetaken);
+	row.add(timetaken);
 	row.add(recorder);
 	row.add(epb);
 	row.add(esg);
 	row.add(diff);
 	row.data = {
 		myrowid: tableView.length-1,
-		rtypeid:e.rtypeid,
-		rtype:e.rtype,
-		datetaken:e.datetaken,
+		typeid:e.typeid,
+		typedesc:e.typedesc,
+		timetaken:e.timetaken,
 		recorder:e.recorder,
 		epb:e.epb,
 		esg:e.esg,
@@ -257,3 +294,29 @@ function create_stageRow(e) {
 	};	///testing
 	return row;
 }
+
+
+
+win.addEventListener('close', function(e) {
+//Ti.API.info('save form');
+if (myform.details.isReadonly !== true)
+Ti.App.utils.saveForm(); //simple save db test
+});
+
+
+//util
+
+// Array Remove - By John Resig (MIT Licensed)
+// // Remove the second item from the array
+// removeArrayItem(array,1);
+// // Remove the second-to-last item from the array
+// removeArrayItem(array,-2);
+// // Remove the second and third items from the array
+// removeArrayItem(array,1,2);
+// // Remove the last and second-to-last items from the array
+// removeArrayItem(array,-2,-1);
+removeArrayItem = function(array, from, to) {
+  var rest = array.slice((to || from) + 1 || array.length);
+  array.length = from < 0 ? array.length + from : from;
+  return array.push.apply(array, rest);
+};

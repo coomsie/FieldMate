@@ -108,7 +108,7 @@ btn_done.addEventListener('click', function(e)
 var data = [];
 
 data[0] = {
-	title:'Type:*',
+	title:'Type:*' + myform.metertype,
 	hasChild:hasChild,
 	url:'/views/v_GaugingCard_FieldDataMeters.js',
 	header:'Meter',
@@ -134,6 +134,7 @@ var tb_spintestbefore = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	enabled: isEnabled,
+	value: myform.spintestbefore,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
@@ -147,7 +148,13 @@ tb_spintestbefore.addEventListener('change', function(e) {
 
 tb_spintestbefore.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.spintestbefore = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 tb_spintestbefore.addEventListener('focus', function(e) {
@@ -175,6 +182,7 @@ var tb_spintestafter = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	enabled: isEnabled,
+	value: myform.spintestafter,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
@@ -189,7 +197,13 @@ tb_spintestafter.addEventListener('change', function(e) {
 
 tb_spintestafter.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.spintestafter = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 row.add(lb_spintestafter);
@@ -197,8 +211,8 @@ row.add(tb_spintestafter);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'Method:*',
-	dialogid:'MeasuredMethod',
+	title:'Method:*' + myform['measuredmethod'],
+	dialogid:'measuredmethod',
 	hasChild:hasChild,
 	origtitle: 'Method: ',
 	dialogoptions :['slackline','cableway','boat','upstream bridge','downstream bridge','wading', 'volumetric'],
@@ -221,6 +235,7 @@ var tb_measured = Titanium.UI.createTextField({
 	left:120,
 	width:200,
 	enabled: isEnabled,
+	value: myform.measureddistance,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -233,7 +248,13 @@ tb_measured.addEventListener('change', function(e) {
 
 tb_measured.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.measureddistance = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 row.add(lb_measured);
@@ -242,26 +263,26 @@ row.add(tb_measured);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'Position:*',
+	title:'Position:*'+ myform['measuredposition'],
 	hasChild:hasChild,
-	dialogid:'MeasuredPosition',
+	dialogid:'measuredposition',
 	origtitle: 'Position: ',
 	dialogoptions : ['above','below','at']
 };
 
 data[data.length+1] = {
-	title:'Landmark:*',
+	title:'Landmark:*'+ myform['measuredlandmark'],
 	hasChild:hasChild,
-	dialogid:'MeasuredLandmark',
+	dialogid:'measuredlandmark',
 	origtitle: 'Landmark: ',
 	dialogoptions : ['Bridge','Recorder','Ford','Weir','Culvert D/S','Culvert U/S','Staff Gauge','Confluence','Slackline','Intake','Cable Way','Underneath Bridge']
 };
 
 data[data.length+1] = {
-	title:'Direction:*',
+	title:'Direction:*'+ myform['winddirection'],
 	hasChild:hasChild,
 	header:'Wind',
-	dialogid:'WindDirection',
+	dialogid:'winddirection',
 	origtitle: 'Direction: ',
 	dialogoptions : ['Up','Down','Across']
 };
@@ -282,6 +303,7 @@ var tb_wind = Titanium.UI.createTextField({
 	left:120,
 	width:200,
 	enabled: isEnabled,
+	value: myform.windspeed,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -294,7 +316,13 @@ tb_wind.addEventListener('change', function(e) {
 
 tb_wind.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.windspeed = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 row.add(lb_wind);
@@ -303,10 +331,10 @@ row.add(tb_wind);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'Type:*',
+	title:'Type:*' + myform['angletype'],
 	hasChild:hasChild,
 	header:'Angle',
-	dialogid:'AngleType',
+	dialogid:'angletype',
 	origtitle: 'Type: ',
 	dialogoptions : ['variable','nil','constant']
 };
@@ -327,6 +355,7 @@ var tb_current = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	enabled: isEnabled,
+	value: myform.anglecurrent,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -339,7 +368,13 @@ tb_current.addEventListener('change', function(e) {
 
 tb_current.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.anglecurrent = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 row.add(lb_current);
@@ -348,10 +383,10 @@ row.add(tb_current);
 data[data.length+1] = row;
 
 data[data.length+1] = {
-	title:'Colour:*',
+	title:'Colour:*'+ myform['watercolour'],
 	hasChild:hasChild,
 	header:'Water',
-	dialogid:'WaterColour',
+	dialogid:'watercolour',
 	origtitle: 'Colour: ',
 	dialogoptions : ['discoloured','clear','turbid']
 };
@@ -372,6 +407,7 @@ var tb_temp = Titanium.UI.createTextField({
 	left:100,
 	width:220,
 	enabled: isEnabled,
+	value: myform.watertemp,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 	validation:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -384,7 +420,13 @@ tb_temp.addEventListener('change', function(e) {
 
 tb_temp.addEventListener('blur', function(e) {
 	if(e.source.isValid === false)
+	{
 	valMessages.displayValErr();
+	}else
+	{
+		myform.watertemp = e.value;
+		Ti.App.model.set_currentform(myform);
+	}
 });
 
 row.add(lb_temp);
@@ -494,6 +536,16 @@ dialog.addEventListener('click', function(e) {
 		origtitle: dialog.origtitle ,
 		dialogoptions: e.source.options
 	});
+	//update field in form
+	var myform = Ti.App.model.get_currentform();
+	myform[dialog.dialogid] = e.source.options[e.index];
+	Ti.App.model.set_currentform(myform);
+});
+
+win.addEventListener('close', function(e) {
+//Ti.API.info('save form');
+if (myform.details.isReadonly !== true)
+Ti.App.utils.saveForm(); //simple save db test
 });
 
 //add validation
