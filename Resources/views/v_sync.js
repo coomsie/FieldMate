@@ -78,6 +78,24 @@ me.tableview.addEventListener('click', function(e) {
 // add table view to the window
 win.add(me.tableview);
 
+
+///add toolbar for switches
+var toolbarSwitchDown = Titanium.UI.createSwitch({
+			value:false
+		});
+var lbSwitchDown = Titanium.UI.createLabel({
+	text: 'Download',
+	color:'White',
+	font:{fontSize:'.5em'},
+	textAlign:'right'
+});
+var myflexSpace=Titanium.UI.createButton({
+						systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+					});
+if (Titanium.Platform.name === 'iPhone OS') {
+				me.win.setToolbar([myflexSpace,lbSwitchDown,toolbarSwitchDown,myflexSpace]);
+			};
+
 var alertDialog = Titanium.UI.createAlertDialog({
 	title: 'Update',
 	message: 'You are about to update?',
@@ -87,8 +105,13 @@ var alertDialog = Titanium.UI.createAlertDialog({
 alertDialog.addEventListener('click', function(e) {
 	if(e.index !== 1) {
 		if(Ti.App.utils.checkNetwork) {
+			// do download if checked
+			if (toolbarSwitchDown.value === true)
+			{ 
 			dataDownload(); ///when finished raise event to start upload
-			//for testing purposes Ti.App.fireEvent('sync_DownloadingFinished');
+			}else{
+			alert('doing upload');			
+			}
 		};
 	};
 });

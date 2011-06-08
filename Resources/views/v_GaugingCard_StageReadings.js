@@ -49,7 +49,7 @@ var tableView = Titanium.UI.createTableView({
 // add delete event listener
 tableView.addEventListener('delete', function(e) {
 	Titanium.API.info("row myid = " + e.row.myid + "deleted - row="+e.row+", index="+e.index+", section="+e.section);
-	removeArrayItem(myform.stagereadings,e.index);
+	Ti.App.utils.removeArrayItem(myform.stagereadings,e.index);
 });
 // add click event listener
 tableView.addEventListener('click', function(e) {
@@ -304,19 +304,4 @@ Ti.App.utils.saveForm(); //simple save db test
 });
 
 
-//util
 
-// Array Remove - By John Resig (MIT Licensed)
-// // Remove the second item from the array
-// removeArrayItem(array,1);
-// // Remove the second-to-last item from the array
-// removeArrayItem(array,-2);
-// // Remove the second and third items from the array
-// removeArrayItem(array,1,2);
-// // Remove the last and second-to-last items from the array
-// removeArrayItem(array,-2,-1);
-removeArrayItem = function(array, from, to) {
-  var rest = array.slice((to || from) + 1 || array.length);
-  array.length = from < 0 ? array.length + from : from;
-  return array.push.apply(array, rest);
-};

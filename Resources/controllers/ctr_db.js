@@ -191,6 +191,20 @@ db.prototype.uploadForm  = function upload_FormData(dbid) {
             tab3.badge =0;
 };              
                           
+//		delete  form from data  table
+//		form row id   
+//		 
+db.prototype.deleteDraftForm  = function delete_DraftFormData(dbid) {
+			Ti.API.info('about to delete row id =>' + dbid);
+           	//delete
+           	var mydb = Titanium.Database.open('fieldmate');
+           	mydb.execute('DELETE from formdata WHERE id  =  ? ', dbid );
+           	Titanium.API.info('JUST deleted, rowsAffected = ' + mydb.rowsAffected);
+			mydb.close(); // close db when you're done to save resources
+			
+            //increase /decreases badges
+            tab2.badge -=1;
+};              
 
 //	read formsfrom db
 // state => 'draft' or 'submitted'               

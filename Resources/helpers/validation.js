@@ -15,10 +15,7 @@ function validationMessages(){
 		top:40,
 		touchEnabled:false,
 		visible:true,
-		zIndex: 999,
-		orientationModes : [
-		Titanium.UI.PORTRAIT
-		]
+		zIndex: 999
 	});
 
 	this.valView =  Titanium.UI.createView({

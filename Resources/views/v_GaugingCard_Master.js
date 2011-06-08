@@ -6,7 +6,8 @@ var myform = {
 	id: null, //id form db
 	name: null,
 	type: 'GaugingCard',
-	ver : 1.0,
+	ver: 1.0,
+	user: null,
 	isReadonly: false
 	}, 
 	siteid : '',

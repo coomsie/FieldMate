@@ -450,7 +450,7 @@ function utils() {
 			},
 			animate:true,
 			regionFit:true,
-			userLocation:true,
+			userLocation:false,
 			annotations:[mypushpin]
 		});
 
@@ -534,6 +534,27 @@ function utils() {
 			// set map type to hybrid
 			_mapview.setMapType(Titanium.Map.HYBRID_TYPE);
 		});
+		
+		//button for gps on native version
+		var gps = null;
+		if (!Ti.App.utils.isAndroid) {
+			gps = Titanium.UI.createButton({
+				title:'GPS',
+				backgroundColor: '#555'
+				//style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+			});
+		} else {
+			gps = Titanium.UI.Android.OptionMenu.createMenuItem({
+				title : 'GPS'
+			});
+		}
+		gps.addEventListener('click', function(e){
+			e.source.visible = false;
+			Ti.API.debug('turn gps on or off =>' + !_mapview.userLocation);
+			(_mapview.userLocation === true)? _mapview.userLocation = false : _mapview.userLocation =true; //turn on gps.
+			
+		});
+		
 		//button for directions on native version
 		var dir = null;
 		if (!Ti.App.utils.isAndroid) {
@@ -556,11 +577,12 @@ function utils() {
 			Ti.Platform.openURL(url);
 		});
 		if (!Ti.App.utils.isAndroid) {
-			w.setToolbar([flexSpace,std,flexSpace,hyb,flexSpace,sat,flexSpace,dir,flexSpace]);
+			w.setToolbar([flexSpace,std,flexSpace,hyb,flexSpace,sat,flexSpace,gps,flexSpace,dir,flexSpace]);
 		} else {
 			menu.add(std);
 			menu.add(hyb);
 			menu.add(sat);
+			menu.add(gps);
 			menu.add(dir);
 			Titanium.UI.Android.OptionMenu.setMenu(menu);
 		}
@@ -596,5 +618,72 @@ function utils() {
 		});
 		return w;
 	}
+	
+
+	// Array Remove - By John Resig (MIT Licensed)
+	// // Remove the second item from the array
+	// removeArrayItem(array,1);
+	// // Remove the second-to-last item from the array
+	// removeArrayItem(array,-2);
+	// // Remove the second and third items from the array
+	// removeArrayItem(array,1,2);
+	// // Remove the last and second-to-last items from the array
+	// removeArrayItem(array,-2,-1);
+	utils.prototype.removeArrayItem = function removeArrayItem(array, from, to) {
+	  var rest = array.slice((to || from) + 1 || array.length);
+	  array.length = from < 0 ? array.length + from : from;
+	  return array.push.apply(array, rest);
+	};
+	
+	
+	
+	///
+	///		Post FORM data to server
+	///
+	//		myurl =>http url for grab file (json)
+	//		myobj =>object to load data in
+	//		myfilename => file name to store for persistences
+	utils.prototype.postFormData = function postFormData(SvrURL,progressBar,fn_callback) {
+		var formObj =Ti.App.model.get_currentform();
+
+		//check network if not do nothing
+		if (me.checkNetwork()) {
+			var xhr=Titanium.Network.createHTTPClient();
+			xhr.setTimeout(40000);
+			xhr.setRequestHeader("content-type", "application/json");
+
+			var param={ "data":formObj,"user": 'iainc' ,"deviceid": Ti.Platform.id , "version": formObj.details.ver ,"type": formObj.details.type };
+			Ti.API.info('Params'+JSON.stringify(param));
+			    
+			xhr.onerror = function(e){ 
+				Ti.API.error('Bad Sever =>'+e.error);
+				m.errorMessage.concat(e.error);
+				m.errorDialog.show();
+			};
+			 
+			xhr.onload = function(){
+			 Ti.API.info('RAW ='+this.responseText);
+			 if(this.status == '200'){
+			    Ti.API.info('got my response, http status code ' + this.status);
+			    if(this.readyState == 4){
+			      var response=JSON.parse(this.responseText);
+			      Ti.API.info('Response = '+response);
+			      //callback now
+			      fn_callback();
+			      
+			    }else{
+			      alert('HTTP Ready State != 4');
+			    }           
+			 }else{
+			    alert('HTTp Error Response Status Code = '+this.status);
+			    Ti.API.error("Error =>"+this.response);
+			 }              
+			};
+			
+			xhr.open("POST",SvrURL);//ADD your URL
+			xhr.send(JSON.stringify(param));
+			
+		}; //end of check network
+		};
 	//end of main function closure
 }
