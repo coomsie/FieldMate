@@ -11,6 +11,11 @@ var win = Titanium.UI.currentWindow;
 // create table view data object
 var data = [];
 
+//get vairables for settings
+var region = Ti.App.utils.getPrefs('Region');
+var user = Ti.App.utils.getPrefs('CurrentUser');
+var svrURL = Ti.App.utils.getPrefs('ApplicationServerURL');
+
 var row = Ti.UI.createTableViewRow({height:50});
 
 var lb_svr = Ti.UI.createLabel({
@@ -25,13 +30,20 @@ var tb_svr = Titanium.UI.createTextField({
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
     value:'http://tools.ecan.govt.nz/fieldmate'
 });
+
+tb_svr.addEventListener('change',function(e){
+
+Ti.App.utils.setPrefs('ApplicationServerURL',e.value);
+
+})
+
 row.add(lb_svr);
 row.add(tb_svr);
 
 data[0] = row;
-data[1] = {title:"User: ",hasChild:true,url:'/views/v_settings_user.js'};
+data[1] = {title:"User: " + user ,hasChild:true,url:'/views/v_settings_user.js'};
 
-data[2] = {title:"Region: ",hasChild:true};
+data[2] = {title:"Region: " + region ,hasChild:true};
 
 var tableView = Ti.UI.createTableView({
 	data:data,
@@ -83,10 +95,14 @@ dialog_region.addEventListener('click',function(e)
 {
 	Titanium.API.info(e.source.options[e.index]);
 	tableView.updateRow(2,{title:'Region: ' + e.source.options[e.index] ,hasChild:true},{animated:true});
+	//update the prefs file.
+	Ti.App.utils.setPrefs('Region',e.source.options[e.index]);
 });
 	
 Ti.App.addEventListener('change_user',function(e)
 {
 	tableView.updateRow(1 ,{title:'User: ' + e.title,hasChild:true,url:'/views/v_settings_user.js'});
+	Ti.App.utils.setPrefs('CurrentUser',e.title);
 });	
 	
+

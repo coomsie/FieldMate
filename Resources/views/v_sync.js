@@ -110,7 +110,8 @@ alertDialog.addEventListener('click', function(e) {
 			{ 
 			dataDownload(); ///when finished raise event to start upload
 			}else{
-			alert('doing upload');			
+			alert('doing upload');	
+			Ti.App.utils.postFormData("http://google.com",null,null)		
 			}
 		};
 	};

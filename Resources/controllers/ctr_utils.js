@@ -540,8 +540,7 @@ function utils() {
 		if (!Ti.App.utils.isAndroid) {
 			gps = Titanium.UI.createButton({
 				title:'GPS',
-				backgroundColor: '#555'
-				//style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+				style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
 			});
 		} else {
 			gps = Titanium.UI.Android.OptionMenu.createMenuItem({
@@ -651,6 +650,10 @@ function utils() {
 			var xhr=Titanium.Network.createHTTPClient();
 			xhr.setTimeout(40000);
 			xhr.setRequestHeader("content-type", "application/json");
+			
+			// xhr.setRequestHeader(
+    // 'Authorization', 
+    // 'Basic ' + Ti.Utils.base64encode(username+':'+password));
 
 			var param={ "data":formObj,"user": 'iainc' ,"deviceid": Ti.Platform.id , "version": formObj.details.ver ,"type": formObj.details.type };
 			Ti.API.info('Params'+JSON.stringify(param));
@@ -685,5 +688,39 @@ function utils() {
 			
 		}; //end of check network
 		};
+		
+		///
+		/// set Prefs for application
+		///
+		utils.prototype.setPrefs = function setPrefs(key,obj)
+		{
+		// set props
+		Ti.App.Properties.setString(key, JSON.stringify(obj));
+		
+		Ti.API.debug('debug app config key' + Ti.App.model.appConfig.CurrentUser);
+		//if (Ti.App.model.appConfig[key])
+		//Ti.App.model.appConfig[key] = JSON.stringify(obj);
+		Ti.App.model.set_CurrentUser('test');
+		};
+		
+		///
+		/// get Prefs for application
+		///
+		utils.prototype.getPrefs = function getPrefs(key)
+		{
+		test = Ti.App.Properties.getString(key);
+		if(test===null)
+		{
+			Ti.API.info("No Prefs file exists");
+			return null;
+		}else
+		{
+			Ti.API.info("Prefs file exists");
+			var props = JSON.parse(Ti.App.Properties.getString(key));
+			Ti.API.info('props details =>' + props);
+			return props;
+		}
+		};
+
 	//end of main function closure
 }

@@ -14,12 +14,19 @@ function model() {
 	this.get_currentform = function () { 
 		return currentform };
 		
+		
+	this.set_CurrentUser = function (v)
+	{
+	this.appConfig.CurrentUser = v;
+	};
+		
 	this.mysites = new Object;
 	this.mymetertypes;//= new Object;
 	this.appConfig = {
 		ApplicationName: 'FieldMate',
 		ApplicationServerURL: 'http://tools.ecan.govt.nz/FieldMate/',
-		CurrentUser: 'Phil Downes',
+		CurrentUser: '',
+		Region: '',
 		DeveloperEmail:'iain.campion@ecan.govt.nz',
 		FormModels: [{formname:'GaugingCard'}],
 		LookupFilesUpdated: '',
