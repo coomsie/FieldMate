@@ -224,7 +224,7 @@ db.prototype.readForms = function readForms(state)
 		q = new joli.query()
   			.select('*')
   			.from('formdata')
-  			where('submitteddate IS NOT NULL AND syncdate IS NULL');
+  			.where('submitteddate IS NOT NULL AND syncdate IS NULL');
   			///.where('submitteddate IS NOT NULL AND syncdate IS NOT NULL'); ////THIS IS FOR TESTING ONLY !!!!%^!&^%^&%&^%
   	}
   	Ti.API.info('reading form data');
