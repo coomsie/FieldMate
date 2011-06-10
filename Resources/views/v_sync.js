@@ -110,9 +110,10 @@ alertDialog.addEventListener('click', function(e) {
 			{ 
 			dataDownload(); ///when finished raise event to start upload
 			}else{
-			alert('doing upload');	
-			Ti.App.utils.postFormData("http://google.com",null,null)		
-			}
+			//			UPLOAD PORTION
+			//
+				do_upload();
+			};
 		};
 	};
 });
@@ -143,9 +144,13 @@ function dataDownload()
 			};
 };
 
-Ti.App.addEventListener('sync_DownloadingFinished',function(e)
-			{
-			//
+Ti.App.addEventListener('sync_DownloadingFinished',function(e){
+			do_upload();
+});
+
+function do_upload()
+{
+//
 			//			UPLOAD PORTION
 			//
 			if(me.data.length!==0) ///if there is data present
@@ -164,22 +169,33 @@ Ti.App.addEventListener('sync_DownloadingFinished',function(e)
 			for (var i = me.data.length - 1; i >= 0; i--){
 			pb.setProgressMessage('Uploading Forms ', me.data.length-i, me.data.length);
 			//Ti.App.db.uploadForm (dbrowid)
-			Ti.App.db.uploadForm(me.data[i].dbrowid);
+			///Ti.App.db.uploadForm(me.data[i].dbrowid);
+			Ti.App.utils.postFormData("http://tools.ecan.govt.nz/datacatalogue/submit/fieldmate/submitformdata",JSON.parse(me.data[i].formmodel),callback_postFormData);
 			me.tableview.deleteRow(i);
 			pb.setProgress();
+			//set badge
+			tab3.badge -= tab3.badge; 
 			};
 			
-			//set badge
-			tab3.badge = 0;
+			
 			}else
 			{
 				alert('No form data to upload :)');
 			}
-});
+}
+
+function callback_postFormData(status,dbid)
+	{
+	if(status) //success , write to db
+	Ti.App.db.uploadForm(dbid);
+	}
 			
 Ti.App.addEventListener('sync_UploadingFinished',function(e)
 {
 	//do something?
+	
+	//put bak switch?
+	me.win.setToolbar([myflexSpace,lbSwitchDown,toolbarSwitchDown,myflexSpace]);
 });
 
 //add couple of buttons

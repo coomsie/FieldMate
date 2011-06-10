@@ -642,22 +642,36 @@ function utils() {
 	//		myurl =>http url for grab file (json)
 	//		myobj =>object to load data in
 	//		myfilename => file name to store for persistences
-	utils.prototype.postFormData = function postFormData(SvrURL,progressBar,fn_callback) {
-		var formObj =Ti.App.model.get_currentform();
+	utils.prototype.postFormData = function postFormData(SvrURL,formObj,fn_callback) {
+		
+		//var formObj =Ti.App.model.get_currentform();
+
+		var ver = formObj.details.ver;
+		var type = formObj.details.type;
 
 		//check network if not do nothing
 		if (me.checkNetwork()) {
 			var xhr=Titanium.Network.createHTTPClient();
-			xhr.setTimeout(40000);
-			xhr.setRequestHeader("content-type", "application/json");
 			
+			xhr.setTimeout(40000);
+			//xhr.setRequestHeader("content-type", "application/json");
+			//xhr.setRequestHeader("content-type", "multipart/form-data");
+			//xhr.setRequestHeader('Content-Type', 'form-data');
+			//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 			// xhr.setRequestHeader(
     // 'Authorization', 
     // 'Basic ' + Ti.Utils.base64encode(username+':'+password));
 
-			var param={ "data":formObj,"user": 'iainc' ,"deviceid": Ti.Platform.id , "version": formObj.details.ver ,"type": formObj.details.type };
-			Ti.API.info('Params'+JSON.stringify(param));
+			var param={ "DeviceId": Ti.Platform.id , "Data": JSON.stringify(formObj) ,"User": Ti.App.utils.getPrefs('CurrentUser')  , "Version": ver ,"Type": type };
+			
+			///param = Titanium.Network.encodeURIComponent(param);
+			//param = "DeviceId=10101010-1010-1010-1010-101010101010&Type=TestForm&Version=0.1a&Data=TEST&User=ch%5CTEST";
+			
+			//param = Titanium.Network.encodeURIComponent(param);
 			    
+			xhr.setRequestHeader("Content-Length",param.length);  
+			   
 			xhr.onerror = function(e){ 
 				Ti.API.error('Bad Sever =>'+e.error);
 				m.errorMessage.concat(e.error);
@@ -665,14 +679,20 @@ function utils() {
 			};
 			 
 			xhr.onload = function(){
-			 Ti.API.info('RAW ='+this.responseText);
+			
+			Ti.API.info('RAW ='+this.responseText);
+			 
+			Ti.API.info('responsetext' + this.responseText);
+            Ti.API.info('statuscode' + this.status);
+            Ti.API.info('connection type' + this.connectionType);
+			 
 			 if(this.status == '200'){
 			    Ti.API.info('got my response, http status code ' + this.status);
 			    if(this.readyState == 4){
 			      var response=JSON.parse(this.responseText);
 			      Ti.API.info('Response = '+response);
 			      //callback now
-			      fn_callback();
+			     fn_callback(true,formObj.details.id );
 			      
 			    }else{
 			      alert('HTTP Ready State != 4');
@@ -680,11 +700,23 @@ function utils() {
 			 }else{
 			    alert('HTTp Error Response Status Code = '+this.status);
 			    Ti.API.error("Error =>"+this.response);
+			    fn_callback(false);
 			 }              
 			};
 			
 			xhr.open("POST",SvrURL);//ADD your URL
-			xhr.send(JSON.stringify(param));
+			//xhr.send(JSON.stringify(param));
+			
+			//xhr.setRequestHeader("content-type", "application/json");
+			//xhr.setRequestHeader("content-type", "multipart/form-data");
+			//xhr.setRequestHeader('Content-Type', 'form-data');
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			
+			
+			Ti.API.info('Params'+JSON.stringify(param) + 'parameter length ' + param.length);
+			
+			xhr.send(param);
 			
 		}; //end of check network
 		};
