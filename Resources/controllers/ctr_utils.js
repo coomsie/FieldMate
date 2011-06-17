@@ -44,8 +44,8 @@ function utils() {
 				try {
 					myobj = JSON.parse(this.responseText);
 				} catch(e) {
-					m.errorMessage.concat(e.error);
-					m.errorDialog.show();
+					Ti.App.model.errorMessage.concat(e.error);
+					Ti.App.model.errorDialog.show();
 				}
 				//Titanium.API.info(myobj);
 				///do something with data.
@@ -65,8 +65,8 @@ function utils() {
 			};
 			xhr2.onerror = function(e) {
 				Ti.API.error('error getting data' + e.error);
-				m.errorMessage.concat(e.error);
-				m.errorDialog.show();
+				Ti.App.model.errorMessage.concat(e.error);
+				Ti.App.model.errorDialog.show();
 				if(progressBar)
 					progressBar.hide();
 			};
@@ -95,8 +95,8 @@ function utils() {
 			return true;
 		} catch(e) {
 			Titanium.API.info('writing file lookups error' + e.error);
-			m.errorMessage.concat(e.error);
-			m.errorDialog.show();
+			Ti.App.model.errorMessage.concat(e.error);
+			Ti.App.model.errorDialog.show();
 			return false;
 		}
 	};
@@ -143,8 +143,8 @@ function utils() {
 			return this.myobj;
 		} catch(e) {
 			Titanium.API.info('reading file lookups error' + e.error);
-			m.errorMessage.concat(e.error);
-			m.errorDialog.show();
+			Ti.App.model.errorMessage.concat(e.error);
+			Ti.App.model.errorDialog.show();
 			fn_callback(this.myobj);
 		}
 	};
@@ -192,8 +192,8 @@ function utils() {
 			return f.exists();
 		} catch(e) {
 			Titanium.API.info('checking file lookups error' + e.error);
-			m.errorMessage.concat(e.error);
-			m.errorDialog.show();
+			Ti.App.model.errorMessage.concat(e.error);
+			Ti.App.model.errorDialog.show();
 			return false;
 		}
 	};
@@ -225,8 +225,8 @@ function utils() {
 			return f.modificationTimestamp();
 		} catch(e) {
 			Titanium.API.info('checking file Timestamp error' + e.error);
-			m.errorMessage.concat(e.error);
-			m.errorDialog.show();
+			Ti.App.model.errorMessage.concat(e.error);
+			Ti.App.model.errorDialog.show();
 			return false;
 		}
 	};
@@ -242,6 +242,7 @@ function utils() {
 		this.ui;
 		this.flexSpace;
 		this.action;
+		this.ErrorCount=0;
 
 		var me = this;
 
@@ -292,8 +293,8 @@ function utils() {
 				return true;
 			} catch(e) {
 				Titanium.API.info('creating progress bar error' + e.error);
-				m.errorMessage.concat(e.error);
-				m.errorDialog.show();
+				Ti.App.model.errorMessage.concat(e.error);
+				Ti.App.model.errorDialog.show();
 				return false;
 			};
 		};
@@ -642,7 +643,7 @@ function utils() {
 	//		myurl =>http url for grab file (json)
 	//		myobj =>object to load data in
 	//		myfilename => file name to store for persistences
-	utils.prototype.postFormData = function postFormData(SvrURL,formObj,fn_callback) {
+	utils.prototype.postFormData = function postFormData(SvrURL,formObj,fn_callback, tableviewRow) {
 		
 		//var formObj =Ti.App.model.get_currentform();
 
@@ -661,9 +662,9 @@ function utils() {
 			//xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 			// xhr.setRequestHeader(
     // 'Authorization', 
-    // 'Basic ' + Ti.Utils.base64encode(username+':'+password));
+    // 'Basic ' + Ti.Utils.base64encode(username+':'+password));   Ti.Platform.id 
 
-			var param={ "DeviceId": Ti.Platform.id , "Data": JSON.stringify(formObj) ,"User": Ti.App.utils.getPrefs('CurrentUser')  , "Version": ver ,"Type": type };
+			var param={ "DeviceId":  Ti.Platform.id , "Data": JSON.stringify(formObj) ,"User": Ti.App.utils.getPrefs('CurrentUser')  , "Version": ver ,"Type": type };
 			
 			///param = Titanium.Network.encodeURIComponent(param);
 			//param = "DeviceId=10101010-1010-1010-1010-101010101010&Type=TestForm&Version=0.1a&Data=TEST&User=ch%5CTEST";
@@ -674,8 +675,8 @@ function utils() {
 			   
 			xhr.onerror = function(e){ 
 				Ti.API.error('Bad Sever =>'+e.error);
-				m.errorMessage.concat(e.error);
-				m.errorDialog.show();
+				Ti.App.model.errorMessage.concat(e.error);
+				Ti.App.model.errorDialog.show();
 			};
 			 
 			xhr.onload = function(){
@@ -691,8 +692,8 @@ function utils() {
 			    if(this.readyState == 4){
 			      var response=JSON.parse(this.responseText);
 			      Ti.API.info('Response = '+response);
-			      //callback now
-			     fn_callback(true,formObj.details.id );
+			      //callback and SAVE to DB now with success or not
+			     fn_callback(response.Success,formObj.details.id , tableviewRow );
 			      
 			    }else{
 			      alert('HTTP Ready State != 4');

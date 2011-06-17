@@ -14,6 +14,7 @@ function Sync_View() {
 	var win;
 	var data = [];
 	var tableview;
+	var uploadErrorCount=0;
 	
 // load /update forms
 Sync_View.prototype.reloadSync = function load_sync_view(win)
@@ -155,6 +156,7 @@ function do_upload()
 			//
 			if(me.data.length!==0) ///if there is data present
 			{
+			uploadErrorCount = 0;
 			var filetotal = me.data.length;
 			//create progress bar
 			var pb = new Ti.App.utils.ProgressBar();
@@ -168,15 +170,10 @@ function do_upload()
 			
 			for (var i = me.data.length - 1; i >= 0; i--){
 			pb.setProgressMessage('Uploading Forms ', me.data.length-i, me.data.length);
-			//Ti.App.db.uploadForm (dbrowid)
-			///Ti.App.db.uploadForm(me.data[i].dbrowid);
-			Ti.App.utils.postFormData("http://tools.ecan.govt.nz/datacatalogue/submit/fieldmate/submitformdata",JSON.parse(me.data[i].formmodel),callback_postFormData);
-			me.tableview.deleteRow(i);
+			//start post
+			Ti.App.utils.postFormData("http://tools.ecan.govt.nz/datacatalogue/submit/fieldmate/submitformdata",JSON.parse(me.data[i].formmodel),callback_postFormData,i);
 			pb.setProgress();
-			//set badge
-			tab3.badge -= tab3.badge; 
 			};
-			
 			
 			}else
 			{
@@ -184,16 +181,33 @@ function do_upload()
 			}
 }
 
-function callback_postFormData(status,dbid)
+function callback_postFormData(status,dbid,tableviewRow)
 	{
-	if(status) //success , write to db
+	if(status) //success , write to db and commit row etc
+	{
+	//commit to db
 	Ti.App.db.uploadForm(dbid);
+	//remove row
+	me.tableview.deleteRow(tableviewRow);
+	//set badge
+	tab3.badge -= tab3.badge; 
+	
+	}else
+	{
+		uploadErrorCount += 1;
+	}
+	
+	Ti.API.info(uploadErrorCount + 'error cnt');
 	}
 			
 Ti.App.addEventListener('sync_UploadingFinished',function(e)
 {
 	//do something?
 	
+	//check for errors
+	if (uploadErrorCount !== 0 )
+				alert( uploadErrorCount + ' form(s) had an error while uploading :)');
+				
 	//put bak switch?
 	me.win.setToolbar([myflexSpace,lbSwitchDown,toolbarSwitchDown,myflexSpace]);
 });
