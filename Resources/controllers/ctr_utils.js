@@ -323,7 +323,7 @@ function utils() {
 					//raise that the action has finished
 					var evt = 'sync_' + me.action +'Finished';
 					Ti.App.fireEvent(evt);
-					alert(me.action + ' of data finished :)')
+					/// do this in the actual finished event alert(me.action + ' of data finished :)')
 				},2000);
 			} else {
 				if (Titanium.Platform.name == 'iPhone OS') {

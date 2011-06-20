@@ -146,6 +146,7 @@ function dataDownload()
 };
 
 Ti.App.addEventListener('sync_DownloadingFinished',function(e){
+			alert('Downloading of data finished :)')
 			do_upload();
 });
 
@@ -203,7 +204,7 @@ function callback_postFormData(status,dbid,tableviewRow)
 Ti.App.addEventListener('sync_UploadingFinished',function(e)
 {
 	//do something?
-	
+	alert('Uploading of data finished :)')
 	//check for errors
 	if (uploadErrorCount !== 0 )
 				alert( uploadErrorCount + ' form(s) had an error while uploading :)');

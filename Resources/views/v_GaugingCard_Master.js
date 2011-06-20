@@ -8,7 +8,27 @@ var myform = {
 	type: 'GaugingCard',
 	ver: 1.0,
 	user: null,
-	isReadonly: false
+	isReadonly: false,
+	rules: [
+               	{ 
+               		spintestbefore: {isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true }
+                    },
+               	{ 
+               		spintestafter:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true }
+                	},
+				{ 
+					measured:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
+					},
+				{ 
+					wind:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true }
+					},
+				{ 
+					current:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
+					},
+				{ 
+					temp:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true }
+				}
+              ]
 	}, 
 	siteid : '',
 	sitename : '',

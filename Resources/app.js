@@ -180,7 +180,16 @@ Ti.App.tabGroup.addEventListener('focus', function(e)
    Ti.App.Sync_View.reloadSync(e.source);
 });
 
+///************************************
+///			STARTUP CHECKS
+///************************************
 
+//check if username is present
+if(Ti.App.utils.getPrefs('CurrentUser') === null){
+alert('Please set the username in the settings tab :)');
+Ti.App.tabGroup.setActiveTab(3);
+}
+	
 //check for all lookup files
 Titanium.API.info("check to see all lookup files present");
 /// check all lookup files

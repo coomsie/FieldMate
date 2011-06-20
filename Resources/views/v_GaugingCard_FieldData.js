@@ -1,11 +1,16 @@
 Titanium.include('../../helpers/validation.js');
 
+// form data model
+var myform = Ti.App.model.get_currentform();
+//new validation and load with rules for form
+setValidationRules(myform.details.rules);
+
 var valMessages = new validationMessages();
 
-//create UI objects
 
+//create UI objects
 var win = Ti.UI.currentWindow;
-var myform = Ti.App.model.get_currentform();
+
 	
 //create  UI
 
@@ -129,6 +134,7 @@ var lb_spintestbefore = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_spintestbefore = Titanium.UI.createTextField({
+	id:'spintestbefore', //validation runs off id as field id name in form too
 	color:'#999',
 	height:35,
 	left:100,
