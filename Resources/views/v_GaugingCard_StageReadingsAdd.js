@@ -85,6 +85,7 @@ var tb_time = Titanium.UI.createTextField({
     left:100,
     width:220,
     isValid: '',
+    value: '',
     validation:{ isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true },
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
     borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -108,7 +109,6 @@ tb_time.addEventListener('blur',function(e){
 tb_time.addEventListener('change', function(e) {
 	tb_time.isValid = checkValidation(tb_time);
 });
-
 
 row.add(lb_time);
 row.add(tb_time);

@@ -53,7 +53,13 @@ function validationMessages() {
 	this.anim_out.duration = 4000;
 
 	//function to display view
-	validationMessages.prototype.displayValErr  = function displayValErr() {
+	validationMessages.prototype.displayValErr  = function displayValErr(errMsg) {
+		if(errMsg !=='' && errMsg !== undefined && errMsg !== null){
+		this.valLabel.text = errMsg;
+		}else{ //default
+			this.valLabel.text = 'Missing or error in field (see red text)';
+		}
+		
 		this.valView.opacity = 1.0;
 		this.valView.visible = true;
 		this.valView.show();
@@ -201,7 +207,7 @@ function checkValidation(obj , fieldid) {
 			obj.validation.backgroundColor = obj.backgroundColor;
 		}
 		//set valuation highlight effect
-		function setEffect(obj,isOff) {
+		function setEffect(obj,isOff, errMsg) {
 			if (isValid===false) {
 				return false;
 			} else {
@@ -211,6 +217,9 @@ function checkValidation(obj , fieldid) {
 						obj.backgroundColor = 'Red';
 					}
 					isValid = false;
+					if (obj.errMsg ===''){
+						obj.errMsg = errMsg;
+						}
 				}
 				if(isOff) {
 					if (obj.color !== 'undefined') {
@@ -218,6 +227,9 @@ function checkValidation(obj , fieldid) {
 						obj.backgroundColor = obj.validation.backgroundColor;
 					}
 					isValid = true;
+					if (obj.errMsg !== undefined){
+						obj.errMsg = '';
+						}
 				}
 			}
 			return isOff;
@@ -229,28 +241,28 @@ function checkValidation(obj , fieldid) {
 		function validationEngine(obj , objRule) {
 			//check if reqd
 			if(objRule.reqd) {
-				setEffect(obj,isPresent(obj.value));
+				setEffect(obj,isPresent(obj.value),'Value is required');
 			};
 
 			///validation checks only if Value Present
 			if(isPresent(obj.value)) {
 				//check for double value
 				if(objRule.isdouble) {
-					setEffect(obj,isDouble(obj.value));
+					setEffect(obj,isDouble(obj.value),'Value must be an number');
 				};
 				//check if need integer
 				if(objRule.isinteger) {
-					setEffect(obj,isInteger(obj.value));
+					setEffect(obj,isInteger(obj.value),'Value must be an whole number');
 					// if (!setEffect(obj,isInteger(obj.value)))
 					// obj.value = removeLastEntry(obj.value);
 				};
 				//check if need min
 				if(objRule.minchars) {
-					setEffect(obj,isMinChars(obj.value,objRule.minchars));
+					setEffect(obj,isMinChars(obj.value,objRule.minchars),'Value doesnt meet the min character(s) required');
 				};
 				//check if max
 				if(objRule.maxchars) {
-					setEffect(obj,isWithinMaxChars(obj.value,objRule.maxchars));
+					setEffect(obj,isWithinMaxChars(obj.value,objRule.maxchars),'Value doesnt meet the max character(s) required');
 					// removed next cos the check still returns false ....
 					// if(!isWithinMaxChars(obj.value,obj.validation.maxchars))
 					// {
@@ -260,7 +272,7 @@ function checkValidation(obj , fieldid) {
 				};
 				//check within range
 				if(objRule.range) {
-					setEffect(obj,isWithinRange(obj.value,objRule.range.min,objRule.range.max));
+					setEffect(obj,isWithinRange(obj.value,objRule.range.min,objRule.range.max),'Value is outside the allowable range');
 				};
 			};
 		};
@@ -307,74 +319,6 @@ function checkValidation(obj , fieldid) {
 
 //validation model
 var validator = {
-	rules: {
-		spintestbefore: {
-			isdouble:false,
-			isinteger:true,
-			range: {
-				min:0,
-				max:100
-			},
-			minchars:1,
-			maxchars:3,
-			reqd:true
-		},
-		spintestafter: {
-			isdouble:false,
-			isinteger:true,
-			range: {
-				min:0,
-				max:100
-			},
-			minchars:1,
-			maxchars:3,
-			reqd:true
-		},
-		measured: {
-			isdouble:false,
-			isinteger:true,
-			range: {
-				min:0,
-				max:200
-			},
-			minchars:1,
-			maxchars:3,
-			reqd:true
-		},
-		wind: {
-			isdouble:false,
-			isinteger:true,
-			range: {
-				min:0,
-				max:99
-			},
-			minchars:1,
-			maxchars:2,
-			reqd:true
-		},
-		current: {
-			isdouble:false,
-			isinteger:true,
-			range: {
-				min:0,
-				max:200
-			},
-			minchars:1,
-			maxchars:3,
-			reqd:true
-		},
-		temp: {
-			isdouble:true,
-			isinteger:false,
-			range: {
-				min:-10,
-				max:35
-			},
-			minchars:1,
-			maxchars:5,
-			reqd:true
-		}
-	},
 	messages: {
 		isinteger: {
 			eval: "Value must be an integer"
@@ -396,134 +340,3 @@ var validator = {
 		}
 	}
 }; ///end of function
-
-///jqueries validation model
-// validator = $("form").validate({
-// errorClass: "validator",
-// //            errorPlacement: function(error, element) {
-// //                // Custom placement for meters radio buttons
-// //                if ($(element).is('#Meters input:radio')) {
-// //                    element = $("#Meters");
-// //                    error.insertAfter(element);
-// //                }
-// //                else {
-// //                    element = $(element).parent();
-// //                    error.appendTo(element);
-// //                }
-// //            },
-// rules: {
-// wellNo: {
-// required: true,
-// wellNoValid: true
-// },
-// coordinateSystem: {
-// eval: "viewModel.coordinateSystem().id != null ? true : false"
-// },
-// y: {
-// required: true,
-// number: true
-// },
-// x: {
-// required: true,
-// number: true
-// },
-// coordinateQuality: {
-// eval: "viewModel.coordinateQuality().id != null ? true : false"
-// },
-// drillMethod: {
-// eval: "viewModel.drillMethod().id != null ? true : false"
-// },
-// drillDate: {
-// required: true,
-// dateITA: true,
-// dateNonFuture: true
-// },
-// diameter: {
-// required: true,
-// digits: true
-// },
-// casingMaterial: {
-// eval: "viewModel.casingMaterial().id != null ? true : false"
-// },
-// casingMaterialOther: {
-// requiredWhenVisible: "viewModel.casingMaterialId() == casingMaterialsOtherId ? true : false"
-// },
-// initialGWL: {
-// required: true,
-// number: true
-// },
-// groundRL: {
-// number: true
-// },
-// screensOverlap: {
-// eval: "!viewModel.screensOverlapsPresent()"
-// },
-// strataCount: {
-// eval: "viewModel.strata().length >= 1 ? true : false"
-// },
-// strataOverlap: {
-// eval: "!viewModel.strataOverlapsPresent()"
-// },
-// // SCREEN START
-// screenMaterial: {
-// eval: "viewModelScreen.screenMaterial().id != null ? true : false"
-// },
-// screenTop: {
-// required: true,
-// number: true
-// },
-// screenBottom: {
-// required: true,
-// number: true,
-// eval: "parseFloat(viewModelScreen.screenBottom()) >= parseFloat(viewModelScreen.screenTop()) ? true : false"
-// },
-// slotSize: {
-// digits: true
-// },
-// slotLength: {
-// digits: true
-// },
-// screenDiameter: {
-// digits: true
-// },
-// leaderLength: {
-// digits: true
-// },
-// screenLength: {
-// digits: true
-// },
-// // SCREEN END
-// // STRATUM START
-// depth: {
-// required: true,
-// number: true
-// },
-// waterContent: {
-// eval: "viewModelStratum.waterContent().id != null ? true : false"
-// },
-// colour: {
-// eval: "viewModelStratum.colour().id != null ? true : false"
-// },
-// majorFraction: {
-// eval: "viewModelStratum.majorFraction().id != null ? true : false"
-// },
-// waterLevel: {
-// digits: true
-// }
-// // STRATUM END
-// },
-// messages: {
-// screensOverlap: {
-// eval: "Screens cannot overlap"
-// },
-// strataCount: {
-// eval: "At least 1 stratum required"
-// },
-// strataOverlap: {
-// eval: "Strata cannot share the same depth"
-// },
-// screenBottom: {
-// eval: "Bottom must be deeper than top"
-// }
-// }
-// });

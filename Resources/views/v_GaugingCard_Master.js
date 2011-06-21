@@ -226,9 +226,12 @@ function runValidation()
 	if(fm[fieldname] !== null)
 	obj.value = fm[fieldname];
 	
-	//check validation
+	//check validation only if field exists
+	if(obj.value !== undefined)
+	{
 	if(!checkValidation( obj, fieldname))
 	isValid = false;
+	}
 	
 	};
 	return isValid;
