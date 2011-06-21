@@ -1,3 +1,4 @@
+Titanium.include('../../helpers/validation.js');
 
 // FORM MODEL
 var myform = {
@@ -17,16 +18,46 @@ var myform = {
                		spintestafter:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true }
                 	},
 				{ 
-					measured:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
+					measureddistance:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
 					},
 				{ 
-					wind:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true }
+					windspeed:{ isdouble:false, isinteger:true, range:{min:0,max:99},minchars:1,maxchars:2,reqd:true }
 					},
 				{ 
-					current:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
+					anglecurrent:{ isdouble:false, isinteger:true, range:{min:0,max:200},minchars:1,maxchars:3,reqd:true }
 					},
 				{ 
-					temp:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true }
+					watertemp:{ isdouble:true, isinteger:false, range:{min:-10,max:35},minchars:1,maxchars:5,reqd:true }
+				},
+				{
+					watercolour:{reqd:true }
+				},
+				{
+					angletype:{reqd:true }
+				},
+				{
+					winddirection:{reqd:true }
+				},
+				{
+					measuredlandmark:{reqd:true }
+				},
+				{
+					measuredposition:{reqd:true }
+				},
+				{
+					measuredmethod:{reqd:true }
+				},
+				{
+					metertype:{reqd:true }
+				},
+				{
+					siteid:{reqd:true }
+				},
+				{
+					stagereadings: {reqd:true }
+				},
+				{
+					stagereadingstimetaken: { isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true }
 				}
               ]
 	}, 
@@ -135,6 +166,9 @@ btn_submit.addEventListener('click',function(e)
 	alertDialog.addEventListener('click',function(e){
 		if(e.index !== 1)
 		{
+		///CHECK IF IT VALID
+		if (runValidation())
+		{
 		fm = Ti.App.model.get_currentform();
 		fm.details.isReadonly = true;
 		Ti.App.model.set_currentform(fm);
@@ -143,6 +177,10 @@ btn_submit.addEventListener('click',function(e)
 		//close window.
 		Titanium.UI.currentWindow.close();
 		Ti.App.tabGroup.setActiveTab(0); //send back to new form.
+		}else
+		{
+			alert('Form has error, pse correct. :)')
+		}
 		}
 		
 		
@@ -156,4 +194,44 @@ Titanium.UI.currentWindow.rightNavButton = btn_submit;
 
 Titanium.UI.currentWindow.title = 'Gauging Recorder';
 
+function runValidation()
+{
+	
+	setValidationRules(fm.details.rules);
+	
+	var isValid = true;
+	//for every rule grab field and run validation
+	for (var i = fm.details.rules.length - 1; i >= 0; i--){
+	
+	//if (fm.details.rules[i].hasOwnProperty(id)) r = fm.details.rules[i][id]; //use  bracket notatio when dynamic
+	var fieldname;
+	
+	for(var key in fm.details.rules[i]) {
+		if (key){
+  	Ti.API.debug('debugkey' + key);
+  	fieldname  = key;
+  	}
+	}
+	
+	Ti.API.debug('fieldname '+ fieldname);
+	
+	//grab form field
+	//fm[fieldname]
+	
+	var obj = {
+		value: '',
+		color: null,
+		validation : []
+	}
+	if(fm[fieldname] !== null)
+	obj.value = fm[fieldname];
+	
+	//check validation
+	if(!checkValidation( obj, fieldname))
+	isValid = false;
+	
+	};
+	return isValid;
 }
+
+} //end of function createFormMasterUI

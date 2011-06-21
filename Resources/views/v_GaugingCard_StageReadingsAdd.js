@@ -1,5 +1,10 @@
 Titanium.include('../../helpers/validation.js');
 
+// form data model
+var myform = Ti.App.model.get_currentform();
+//new validation and load with rules for form
+setValidationRules(myform.details.rules);
+
 var valMessages = new validationMessages();
 
 valMessages.reqdfieldsRemaining=2;
@@ -74,6 +79,7 @@ var lb_time = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_time = Titanium.UI.createTextField({
+	id: 'stagereadingstimetaken',
     color:'#999',
     height:35,
     left:100,

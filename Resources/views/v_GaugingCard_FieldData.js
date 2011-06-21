@@ -145,7 +145,8 @@ var tb_spintestbefore = Titanium.UI.createTextField({
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
 	validation:{ isdouble:false, isinteger:true, range:{min:0,max:100},minchars:1,maxchars:3,reqd:true },
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid:false,
+	myevent: null
 });
 
 tb_spintestbefore.addEventListener('change', function(e) {
@@ -183,6 +184,7 @@ var lb_spintestafter = Ti.UI.createLabel({
 
 });
 var tb_spintestafter = Titanium.UI.createTextField({
+	id: 'spintestafter',
 	color:'#999',
 	height:35,
 	left:100,
@@ -236,6 +238,7 @@ var lb_measured = Ti.UI.createLabel({
 
 });
 var tb_measured = Titanium.UI.createTextField({
+	id: 'measureddistance',
 	color:'#999',
 	height:35,
 	left:120,
@@ -304,6 +307,7 @@ var lb_wind = Ti.UI.createLabel({
 
 });
 var tb_wind = Titanium.UI.createTextField({
+	id : 'windspeed',
 	color:'#999',
 	height:35,
 	left:120,
@@ -356,6 +360,7 @@ var lb_current = Ti.UI.createLabel({
 
 });
 var tb_current = Titanium.UI.createTextField({
+	id:'anglecurrent',
 	color:'#999',
 	height:35,
 	left:100,
@@ -389,6 +394,7 @@ row.add(tb_current);
 data[data.length+1] = row;
 
 data[data.length+1] = {
+	id: 'watercolour',
 	title:'Colour:*'+ myform['watercolour'],
 	hasChild:hasChild,
 	header:'Water',
@@ -408,6 +414,7 @@ var lb_temp = Ti.UI.createLabel({
 
 });
 var tb_temp = Titanium.UI.createTextField({
+	id:'watertemp',
 	color:'#999',
 	height:35,
 	left:100,
