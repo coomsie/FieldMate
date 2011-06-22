@@ -204,7 +204,8 @@ var tb_spintestafter = Titanium.UI.createTextField({
 	},
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid: null,
+	errMsg:''
 });
 
 tb_spintestafter.addEventListener('change', function(e) {
@@ -212,7 +213,7 @@ tb_spintestafter.addEventListener('change', function(e) {
 });
 tb_spintestafter.addEventListener('blur', function(e) {
 	if(e.source.isValid === false) {
-		valMessages.displayValErr();
+		valMessages.displayValErr(e.source.errMsg);
 	} else {
 		myform.spintestafter = e.value;
 		Ti.App.model.set_currentform(myform);
@@ -262,7 +263,8 @@ var tb_measured = Titanium.UI.createTextField({
 		reqd:true
 	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid:null,
+	errMsg:''
 });
 
 tb_measured.addEventListener('change', function(e) {
@@ -270,7 +272,7 @@ tb_measured.addEventListener('change', function(e) {
 });
 tb_measured.addEventListener('blur', function(e) {
 	if(e.source.isValid === false) {
-		valMessages.displayValErr();
+		valMessages.displayValErr(e.source.errMsg);
 	} else {
 		myform.measureddistance = e.value;
 		Ti.App.model.set_currentform(myform);
@@ -337,7 +339,8 @@ var tb_wind = Titanium.UI.createTextField({
 		reqd:true
 	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid:null,
+	errMsg:''
 });
 
 tb_wind.addEventListener('change', function(e) {
@@ -345,7 +348,7 @@ tb_wind.addEventListener('change', function(e) {
 });
 tb_wind.addEventListener('blur', function(e) {
 	if(e.source.isValid === false) {
-		valMessages.displayValErr();
+		valMessages.displayValErr(e.source.errMsg);
 	} else {
 		myform.windspeed = e.value;
 		Ti.App.model.set_currentform(myform);
@@ -396,7 +399,8 @@ var tb_current = Titanium.UI.createTextField({
 		reqd:true
 	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid:null,
+	errMsg:''
 });
 
 tb_current.addEventListener('change', function(e) {
@@ -404,7 +408,7 @@ tb_current.addEventListener('change', function(e) {
 });
 tb_current.addEventListener('blur', function(e) {
 	if(e.source.isValid === false) {
-		valMessages.displayValErr();
+		valMessages.displayValErr(e.source.errMsg);
 	} else {
 		myform.anglecurrent = e.value;
 		Ti.App.model.set_currentform(myform);
@@ -456,7 +460,8 @@ var tb_temp = Titanium.UI.createTextField({
 		reqd:true
 	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	isValid:false
+	isValid:null,
+	errMsg:''
 });
 
 tb_temp.addEventListener('change', function(e) {
@@ -464,7 +469,7 @@ tb_temp.addEventListener('change', function(e) {
 });
 tb_temp.addEventListener('blur', function(e) {
 	if(e.source.isValid === false) {
-		valMessages.displayValErr();
+		valMessages.displayValErr(e.source.errMsg);
 	} else {
 		myform.watertemp = e.value;
 		Ti.App.model.set_currentform(myform);
