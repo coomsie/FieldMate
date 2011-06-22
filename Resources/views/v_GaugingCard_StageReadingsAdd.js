@@ -84,11 +84,12 @@ var tb_time = Titanium.UI.createTextField({
     height:35,
     left:100,
     width:220,
-    isValid: '',
     value: '',
-    validation:{ isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true },
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+    isValid: null,
+	errMsg:'',
+	validation:''
 });
 
 //set value for edited
@@ -96,12 +97,14 @@ if(win.data)
 tb_time.value = win.data.timetaken;
 
 tb_time.addEventListener('blur',function(e){
-	rdata.timetaken = e.source.value;
-	edited = true;
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
+	}else
+	{
+	rdata.timetaken = e.source.value;
+	edited = true;
 	}
 	checkforallValErrs();
 });
@@ -123,26 +126,30 @@ var lb_record = Ti.UI.createLabel({
 
 });
 var tb_record = Titanium.UI.createTextField({
+	id:  'stagereadingsrecord',
     color:'#999',
     height:35,
     left:100,
     width:220,
-    isValid: '',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
-    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+    isValid: null,
+	errMsg:'',
+	validation:''
 });
 //set value for edited
 if(win.data)
 tb_record.value = win.data.recorder;
 
 tb_record.addEventListener('blur',function(e){
-	rdata.recorder = e.source.value;
-	edited = true;
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
+	}else
+	{
+	rdata.recorder = e.source.value;
+	edited = true;	
 	}
 	checkforallValErrs();
 });
@@ -163,26 +170,30 @@ var lb_well = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_well = Titanium.UI.createTextField({
+	id:  'stagereadingswell',
     color:'#999',
     height:35,
     left:100,
     width:220,
-    isValid: '',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
-    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+    isValid: null,
+	errMsg:'',
+	validation:''
 });
 //set value for edited
 if(win.data)
 tb_well.value = win.data.epb;
 
 tb_well.addEventListener('blur',function(e){
-	rdata.epb = e.source.value;
-	edited = true;
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
+	}else
+	{
+	rdata.epb = e.source.value;
+	edited = true;
 	}
 	checkforallValErrs();
 });
@@ -203,14 +214,16 @@ var lb_gauge = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_gauge = Titanium.UI.createTextField({
+	id:  'stagereadingsgauge',
     color:'#999',
     height:35,
     left:100,
     width:220,
-    isValid:'',
     keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
-    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+    isValid: null,
+	errMsg:'',
+	validation:''
 });
 
 //set value for edited
@@ -218,12 +231,14 @@ if(win.data)
 tb_gauge.value = win.data.esg;
 
 tb_gauge.addEventListener('blur',function(e){
-	rdata.esg = e.source.value;
-	edited = true;
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
+	}else
+	{
+	rdata.esg = e.source.value;
+	edited = true;	
 	}
 	checkforallValErrs();
 });
@@ -244,22 +259,36 @@ var lb_dif = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_dif = Titanium.UI.createTextField({
+	id:  'stagereadingsdif',
     color:'#999',
     height:35,
     left:100,
     width:220,
     keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-    validation:{ isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false },
-    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+    isValid: null,
+	errMsg:'',
+	validation:''
 });
 //set value for edited
 if(win.data)
 tb_dif.value = win.data.diff;
 
 tb_dif.addEventListener('blur',function(e){
+	if(e.source.isValid === false)
+	{
+	Ti.API.debug('show validation message');
+	valMessages.displayValErr(e.source.errMsg);
+	}else
+	{
 	rdata.diff = e.source.value;
 	edited = true;
+	}
 	diffValidation();
+});
+
+tb_dif.addEventListener('change',function(e){
+	tb_dif.isValid = checkValidation(tb_dif);
 });
 
 row.add(lb_dif);
@@ -334,7 +363,7 @@ function diffValidation()
 {
 	var d = Math.round(Math.abs(rdata.recorder - rdata.epb)*1000) ;
 	if ((rdata.diff) - d !== 0)
-	alert('Note: Difference is not correct.(' + d + ')');
+	alert('Note: Difference is not correct. (Should be .. ' + d + ')');
 	
 	Ti.API.debug('diff' + Math.round(Math.abs(rdata.recorder - rdata.epb)*1000));
 }

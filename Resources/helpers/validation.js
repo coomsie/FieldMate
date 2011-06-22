@@ -258,11 +258,11 @@ function checkValidation(obj , fieldid) {
 				};
 				//check if need min
 				if(objRule.minchars) {
-					setEffect(obj,isMinChars(obj.value,objRule.minchars),'Value doesnt meet the min character(s) required');
+					setEffect(obj,isMinChars(obj.value,objRule.minchars),'Value under min character(s)');
 				};
 				//check if max
 				if(objRule.maxchars) {
-					setEffect(obj,isWithinMaxChars(obj.value,objRule.maxchars),'Value doesnt meet the max character(s) required');
+					setEffect(obj,isWithinMaxChars(obj.value,objRule.maxchars),'Value over the max character(s)');
 					// removed next cos the check still returns false ....
 					// if(!isWithinMaxChars(obj.value,obj.validation.maxchars))
 					// {
@@ -272,7 +272,7 @@ function checkValidation(obj , fieldid) {
 				};
 				//check within range
 				if(objRule.range) {
-					setEffect(obj,isWithinRange(obj.value,objRule.range.min,objRule.range.max),'Value is outside the allowable range');
+					setEffect(obj,isWithinRange(obj.value,objRule.range.min,objRule.range.max),'Value is not within the range');
 				};
 			};
 		};

@@ -1,5 +1,10 @@
 Titanium.include('../../helpers/validation.js');
 
+// form data model
+var myform = Ti.App.model.get_currentform();
+//new validation and load with rules for form
+setValidationRules(myform.details.rules);
+
 var valMessages = new validationMessages();
 
 //create UI objects
@@ -12,7 +17,6 @@ var win = Ti.UI.currentWindow;
 	// computedmeanvel : null,
 	
 //only add the button if draft or new tab is open. FROM OPEN FORM DATA
-myform = Ti.App.model.get_currentform();
 var isEnabled = (myform.details.isReadonly !== true) ? true : false;
 
 // create table view data object
@@ -28,23 +32,25 @@ var lb_discharge = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_discharge = Titanium.UI.createTextField({
+	id: 'computeddischarge',
 	color:'#999',
 	height:35,
 	right:0,
 	width:150,
 	enabled: isEnabled,
 	value: myform.computeddischarge,
-	isValid: '',
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid: null,
+	errMsg:'',
+	validation:''
 });
 
 tb_discharge.addEventListener('blur',function(e){
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
 	}
 	else
 	{
@@ -71,23 +77,25 @@ var lb_area = Ti.UI.createLabel({
 
 });
 var tb_area = Titanium.UI.createTextField({
+	id : 'computedarea',
 	color:'#999',
 	height:35,
 	right:0,
 	width:150,
 	enabled: isEnabled,
 	value: myform.computedarea,
-	isValid: '',
-	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid: null,
+	errMsg:'',
+	validation:''
 });
 
 tb_area.addEventListener('blur',function(e){
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
 	}
 	else
 	{
@@ -113,23 +121,25 @@ var lb_meanvel = Ti.UI.createLabel({
 	textAlign:'left'
 });
 var tb_meanvel = Titanium.UI.createTextField({
+	id : 'computedmeanvel',
 	color:'#999',
 	height:35,
 	right:0,
 	width:150,
 	enabled: isEnabled,
 	value: myform.computedmeanvel,
-	isValid: '',
-	validation:{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false },
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	isValid: null,
+	errMsg:'',
+	validation:''
 });
 
 tb_meanvel.addEventListener('blur',function(e){
 	if(e.source.isValid === false)
 	{
 	Ti.API.debug('show validation message');
-	valMessages.displayValErr();
+	valMessages.displayValErr(e.source.errMsg);
 	}
 	else
 	{

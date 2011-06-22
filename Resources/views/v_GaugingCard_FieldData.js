@@ -136,20 +136,10 @@ var tb_spintestbefore = Titanium.UI.createTextField({
 	value: myform.spintestbefore,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
-	validation: {
-		isdouble:false,
-		isinteger:true,
-		range: {
-			min:0,
-			max:100
-		},
-		minchars:1,
-		maxchars:3,
-		reqd:true
-	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid: null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_spintestbefore.addEventListener('change', function(e) {
@@ -191,21 +181,11 @@ var tb_spintestafter = Titanium.UI.createTextField({
 	enabled: isEnabled,
 	value: myform.spintestafter,
 	returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
-	validation: {
-		isdouble:false,
-		isinteger:true,
-		range: {
-			min:0,
-			max:100
-		},
-		minchars:1,
-		maxchars:3,
-		reqd:true
-	},
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid: null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_spintestafter.addEventListener('change', function(e) {
@@ -251,20 +231,10 @@ var tb_measured = Titanium.UI.createTextField({
 	enabled: isEnabled,
 	value: myform.measureddistance,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	validation: {
-		isdouble:false,
-		isinteger:true,
-		range: {
-			min:0,
-			max:200
-		},
-		minchars:1,
-		maxchars:3,
-		reqd:true
-	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid:null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_measured.addEventListener('change', function(e) {
@@ -327,20 +297,10 @@ var tb_wind = Titanium.UI.createTextField({
 	enabled: isEnabled,
 	value: myform.windspeed,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	validation: {
-		isdouble:false,
-		isinteger:true,
-		range: {
-			min:0,
-			max:99
-		},
-		minchars:1,
-		maxchars:2,
-		reqd:true
-	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid:null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_wind.addEventListener('change', function(e) {
@@ -387,20 +347,10 @@ var tb_current = Titanium.UI.createTextField({
 	enabled: isEnabled,
 	value: myform.anglecurrent,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBER_PAD,
-	validation: {
-		isdouble:false,
-		isinteger:true,
-		range: {
-			min:0,
-			max:200
-		},
-		minchars:1,
-		maxchars:3,
-		reqd:true
-	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid:null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_current.addEventListener('change', function(e) {
@@ -448,20 +398,10 @@ var tb_temp = Titanium.UI.createTextField({
 	enabled: isEnabled,
 	value: myform.watertemp,
 	keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	validation: {
-		isdouble:true,
-		isinteger:false,
-		range: {
-			min:-10,
-			max:35
-		},
-		minchars:1,
-		maxchars:5,
-		reqd:true
-	},
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	isValid:null,
-	errMsg:''
+	errMsg:'',
+	validation:''
 });
 
 tb_temp.addEventListener('change', function(e) {

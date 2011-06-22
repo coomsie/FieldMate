@@ -58,6 +58,27 @@ var myform = {
 				},
 				{
 					stagereadingstimetaken: { isdouble:false, isinteger:true, range:{min:0,max:2199},minchars:3,maxchars:4,reqd:true }
+				},
+				{
+					stagereadingsrecord: { isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false }
+				},
+				{
+					stagereadingswell: { isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false }
+				},
+				{
+					stagereadingsgauge: { isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false }
+				},
+				{
+					stagereadingsdif: { isdouble:true, isinteger:false, range:{min:0,max:99},minchars:3,maxchars:6,reqd:false }
+				},
+				{
+					computeddischarge : { isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false }
+				},
+				{
+					computedarea :{ isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false }
+				},
+				{
+					computedmeanvel : { isdouble:true, isinteger:false, range:{min:0,max:100},minchars:1,maxchars:3,reqd:false }
 				}
               ]
 	}, 
