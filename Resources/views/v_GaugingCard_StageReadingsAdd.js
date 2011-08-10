@@ -1,4 +1,4 @@
-Titanium.include('../../helpers/validation.js');
+Titanium.include('/helpers/validation.js');
 
 // form data model
 var myform = Ti.App.model.get_currentform();

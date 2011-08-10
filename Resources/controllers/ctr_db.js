@@ -1,4 +1,4 @@
-Titanium.include('joli.js');
+Titanium.include('/joli.js');
 
 function db() {
 

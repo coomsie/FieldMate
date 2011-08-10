@@ -1,4 +1,4 @@
-Titanium.include('../../helpers/validation.js');
+Titanium.include('/helpers/validation.js');
 
 // FORM MODEL
 var myform = {
